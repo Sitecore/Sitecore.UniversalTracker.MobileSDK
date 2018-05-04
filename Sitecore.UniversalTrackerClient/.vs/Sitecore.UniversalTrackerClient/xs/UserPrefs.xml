@@ -1,0 +1,17 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Sitecore.UniversalTrackerClient/UTSession.cs">
+    <Files>
+      <File FileName="Sitecore.UniversalTrackerClient/UTSession.cs" Line="83" Column="12" />
+      <File FileName="Sitecore.UniversalTrackerClient/UserRequestMerger.cs" Line="9" Column="9" />
+      <File FileName="Sitecore.UniversalTrackerClient/Session/IUTSessionConfig.cs" Line="5" Column="25" />
+      <File FileName="../../sitecore-SSC-sdk/lib/SitecoreMobileSDK-PCL/UserRequest/UserRequestMerger.cs" Line="222" Column="23" />
+      <File FileName="../../sitecore-SSC-sdk/lib/SitecoreMobileSDK-PCL/UserRequest/SessionConfigMerger.cs" Line="27" Column="21" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
