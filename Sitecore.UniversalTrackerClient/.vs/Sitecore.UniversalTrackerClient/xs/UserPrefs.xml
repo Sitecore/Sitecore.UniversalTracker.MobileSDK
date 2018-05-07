@@ -1,11 +1,10 @@
-﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Sitecore.UniversalTrackerClient/UTSession.cs">
+﻿<Properties StartupConfiguration="{9DB00321-73CD-4C5F-A290-78E98192B730}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Sitecore.UniversalTrackerClient/Session/SessionBuilder.cs">
     <Files>
-      <File FileName="Sitecore.UniversalTrackerClient/UTSession.cs" Line="83" Column="12" />
-      <File FileName="Sitecore.UniversalTrackerClient/UserRequestMerger.cs" Line="9" Column="9" />
-      <File FileName="Sitecore.UniversalTrackerClient/Session/IUTSessionConfig.cs" Line="5" Column="25" />
-      <File FileName="../../sitecore-SSC-sdk/lib/SitecoreMobileSDK-PCL/UserRequest/UserRequestMerger.cs" Line="222" Column="23" />
-      <File FileName="../../sitecore-SSC-sdk/lib/SitecoreMobileSDK-PCL/UserRequest/SessionConfigMerger.cs" Line="27" Column="21" />
+      <File FileName="Sitecore.UniversalTrackerClient/Network/AbstractPostEventTask.cs" Line="32" Column="13" />
+      <File FileName="Demo/UniversalTrackerDemo/AppDelegate.cs" Line="30" Column="10" />
+      <File FileName="Demo/UniversalTrackerDemo/ViewController.cs" Line="20" Column="55" />
+      <File FileName="Sitecore.UniversalTrackerClient/Session/SessionBuilder.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
@@ -13,5 +12,9 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.UniversalTrackerDemo.UITests FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.UniversalTrackerDemo PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.FD61A1FE-B1BC-42D7-9F66-AC54A636C811">
+    <MonoDevelop.MacDev.AppleDevelopmentTeam />
+  </MonoDevelop.Ide.ItemProperties.UniversalTrackerDemo>
   <MultiItemStartupConfigurations />
 </Properties>

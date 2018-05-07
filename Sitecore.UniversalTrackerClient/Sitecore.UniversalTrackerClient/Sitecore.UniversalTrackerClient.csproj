@@ -36,20 +36,31 @@
     <Compile Include="Session\ISitecoreUTSessionActions.cs" />
     <Compile Include="Session\ISitecoreUTSessionState.cs" />
     <Compile Include="Session\IUTSessionConfig.cs" />
-    <Compile Include="TaskFlow\IDownloadApiCallTasks.cs" />
-    <Compile Include="TaskFlow\IRestApiCallTasks.cs" />
-    <Compile Include="TaskFlow\RestApiCallFlow.cs" />
     <Compile Include="Exceptions\SitecoreUTSdkException.cs" />
     <Compile Include="Exceptions\ParserException.cs" />
     <Compile Include="Exceptions\TaskFlowErrorMessages.cs" />
     <Compile Include="Exceptions\LoadDataFromNetworkException.cs" />
     <Compile Include="UserRequestMerger.cs" />
+    <Compile Include="Network\AbstractPostEventTask.cs" />
+    <Compile Include="Network\TaskFlow\IDownloadApiCallTasks.cs" />
+    <Compile Include="Network\TaskFlow\IRestApiCallTasks.cs" />
+    <Compile Include="Network\TaskFlow\RestApiCallFlow.cs" />
+    <Compile Include="Response\UTTrackResponseParser.cs" />
+    <Compile Include="Response\UTEventResponse.cs" />
+    <Compile Include="Response\UTAuthResponse.cs" />
+    <Compile Include="Request\ITrackEventRequest.cs" />
+    <Compile Include="Request\TrackEventParameters.cs" />
+    <Compile Include="Request\IBaseEventRequest.cs" />
+    <Compile Include="Request\TrackParameters.cs" />
+    <Compile Include="Session\SessionBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Syntax\" />
     <Folder Include="Session\" />
-    <Folder Include="TaskFlow\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="Network\" />
+    <Folder Include="Response\" />
+    <Folder Include="Request\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

@@ -1,6 +1,7 @@
-﻿using System;
-namespace Sitecore.UniversalTrackerClient
+﻿namespace Sitecore.UniversalTrackerClient
 {
+    using System;
+
     public class UTUrlParameters : IUTUrlParameters
     {
 

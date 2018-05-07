@@ -11,17 +11,11 @@ namespace Sitecore.UniversalTrackerClient
             this.sessionConfig = sessionConfig;
         }
 
-        public IReadItemsByIdRequest FillReadItemByIdGaps(IReadItemsByIdRequest userRequest)
+        public ITrackEventRequest FillTrackEventGaps(ITrackEventRequest userRequest)
         {
-            IItemSource mergedSource = this.ItemSourceMerger.FillItemSourceGaps(userRequest.ItemSource);
-            ISessionConfig mergedSessionConfig = this.SessionConfigMerger.FillSessionConfigGaps(userRequest.SessionSettings);
+            IUTSessionConfig mergedSessionConfig = this.SessionConfigMerger.FillSessionConfigGaps(userRequest.SessionSettings);
 
-            return new ReadItemsByIdParameters(
-              mergedSessionConfig,
-              mergedSource,
-              userRequest.QueryParameters,
-              userRequest.IncludeStandardTemplateFields,
-              userRequest.ItemId);
+            return new TrackEventParameters();
         }
     }
 }

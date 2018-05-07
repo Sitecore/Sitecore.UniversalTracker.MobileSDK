@@ -6,6 +6,7 @@ namespace Sitecore.UniversalTrackerClient
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
+    using Sitecore.UniversalTrackerClient.Response;
     using Sitecore.UniversalTrackerClient.Session;
     using Sitecore.UniversalTrackerClient.TaskFlow;
 
@@ -23,7 +24,7 @@ namespace Sitecore.UniversalTrackerClient
         private readonly IUTUrlParameters utGrammar = UTUrlParameters.UTV1UrlParameters();
 
         #endregion Private Variables
-        
+
         public UTSession(
             IUTSessionConfig config,
             string uTTokenValue = null)
@@ -31,7 +32,7 @@ namespace Sitecore.UniversalTrackerClient
             if (null == config)
             {
                 throw new ArgumentNullException("ScUniversalTrackerSession.config cannot be null");
-             }
+            }
 
             this.sessionConfig = config.SessionConfigShallowCopy();
             this.requestMerger = new UserRequestMerger(this.sessionConfig, defaultSource, this.entitySource);
@@ -47,29 +48,29 @@ namespace Sitecore.UniversalTrackerClient
         #region IDisposable
         void ReleaseResources()
         {
-          Exception httpClientException = null;
+            Exception httpClientException = null;
 
-          if (null != this.httpClient)
-          {
-            try
+            if (null != this.httpClient)
             {
-              this.httpClient.Dispose();
+                try
+                {
+                    this.httpClient.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    httpClientException = ex;
+                }
+                this.httpClient = null;
             }
-            catch (Exception ex)
-            {
-              httpClientException = ex;
-            }
-            this.httpClient = null;
-          }
-          
+
         }
-          
+
         public virtual void Dispose()
         {
-          this.ReleaseResources();
+            this.ReleaseResources();
         }
 
-        ~UTSession() 
+        ~UTSession()
         {
 
         }
@@ -79,18 +80,18 @@ namespace Sitecore.UniversalTrackerClient
 
         public IUTSessionConfig Config
         {
-          get
-          {
-            return this.sessionConfig;
-          }
+            get
+            {
+                return this.sessionConfig;
+            }
         }
 
         public string UTTokenValue
         {
-          get
-          {
+            get
+            {
                 return this.uTTokenValue;
-          }
+            }
         }
 
         #endregion ISitecoreUTSessionState
@@ -105,10 +106,10 @@ namespace Sitecore.UniversalTrackerClient
 
         #region TrackEvent
 
-        public async Task<UTTrackEventResponse> TrackEventAsync(ITrackEventRequest request, CancellationToken cancelToken = default(CancellationToken))
+        public async Task<UTEventResponse> TrackEventAsync(ITrackEventRequest request, CancellationToken cancelToken = default(CancellationToken))
         {
             ITrackEventRequest requestCopy = request.DeepCopyTrackEventRequest();
-         
+
 
             ITrackEventRequest autocompletedRequest = this.requestMerger.FillTrackEventGaps(requestCopy);
 
@@ -124,12 +125,12 @@ namespace Sitecore.UniversalTrackerClient
 
         public async Task<UTAuthResponse> AuthenticateAsync(CancellationToken cancelToken = default(CancellationToken))
         {
-            #warning not implemented!!!
+#warning not implemented!!!
             return null;
         }
 
         #endregion Authentication
 
-        
-      }
+
+    }
 }
