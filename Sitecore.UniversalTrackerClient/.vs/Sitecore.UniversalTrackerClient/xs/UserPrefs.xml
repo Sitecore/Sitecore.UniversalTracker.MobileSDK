@@ -1,10 +1,25 @@
 ﻿<Properties StartupConfiguration="{9DB00321-73CD-4C5F-A290-78E98192B730}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Sitecore.UniversalTrackerClient/Session/SessionBuilder.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Sitecore.UniversalTrackerClient/Session/ISitecoreUTSessionState.cs">
     <Files>
       <File FileName="Sitecore.UniversalTrackerClient/Network/AbstractPostEventTask.cs" Line="32" Column="13" />
       <File FileName="Demo/UniversalTrackerDemo/AppDelegate.cs" Line="30" Column="10" />
       <File FileName="Demo/UniversalTrackerDemo/ViewController.cs" Line="20" Column="55" />
-      <File FileName="Sitecore.UniversalTrackerClient/Session/SessionBuilder.cs" Line="1" Column="1" />
+      <File FileName="../../sitecore-SSC-sdk/lib/SitecoreMobileSDK-PCL/Session/SessionBuilder.cs" Line="131" Column="6" />
+      <File FileName="../../sitecore-SSC-sdk/lib/SitecoreMobileSDK-PCL/API/Session/IAnonymousSessionBuilder.cs" Line="6" Column="58" />
+      <File FileName="../../sitecore-SSC-sdk/lib/SitecoreMobileSDK-PCL/API/Session/IBaseSessionBuilder.cs" Line="9" Column="20" />
+      <File FileName="../../sitecore-SSC-sdk/lib/SitecoreMobileSDK-PCL/API/Session/IEntitySessionBuilder.cs" Line="7" Column="20" />
+      <File FileName="../../sitecore-SSC-sdk/lib/SitecoreMobileSDK-PCL/API/Session/IAuthenticatedSessionBuilder.cs" Line="19" Column="65" />
+      <File FileName="Sitecore.UniversalTrackerClient/Session/SessionBuilder/SitecoreUTSessionBuilder.cs" Line="35" Column="18" />
+      <File FileName="Sitecore.UniversalTrackerClient/UTSession.cs" Line="23" Column="45" />
+      <File FileName="Sitecore.UniversalTrackerClient/Session/SessionBuilder/IUTSessionBuilder.cs" Line="1" Column="42" />
+      <File FileName="../../sitecore-SSC-sdk/lib/SitecoreMobileSDK-PCL/Validators/BaseValidator.cs" Line="1" Column="1" />
+      <File FileName="../../sitecore-SSC-sdk/lib/SitecoreMobileSDK-PCL/Validators/DuplicateEntryValidator.cs" Line="1" Column="1" />
+      <File FileName="Sitecore.UniversalTrackerClient/Validators/DuplicateEntryValidator.cs" Line="1" Column="42" />
+      <File FileName="Sitecore.UniversalTrackerClient/Validators/SessionConfigValidator.cs" Line="15" Column="13" />
+      <File FileName="Sitecore.UniversalTrackerClient/Validators/BaseValidator.cs" Line="1" Column="42" />
+      <File FileName="Sitecore.UniversalTrackerClient/Syntax/UTUrlParameters.cs" Line="4" Column="1" />
+      <File FileName="Sitecore.UniversalTrackerClient/Syntax/IUTUrlParameters.cs" Line="1" Column="1" />
+      <File FileName="Sitecore.UniversalTrackerClient/Session/ISitecoreUTSessionState.cs" Line="5" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

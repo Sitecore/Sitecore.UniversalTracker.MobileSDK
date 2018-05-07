@@ -52,7 +52,11 @@
     <Compile Include="Request\TrackEventParameters.cs" />
     <Compile Include="Request\IBaseEventRequest.cs" />
     <Compile Include="Request\TrackParameters.cs" />
-    <Compile Include="Session\SessionBuilder.cs" />
+    <Compile Include="Session\SessionBuilder\SitecoreUTSessionBuilder.cs" />
+    <Compile Include="Session\SessionBuilder\IUTSessionBuilder.cs" />
+    <Compile Include="Validators\BaseValidator.cs" />
+    <Compile Include="Validators\DuplicateEntryValidator.cs" />
+    <Compile Include="Validators\SessionConfigValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Syntax\" />
@@ -61,6 +65,8 @@
     <Folder Include="Network\" />
     <Folder Include="Response\" />
     <Folder Include="Request\" />
+    <Folder Include="Session\SessionBuilder\" />
+    <Folder Include="Validators\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>
