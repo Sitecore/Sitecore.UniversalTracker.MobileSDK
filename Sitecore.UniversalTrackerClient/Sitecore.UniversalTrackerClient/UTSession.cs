@@ -8,6 +8,7 @@ namespace Sitecore.UniversalTrackerClient
     using System.Threading.Tasks;
     using Sitecore.UniversalTrackerClient.Response;
     using Sitecore.UniversalTrackerClient.Session;
+    using Sitecore.UniversalTrackerClient.Session.Config;
     using Sitecore.UniversalTrackerClient.TaskFlow;
 
     public class UTSession : ISitecoreUTSession
@@ -35,7 +36,7 @@ namespace Sitecore.UniversalTrackerClient
             }
 
             this.sessionConfig = config.SessionConfigShallowCopy();
-            this.requestMerger = new UserRequestMerger(this.sessionConfig, defaultSource, this.entitySource);
+            this.requestMerger = new UserRequestMerger(this.sessionConfig);
 
             this.uTTokenValue = uTTokenValue;
 
@@ -113,7 +114,7 @@ namespace Sitecore.UniversalTrackerClient
 
             ITrackEventRequest autocompletedRequest = this.requestMerger.FillTrackEventGaps(requestCopy);
 
-            var urlBuilder = new TrackEventUrlBuilder(this.sscGrammar);
+            var urlBuilder = new TrackEventUrlBuilder();
             var taskFlow = new TrackEventTask<ITrackEventRequest>(urlBuilder, this.httpClient);
 
             return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);

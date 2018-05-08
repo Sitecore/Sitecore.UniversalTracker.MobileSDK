@@ -1,4 +1,4 @@
-﻿namespace Sitecore.UniversalTrackerClient.Session
+﻿namespace Sitecore.UniversalTrackerClient.Session.Config
 {
     public interface IUTSessionConfig
     {

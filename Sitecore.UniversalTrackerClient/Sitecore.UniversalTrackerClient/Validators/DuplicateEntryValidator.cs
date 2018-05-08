@@ -1,4 +1,4 @@
-﻿namespace Sitecore.MobileSDK.Validators
+﻿namespace Sitecore.UniversalTrackerClient.Validators
 {
   using System;
   using System.Collections.Generic;

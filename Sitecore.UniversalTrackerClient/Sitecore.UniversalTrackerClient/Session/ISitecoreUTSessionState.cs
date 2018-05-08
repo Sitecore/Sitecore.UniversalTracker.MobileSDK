@@ -1,7 +1,8 @@
-﻿using System;
-
-namespace Sitecore.UniversalTrackerClient.Session
+﻿namespace Sitecore.UniversalTrackerClient.Session
 {
+    using System;
+    using Sitecore.UniversalTrackerClient.Session.Config;
+
     public interface ISitecoreUTSessionState : IDisposable
     {
         IUTSessionConfig Config { get; }

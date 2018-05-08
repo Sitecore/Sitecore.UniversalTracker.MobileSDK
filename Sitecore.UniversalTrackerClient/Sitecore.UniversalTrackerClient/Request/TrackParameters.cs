@@ -4,6 +4,9 @@
 
     public class TrackParameters
     {
+
+        //complete request with default values
+
         public TrackParameters(string eventId, IDictionary<string, string> fieldsRawValuesByName)
         {
             this.EventId = eventId;            

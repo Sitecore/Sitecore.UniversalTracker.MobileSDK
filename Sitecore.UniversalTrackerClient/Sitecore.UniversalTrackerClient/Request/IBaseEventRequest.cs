@@ -1,15 +1,14 @@
-﻿namespace Sitecore.UniversalTrackerClient.Session
+﻿
+namespace Sitecore.UniversalTrackerClient.Session
 {
+	using Sitecore.UniversalTrackerClient.Session.Config;
+
     public interface IBaseEventRequest
     {
-        /// <summary>
-        /// Gets the fields that will be present in event.
-        /// key   - must contain field name.
-        /// value - must contain new field raw value.
-        /// </summary>
-        /// <returns>
-        /// Field name, field raw value pairs.
-        /// </returns>
+		IBaseEventRequest DeepCopyBaseEventRequest();
+        
         System.Collections.Generic.IDictionary<string, string> FieldsRawValuesByName { get; }
+
+		IUTSessionConfig SessionConfig { get; }
     }
 }

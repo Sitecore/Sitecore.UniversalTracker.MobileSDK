@@ -2,24 +2,25 @@
 {
     using System.Collections.Generic;
     using Sitecore.UniversalTrackerClient.Session;
+    using Sitecore.UniversalTrackerClient.Session.Config;
     using Sitecore.UniversalTrackerClient.UrlBuilder.TrackEvent;
 
     public class TrackEventParameters : ITrackEventRequest
     {
-        public TrackEventParameters(IUTSessionConfig sessionSettings, TrackParameters trackParameters)
+        public TrackEventParameters(IUTSessionConfig sessionConfig, TrackParameters trackParameters)
         {
-            this.SessionSettings = sessionSettings;
+            this.SessionConfig = sessionConfig;
             this.TrackParameters = trackParameters;
         }
 
-        public virtual ITrackEventRequest DeepCopyTrackEventRequest()
+		public virtual ITrackEventRequest DeepCopyTrackEventRequest()
         {
             IUTSessionConfig connection = null;
             TrackParameters trackParameters = null;
 
-            if (null != this.SessionSettings)
+            if (null != this.SessionConfig)
             {
-                connection = this.SessionSettings.SessionConfigShallowCopy();
+                connection = this.SessionConfig.SessionConfigShallowCopy();
             }
 
             if (null != this.TrackParameters)
@@ -30,7 +31,12 @@
             return new TrackEventParameters(connection, trackParameters);
         }
 
-        public string EventId
+		public IBaseEventRequest DeepCopyBaseEventRequest()
+		{
+			return this.DeepCopyBaseEventRequest();
+		}
+
+		public string EventId
         {
             get
             {
@@ -46,7 +52,7 @@
             }
         }
 
-        public IUTSessionConfig SessionSettings { get; private set; }
+        public IUTSessionConfig SessionConfig { get; private set; }
 
         public TrackParameters TrackParameters { get; private set; }
 

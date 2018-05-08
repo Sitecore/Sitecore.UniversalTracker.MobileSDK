@@ -35,7 +35,6 @@
     <Compile Include="Session\ISitecoreUTSession.cs" />
     <Compile Include="Session\ISitecoreUTSessionActions.cs" />
     <Compile Include="Session\ISitecoreUTSessionState.cs" />
-    <Compile Include="Session\IUTSessionConfig.cs" />
     <Compile Include="Exceptions\SitecoreUTSdkException.cs" />
     <Compile Include="Exceptions\ParserException.cs" />
     <Compile Include="Exceptions\TaskFlowErrorMessages.cs" />
@@ -57,6 +56,13 @@
     <Compile Include="Validators\BaseValidator.cs" />
     <Compile Include="Validators\DuplicateEntryValidator.cs" />
     <Compile Include="Validators\SessionConfigValidator.cs" />
+    <Compile Include="Session\Config\IUTSessionConfig.cs" />
+    <Compile Include="Session\Config\UTSessionConfig.cs" />
+    <Compile Include="Session\Config\SessionConfigMerger.cs" />
+    <Compile Include="Session\Config\SessionConfigPOD.cs" />
+    <Compile Include="Entities\IUTInteraction.cs" />
+    <Compile Include="Entities\IUTEvent.cs" />
+    <Compile Include="Entities\UTEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Syntax\" />
@@ -67,6 +73,8 @@
     <Folder Include="Request\" />
     <Folder Include="Session\SessionBuilder\" />
     <Folder Include="Validators\" />
+    <Folder Include="Session\Config\" />
+    <Folder Include="Entities\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

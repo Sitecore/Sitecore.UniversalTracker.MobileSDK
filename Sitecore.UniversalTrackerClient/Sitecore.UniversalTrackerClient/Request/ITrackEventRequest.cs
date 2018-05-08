@@ -7,6 +7,6 @@
             get;
         }
 
-
+		ITrackEventRequest DeepCopyTrackEventRequest();
     }
 }

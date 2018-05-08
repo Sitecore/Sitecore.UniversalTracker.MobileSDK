@@ -1,7 +1,6 @@
-﻿namespace Sitecore.MobileSDK.Validators
+﻿namespace Sitecore.UniversalTrackerClient.Validators
 {
   using System;
-  using Sitecore.MobileSDK.API.Request.Parameters;
 
   public class BaseValidator
   {
@@ -53,12 +52,5 @@
       }
     }
 
-    public static void CheckMediaOptionsOrThrow(IDownloadMediaOptions options, string source)
-    {
-      if (!MediaOptionsValidator.IsValidMediaOptions(options))
-      {
-        throw new ArgumentException(source + " : is not valid");
-      }
-    }
   }
 }
