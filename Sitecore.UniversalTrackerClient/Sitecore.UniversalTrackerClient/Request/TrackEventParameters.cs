@@ -1,61 +1,44 @@
-﻿namespace Sitecore.UniversalTrackerClient.TrackEvent
+﻿namespace Sitecore.UniversalTrackerClient.UserRequest
 {
-    using System.Collections.Generic;
-    using Sitecore.UniversalTrackerClient.Session;
-    using Sitecore.UniversalTrackerClient.Session.Config;
-    using Sitecore.UniversalTrackerClient.UrlBuilder.TrackEvent;
+	using Sitecore.UniversalTrackerClient.Entities;
+	using Sitecore.UniversalTrackerClient.Session.Config;
 
-    public class TrackEventParameters : ITrackEventRequest
+	public class TrackEventParameters : ITrackEventRequest
     {
-        public TrackEventParameters(IUTSessionConfig sessionConfig, TrackParameters trackParameters)
+		public TrackEventParameters(IUTSessionConfig sessionConfig,  IUTEvent uTEvent)
         {
             this.SessionConfig = sessionConfig;
-            this.TrackParameters = trackParameters;
+			this.Event = uTEvent;
         }
 
 		public virtual ITrackEventRequest DeepCopyTrackEventRequest()
         {
             IUTSessionConfig connection = null;
-            TrackParameters trackParameters = null;
+			IUTEvent uTEvent = null;
 
             if (null != this.SessionConfig)
             {
                 connection = this.SessionConfig.SessionConfigShallowCopy();
             }
 
-            if (null != this.TrackParameters)
+			if (null != this.Event)
             {
-                trackParameters = this.TrackParameters.ShallowCopy();
+				uTEvent = this.Event;
             }
 
-            return new TrackEventParameters(connection, trackParameters);
+			return new TrackEventParameters(connection, uTEvent);
         }
 
-		public IBaseEventRequest DeepCopyBaseEventRequest()
+		public IBaseRequest DeepCopyBaseRequest()
 		{
-			return this.DeepCopyBaseEventRequest();
+			return this.DeepCopyBaseRequest();
 		}
-
-		public string EventId
-        {
-            get
-            {
-                return this.TrackParameters.EventId;
-            }
-        }
-
-        public IDictionary<string, string> FieldsRawValuesByName
-        {
-            get
-            {
-                return this.TrackParameters.FieldsRawValuesByName;
-            }
-        }
+      
+		public IUTEvent Event { get; private set; }
 
         public IUTSessionConfig SessionConfig { get; private set; }
 
-        public TrackParameters TrackParameters { get; private set; }
 
-    }
+	}
 }
 

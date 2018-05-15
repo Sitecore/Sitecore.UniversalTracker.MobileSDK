@@ -6,12 +6,14 @@ namespace Sitecore.UniversalTrackerClient
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
-    using Sitecore.UniversalTrackerClient.Response;
+	using Sitecore.UniversalTrackerClient.Request.UrlBuilders;
+	using Sitecore.UniversalTrackerClient.Response;
     using Sitecore.UniversalTrackerClient.Session;
     using Sitecore.UniversalTrackerClient.Session.Config;
     using Sitecore.UniversalTrackerClient.TaskFlow;
+	using Sitecore.UniversalTrackerClient.UserRequest;
 
-    public class UTSession : ISitecoreUTSession
+	public class UTSession : ISitecoreUTSession
     {
         #region Private Variables
 
@@ -32,7 +34,7 @@ namespace Sitecore.UniversalTrackerClient
         {
             if (null == config)
             {
-                throw new ArgumentNullException("ScUniversalTrackerSession.config cannot be null");
+				throw new ArgumentNullException(nameof(UTSession), " config cannot be null");
             }
 
             this.sessionConfig = config.SessionConfigShallowCopy();
@@ -114,7 +116,7 @@ namespace Sitecore.UniversalTrackerClient
 
             ITrackEventRequest autocompletedRequest = this.requestMerger.FillTrackEventGaps(requestCopy);
 
-            var urlBuilder = new TrackEventUrlBuilder();
+			var urlBuilder = new TrackEventUrlBuilder<ITrackEventRequest>(this.utGrammar);
             var taskFlow = new TrackEventTask<ITrackEventRequest>(urlBuilder, this.httpClient);
 
             return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);

@@ -1,5 +1,5 @@
 ﻿
-namespace Sitecore.UniversalTrackerClient.UserRequest
+namespace Sitecore.UniversalTrackerClient.Session.Config
 {
 	using Sitecore.UniversalTrackerClient.Session.Config;
 

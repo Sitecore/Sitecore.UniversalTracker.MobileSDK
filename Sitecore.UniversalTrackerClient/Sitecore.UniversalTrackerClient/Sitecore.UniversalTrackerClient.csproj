@@ -49,8 +49,7 @@
     <Compile Include="Response\UTAuthResponse.cs" />
     <Compile Include="Request\ITrackEventRequest.cs" />
     <Compile Include="Request\TrackEventParameters.cs" />
-    <Compile Include="Request\IBaseEventRequest.cs" />
-    <Compile Include="Request\TrackParameters.cs" />
+    <Compile Include="Request\IBaseRequest.cs" />
     <Compile Include="Session\SessionBuilder\SitecoreUTSessionBuilder.cs" />
     <Compile Include="Session\SessionBuilder\IUTSessionBuilder.cs" />
     <Compile Include="Validators\BaseValidator.cs" />
@@ -63,6 +62,17 @@
     <Compile Include="Entities\IUTInteraction.cs" />
     <Compile Include="Entities\IUTEvent.cs" />
     <Compile Include="Entities\UTEvent.cs" />
+    <Compile Include="Entities\UTInteraction.cs" />
+    <Compile Include="Request\ITrackInteractionRequest.cs" />
+    <Compile Include="Request\UrlBuilders\AbstractTrackUrlBuilder.cs" />
+    <Compile Include="Syntax\RestGrammar.cs" />
+    <Compile Include="Session\Config\SessionConfigUrlBuilder.cs" />
+    <Compile Include="Request\UrlBuilders\TrackEventUrlBuilder.cs" />
+    <Compile Include="Network\TrackEventTask.cs" />
+    <Compile Include="Network\UTTrackEventResponseParser.cs" />
+    <Compile Include="Request\RequestBuilder\IBaseRequestParametersBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\IEventrequestParametersBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\UTrequestBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Syntax\" />
@@ -75,6 +85,16 @@
     <Folder Include="Validators\" />
     <Folder Include="Session\Config\" />
     <Folder Include="Entities\" />
+    <Folder Include="Request\UrlBuilders\" />
+    <Folder Include="Request\RequestBuilder\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

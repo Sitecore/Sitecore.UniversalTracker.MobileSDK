@@ -1,9 +1,7 @@
 ﻿namespace Sitecore.UniversalTrackerClient
 {
-    using Sitecore.UniversalTrackerClient.Session;
-    using Sitecore.UniversalTrackerClient.Session.Config;
-    using Sitecore.UniversalTrackerClient.TrackEvent;
-    using Sitecore.UniversalTrackerClient.UrlBuilder.TrackEvent;
+	using Sitecore.UniversalTrackerClient.Entities;
+	using Sitecore.UniversalTrackerClient.Session.Config;
 	using Sitecore.UniversalTrackerClient.UserRequest;
 
 	internal class UserRequestMerger
@@ -17,11 +15,20 @@
 
         public ITrackEventRequest FillTrackEventGaps(ITrackEventRequest userRequest)
         {
-			var trackParameters = new TrackParameters(userRequest.EventId, userRequest.FieldsRawValuesByName);
+			var utEvent = new UTEvent(
+				userRequest.Event.Timestamp,
+				userRequest.Event.CustomValues,
+				userRequest.Event.DefinitionId,
+				userRequest.Event.ItemId,
+				userRequest.Event.EngagementValue,
+				userRequest.Event.ParentEventId,
+				userRequest.Event.Text,
+				userRequest.Event.Duration
+			);
 
 			IUTSessionConfig mergedSessionConfig = this.SessionConfigMerger.FillSessionConfigGaps(userRequest.SessionConfig);
 
-            return new TrackEventParameters(mergedSessionConfig, trackParameters);
+			return new TrackEventParameters(mergedSessionConfig, utEvent);
         }
     }
 }

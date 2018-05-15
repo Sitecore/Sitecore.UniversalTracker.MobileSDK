@@ -6,8 +6,9 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Sitecore.UniversalTrackerClient.TaskFlow;
+	using Sitecore.UniversalTrackerClient.Response;
 
-    internal abstract class AbstractPostEventTask<TRequest, TResponse> : IRestApiCallTasks<TRequest, HttpRequestMessage, string, TResponse>
+	internal abstract class AbstractPostEventTask<TRequest, TResponse> : IRestApiCallTasks<TRequest, HttpRequestMessage, string, TResponse>
       where TRequest : class
       where TResponse : class
     {
@@ -44,11 +45,11 @@
 
         public virtual async Task<TResponse> ParseResponseDataAsync(string data, CancellationToken cancelToken)
         {
-            Func<ScItemsResponse> syncParseResponse = () =>
+			Func<UTEventResponse> syncParseResponse = () =>
             {
 #warning @igk debug response output, remove later
                 Debug.WriteLine("RESPONSE: " + data);
-                return ScTrackResponseParser.Parse(data, this.statusCode, cancelToken);
+				return UTTrackEventResponseParser.Parse(data, this.statusCode, cancelToken);
             };
             return await Task.Factory.StartNew(syncParseResponse, cancelToken) as TResponse;
         }

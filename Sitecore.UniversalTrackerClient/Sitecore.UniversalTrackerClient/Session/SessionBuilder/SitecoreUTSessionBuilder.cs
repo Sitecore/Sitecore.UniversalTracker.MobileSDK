@@ -13,8 +13,8 @@
         private SitecoreUTSessionBuilder()
         {
         }
-
-        public static SitecoreUTSessionBuilder SessionBuilderWithHost(string instanceUrl)
+        
+        public static SitecoreUTSessionBuilder SessionWithHost(string instanceUrl)
         {
             BaseValidator.CheckForNullAndEmptyOrThrow(instanceUrl, typeof(SitecoreUTSessionBuilder).Name + ".InstanceUrl");
 

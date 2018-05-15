@@ -1,5 +1,6 @@
 ﻿using System;
-
+using Sitecore.UniversalTrackerClient.Request.RequestBuilder;
+using Sitecore.UniversalTrackerClient.Session.SessionBuilder;
 using UIKit;
 
 namespace UniversalTrackerDemo
@@ -15,17 +16,21 @@ namespace UniversalTrackerDemo
         {
             base.ViewDidLoad();
 
-            using 
-                (
-                var session = SitecoreUTSessionBuilder.SessionWithHost(this.instanceUrl)
-                                                      .BuildSession()
+			this.SendRequest();
+        }
 
-                )
+		private async void SendRequest()
+		{
+			using
+               (
+                   var session = SitecoreUTSessionBuilder.SessionWithHost("http://host.com/")
+                                                         .BuildSession()
+
+               )
             {
 
-                var request = UTRequestBuilder.TrackEventRequest("eventID")
-                                                       .Build();
-
+                var request = UTRequestBuilder.TrackEventRequestForItem("eventID")
+                                              .Build();
 
                 var response = await session.TrackEventAsync(request);
 
@@ -33,7 +38,7 @@ namespace UniversalTrackerDemo
 
             }
 
-        }
+		}
 
         public override void DidReceiveMemoryWarning()
         {

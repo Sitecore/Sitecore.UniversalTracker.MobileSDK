@@ -52,7 +52,7 @@ namespace Sitecore.UniversalTrackerClient.Entities
         /// <value>
         ///     A collection of events.
         /// </value>
-		Collection<IUTEvent> Events { get };
+		Collection<IUTEvent> Events { get; }
 
 		/// <summary>
         ///     Gets or sets the initiator of this interaction.

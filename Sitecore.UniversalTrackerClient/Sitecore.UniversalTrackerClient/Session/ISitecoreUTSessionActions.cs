@@ -3,8 +3,9 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Sitecore.UniversalTrackerClient.Response;
+	using Sitecore.UniversalTrackerClient.UserRequest;
 
-    public interface ISitecoreUTSessionActions
+	public interface ISitecoreUTSessionActions
     {
         Task<UTAuthResponse> AuthenticateAsync(CancellationToken cancelToken = default(CancellationToken));
 

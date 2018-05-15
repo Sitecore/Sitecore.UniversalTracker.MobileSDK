@@ -1,6 +1,6 @@
 ﻿namespace Sitecore.UniversalTrackerClient.Response
 {
-    public class UTEventResponse
+    public class UTEventResponse 
     {
         
 #warning not implemented!!!
@@ -20,6 +20,6 @@
             get;
             private set;
         }
-
+      
     }
 }

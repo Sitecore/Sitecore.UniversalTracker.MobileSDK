@@ -1,11 +1,12 @@
-﻿namespace Sitecore.UniversalTrackerClient.Session
+﻿namespace Sitecore.UniversalTrackerClient.UserRequest
 {
-    public interface ITrackEventRequest : IBaseEventRequest
+	using Sitecore.UniversalTrackerClient.Entities;
+
+    public interface ITrackEventRequest : IBaseRequest
     {
 #warning not implemented!!!
-        string EventId{
-            get;
-        }
+
+		IUTEvent Event { get; }
 
 		ITrackEventRequest DeepCopyTrackEventRequest();
     }
