@@ -1,5 +1,5 @@
 ﻿<Properties StartupConfiguration="{9DB00321-73CD-4C5F-A290-78E98192B730}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Sitecore.UniversalTrackerClient/Request/UrlBuilders/TrackEventUrlBuilder.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Sitecore.UniversalTrackerClient/Validators/ItemIdValidator.cs">
     <Files>
       <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/IEventrequestParametersBuilder.cs" Line="1" Column="11" />
       <File FileName="Demo/UniversalTrackerDemo/ViewController.cs" Line="36" Column="17" />
@@ -16,10 +16,9 @@
       <File FileName="Sitecore.UniversalTrackerClient/Validators/BaseValidator.cs" Line="15" Column="28" />
       <File FileName="Sitecore.UniversalTrackerClient/Validators/DuplicateEntryValidator.cs" Line="1" Column="42" />
       <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/AbstractEventRequestBuilder.cs" Line="8" Column="27" />
-      <File FileName="Sitecore.UniversalTrackerClient/Validators/ItemIdValidator.cs" Line="31" Column="1" />
-      <File FileName="Sitecore.UniversalTrackerClient/Validators/ItemPathValidator.cs" Line="20" Column="6" />
+      <File FileName="Sitecore.UniversalTrackerClient/Validators/ItemIdValidator.cs" Line="22" Column="1" />
       <File FileName="Demo/UniversalTrackerDemo/Main.cs" Line="16" Column="1" />
-      <File FileName="Sitecore.UniversalTrackerClient/Request/UrlBuilders/TrackEventUrlBuilder.cs" Line="21" Column="1" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/UrlBuilders/TrackEventUrlBuilder.cs" Line="21" Column="46" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

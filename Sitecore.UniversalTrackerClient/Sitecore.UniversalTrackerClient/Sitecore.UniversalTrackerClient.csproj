@@ -73,6 +73,9 @@
     <Compile Include="Request\RequestBuilder\IBaseRequestParametersBuilder.cs" />
     <Compile Include="Request\RequestBuilder\IEventrequestParametersBuilder.cs" />
     <Compile Include="Request\RequestBuilder\UTrequestBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\AbstractEventRequestBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\TrackEventForItemIdRequestBuilder.cs" />
+    <Compile Include="Validators\ItemIdValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Syntax\" />
