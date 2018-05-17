@@ -1,18 +1,37 @@
 ﻿<Properties StartupConfiguration="{9DB00321-73CD-4C5F-A290-78E98192B730}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Sitecore.UniversalTrackerClient/Request/RequestBuilder/IEventrequestParametersBuilder.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Sitecore.UniversalTrackerClient/Request/UrlBuilders/TrackEventUrlBuilder.cs">
     <Files>
-      <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/IEventrequestParametersBuilder.cs" Line="38" Column="1" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/IEventrequestParametersBuilder.cs" Line="1" Column="11" />
+      <File FileName="Demo/UniversalTrackerDemo/ViewController.cs" Line="36" Column="17" />
+      <File FileName="Sitecore.UniversalTrackerClient/UTSession.cs" Line="1" Column="1" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/UTrequestBuilder.cs" Line="15" Column="10" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/IBaseRequest.cs" Line="1" Column="1" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/ITrackEventRequest.cs" Line="5" Column="40" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/ITrackInteractionRequest.cs" Line="1" Column="1" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/TrackEventParameters.cs" Line="1" Column="1" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/IBaseRequestParametersBuilder.cs" Line="1" Column="1" />
+      <File FileName="Sitecore.UniversalTrackerClient/Entities/UTEvent.cs" Line="6" Column="15" />
+      <File FileName="Sitecore.UniversalTrackerClient/Entities/IUTInteraction.cs" Line="1" Column="1" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/TrackEventForItemIdRequestBuilder.cs" Line="26" Column="1" />
+      <File FileName="Sitecore.UniversalTrackerClient/Validators/BaseValidator.cs" Line="15" Column="28" />
+      <File FileName="Sitecore.UniversalTrackerClient/Validators/DuplicateEntryValidator.cs" Line="1" Column="42" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/AbstractEventRequestBuilder.cs" Line="8" Column="27" />
+      <File FileName="Sitecore.UniversalTrackerClient/Validators/ItemIdValidator.cs" Line="31" Column="1" />
+      <File FileName="Sitecore.UniversalTrackerClient/Validators/ItemPathValidator.cs" Line="20" Column="6" />
+      <File FileName="Demo/UniversalTrackerDemo/Main.cs" Line="16" Column="1" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/UrlBuilders/TrackEventUrlBuilder.cs" Line="21" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Volumes/Sitecore/GitHub/SDKs/sitecore-SSC-sdk/lib/SitecoreMobileSDK-PCL/Sitecore.MobileSDK.csproj" line="312" column="162" />
+      <Breakpoint file="/Volumes/Sitecore/GitHub/SDKs/Mobile.UniversalTracker.SDK/Sitecore.UniversalTrackerClient/Demo/UniversalTrackerDemo/ViewController.cs" relfile="Demo/UniversalTrackerDemo/ViewController.cs" line="37" column="1" />
+      <Catchpoint exceptionName="System.Exception" includeSubclasses="True" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.UniversalTrackerDemo.UITests FirstBuild="True" />
-  <MonoDevelop.Ide.ItemProperties.UniversalTrackerDemo PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.FD61A1FE-B1BC-42D7-9F66-AC54A636C811">
+  <MonoDevelop.Ide.ItemProperties.UniversalTrackerDemo PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.46D0116F-001A-44FC-AA1D-5B05BF372146">
     <MonoDevelop.MacDev.AppleDevelopmentTeam />
   </MonoDevelop.Ide.ItemProperties.UniversalTrackerDemo>
   <MultiItemStartupConfigurations />
