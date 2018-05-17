@@ -9,7 +9,8 @@ namespace Sitecore.UniversalTrackerClient.Entities
 			
 		}
 
-		public UTEvent(
+#warning @igk figure out which parameters is required
+        public UTEvent(
 			DateTime timestamp, 
 			Dictionary<string, string> customValues, 
 			string definitionId, 
