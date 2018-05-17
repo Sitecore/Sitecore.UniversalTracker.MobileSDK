@@ -29,7 +29,7 @@ namespace UniversalTrackerDemo
                )
             {
 
-                var request = UTRequestBuilder.TrackEventRequestForItem("eventID")
+                var request = UTRequestBuilder.TrackEventRequestForItem("01f8ffbf-d662-4a87-beee-413307055c48")
                                               .Build();
 
                 var response = await session.TrackEventAsync(request);
