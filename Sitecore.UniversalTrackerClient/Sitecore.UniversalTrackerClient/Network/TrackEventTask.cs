@@ -17,14 +17,14 @@
 		where T : class, ITrackEventRequest
 
     {
-		private readonly TrackEventUrlBuilder<T> createEntityBuilder;
+        private readonly TrackEventUrlBuilder<T> trackEventUrlBuilder;
         private readonly HttpClient httpClient;
 
 		public TrackEventTask(
-			TrackEventUrlBuilder<T> createEntityBuilder,
+            TrackEventUrlBuilder<T> trackEventUrlBuilder,
           HttpClient httpClient)
         {
-            this.createEntityBuilder = createEntityBuilder;
+            this.trackEventUrlBuilder = trackEventUrlBuilder;
             this.httpClient = httpClient;
 
             this.Validate();
@@ -32,7 +32,7 @@
 
         public HttpRequestMessage BuildRequestUrlForRequestAsync(T request, CancellationToken cancelToken)
         {
-            var url = this.createEntityBuilder.GetUrlForRequest(request);
+            var url = this.trackEventUrlBuilder.GetUrlForRequest(request);
 
             HttpRequestMessage result = new HttpRequestMessage(HttpMethod.Post, url);
 
@@ -65,7 +65,7 @@
                 Debug.WriteLine("RESPONSE: " + httpData);
 
 
-				return UTTrackEventResponseParser.Parse(httpData, this.statusCode, cancelToken);
+				return UTResponseParser.ParseEvent(httpData, this.statusCode, cancelToken);
             };
             return await Task.Factory.StartNew(syncParseResponse, cancelToken);
         }
@@ -76,12 +76,12 @@
         {
             if (null == this.httpClient)
             {
-                throw new ArgumentNullException("CreateEntityTask.httpClient cannot be null");
+                throw new ArgumentNullException("TrackEventTask.httpClient cannot be null");
             }
 
-            if (null == this.createEntityBuilder)
+            if (null == this.trackEventUrlBuilder)
             {
-                throw new ArgumentNullException("CreateEntityTask.createEntityBuilder cannot be null");
+                throw new ArgumentNullException("TrackEventTask.TrackEventBuilder cannot be null");
             }
         }
 

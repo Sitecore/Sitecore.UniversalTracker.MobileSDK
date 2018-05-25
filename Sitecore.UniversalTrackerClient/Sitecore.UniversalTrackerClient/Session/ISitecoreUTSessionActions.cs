@@ -10,5 +10,7 @@
         Task<UTAuthResponse> AuthenticateAsync(CancellationToken cancelToken = default(CancellationToken));
 
         Task<UTEventResponse> TrackEventAsync(ITrackEventRequest request, CancellationToken cancelToken = default(CancellationToken));
+
+        Task<UTInteractionResponse> TrackInteractionAsync(ITrackInteractionRequest request, CancellationToken cancelToken = default(CancellationToken));
     }
 }

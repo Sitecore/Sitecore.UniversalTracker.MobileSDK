@@ -122,6 +122,19 @@ namespace Sitecore.UniversalTrackerClient
             return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
         }
 
+        public async Task<UTInteractionResponse> TrackInteractionAsync(ITrackInteractionRequest request, CancellationToken cancelToken)
+        {
+            ITrackInteractionRequest requestCopy = request.DeepCopyTrackInteractionRequest();
+
+
+            ITrackInteractionRequest autocompletedRequest = this.requestMerger.FillTrackInteractionGaps(requestCopy);
+
+            var urlBuilder = new TrackInteractionUrlBuilder<ITrackInteractionRequest>(this.utGrammar);
+            var taskFlow = new TrackInteractionTask<ITrackInteractionRequest>(urlBuilder, this.httpClient);
+
+            return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+        }
+
         #endregion TrackEvent
 
         #region Authentication

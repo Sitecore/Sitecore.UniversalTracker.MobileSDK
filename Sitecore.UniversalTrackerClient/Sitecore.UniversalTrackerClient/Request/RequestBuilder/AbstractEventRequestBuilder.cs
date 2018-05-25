@@ -51,7 +51,7 @@
             }
 
             this.FieldsRawValuesByName.Add(lowerCaseField, customFieldValue);
-
+         
             return this;
         }
 
@@ -158,8 +158,7 @@
 
         public IEventrequestParametersBuilder<T> Timestamp(DateTime timestamp)
         {
-            BaseValidator.CheckForTwiceSetAndThrow(this.EventParametersAccumulator.Timestamp,
-                                                   this.GetType().Name + ".timestamp");
+            #warning @igk check initiator for twice!???
 
             this.EventParametersAccumulator = new UTEvent(
                 timestamp,
@@ -177,8 +176,8 @@
 
         public IEventrequestParametersBuilder<T> Duration(TimeSpan duration)
         {
-            BaseValidator.CheckForTwiceSetAndThrow(this.EventParametersAccumulator.Duration,
-                                                   this.GetType().Name + ".duration");
+            //BaseValidator.CheckForTwiceSetAndThrow(this.EventParametersAccumulator.Duration,
+                                                   //this.GetType().Name + ".duration");
 
             this.EventParametersAccumulator = new UTEvent(
                 this.EventParametersAccumulator.Timestamp,

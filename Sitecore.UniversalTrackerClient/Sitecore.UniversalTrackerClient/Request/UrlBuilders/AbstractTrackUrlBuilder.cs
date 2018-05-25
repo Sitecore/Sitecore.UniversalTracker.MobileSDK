@@ -73,7 +73,7 @@
         private string GetCommonPartForRequest(TRequest request)
         {
 #warning @IGK not implemented!!!
-			return null;
+			return "";
         }
 
         private void ValidateCommonRequest(TRequest request)
@@ -96,7 +96,7 @@
         {
 			if (null == this.UTGrammar)
             {
-                throw new ArgumentNullException("[TrackUrlBuilder] urlGrammar cannot be null");
+                throw new ArgumentNullException("[AbstractTrackUrlBuilder] urlGrammar cannot be null");
             }
            
         }

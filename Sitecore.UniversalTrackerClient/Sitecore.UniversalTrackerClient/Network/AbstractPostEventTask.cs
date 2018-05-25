@@ -49,7 +49,7 @@
             {
 #warning @igk debug response output, remove later
                 Debug.WriteLine("RESPONSE: " + data);
-				return UTTrackEventResponseParser.Parse(data, this.statusCode, cancelToken);
+                return UTResponseParser.ParseEvent(data, this.statusCode, cancelToken);
             };
             return await Task.Factory.StartNew(syncParseResponse, cancelToken) as TResponse;
         }

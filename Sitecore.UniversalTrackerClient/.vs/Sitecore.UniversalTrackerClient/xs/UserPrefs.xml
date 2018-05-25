@@ -1,32 +1,43 @@
 ﻿<Properties StartupConfiguration="{9DB00321-73CD-4C5F-A290-78E98192B730}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Sitecore.UniversalTrackerClient/Validators/ItemIdValidator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Sitecore.UniversalTrackerClient/Network/AbstractPostEventTask.cs">
     <Files>
-      <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/IEventrequestParametersBuilder.cs" Line="1" Column="11" />
-      <File FileName="Demo/UniversalTrackerDemo/ViewController.cs" Line="36" Column="17" />
-      <File FileName="Sitecore.UniversalTrackerClient/UTSession.cs" Line="1" Column="1" />
-      <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/UTrequestBuilder.cs" Line="15" Column="10" />
-      <File FileName="Sitecore.UniversalTrackerClient/Request/IBaseRequest.cs" Line="1" Column="1" />
-      <File FileName="Sitecore.UniversalTrackerClient/Request/ITrackEventRequest.cs" Line="5" Column="40" />
-      <File FileName="Sitecore.UniversalTrackerClient/Request/ITrackInteractionRequest.cs" Line="1" Column="1" />
-      <File FileName="Sitecore.UniversalTrackerClient/Request/TrackEventParameters.cs" Line="1" Column="1" />
-      <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/IBaseRequestParametersBuilder.cs" Line="1" Column="1" />
-      <File FileName="Sitecore.UniversalTrackerClient/Entities/UTEvent.cs" Line="6" Column="15" />
-      <File FileName="Sitecore.UniversalTrackerClient/Entities/IUTInteraction.cs" Line="1" Column="1" />
-      <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/TrackEventForItemIdRequestBuilder.cs" Line="26" Column="1" />
-      <File FileName="Sitecore.UniversalTrackerClient/Validators/BaseValidator.cs" Line="15" Column="28" />
-      <File FileName="Sitecore.UniversalTrackerClient/Validators/DuplicateEntryValidator.cs" Line="1" Column="42" />
-      <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/AbstractEventRequestBuilder.cs" Line="8" Column="27" />
-      <File FileName="Sitecore.UniversalTrackerClient/Validators/ItemIdValidator.cs" Line="22" Column="1" />
-      <File FileName="Demo/UniversalTrackerDemo/Main.cs" Line="16" Column="1" />
-      <File FileName="Sitecore.UniversalTrackerClient/Request/UrlBuilders/TrackEventUrlBuilder.cs" Line="21" Column="46" />
+      <File FileName="Sitecore.UniversalTrackerClient/Network/TaskFlow/RestApiCallFlow.cs" Line="42" Column="39" />
+      <File FileName="Sitecore.UniversalTrackerClient/Network/TrackEventTask.cs" Line="68" Column="28" />
+      <File FileName="Sitecore.UniversalTrackerClient/UserRequestMerger.cs" Line="53" Column="2" />
+      <File FileName="Demo/UniversalTrackerDemo/ViewController.cs" Line="41" Column="59" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/UTrequestBuilder.cs" Line="12" Column="68" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/TrackInteractionRequestBuilder.cs" Line="22" Column="2" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/TrackEventForItemIdRequestBuilder.cs" Line="35" Column="10" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/AbstractEventRequestBuilder.cs" Line="118" Column="9" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/AbstractInteractionRequestBuilder.cs" Line="130" Column="70" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/IInteractionParametersBuilder.cs" Line="7" Column="51" />
+      <File FileName="Sitecore.UniversalTrackerClient/Validators/BaseValidator.cs" Line="23" Column="28" />
+      <File FileName="Sitecore.UniversalTrackerClient/Validators/DuplicateEntryValidator.cs" Line="6" Column="18" />
+      <File FileName="Sitecore.UniversalTrackerClient/Entities/IUTInteraction.cs" Line="109" Column="17" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/TrackEventParameters.cs" Line="38" Column="9" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/ITrackInteractionRequest.cs" Line="6" Column="19" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/TrackInteractionParameters.cs" Line="8" Column="16" />
+      <File FileName="Sitecore.UniversalTrackerClient/Session/ISitecoreUTSessionActions.cs" Line="8" Column="19" />
+      <File FileName="Sitecore.UniversalTrackerClient/Response/UTEventResponse.cs" Line="3" Column="18" />
+      <File FileName="Sitecore.UniversalTrackerClient/Response/UTInteractiontResponse.cs" Line="3" Column="39" />
+      <File FileName="Sitecore.UniversalTrackerClient/UTSession.cs" Line="129" Column="13" />
+      <File FileName="Sitecore.UniversalTrackerClient/Session/ISitecoreUTSession.cs" Line="8" Column="18" />
+      <File FileName="Sitecore.UniversalTrackerClient/Session/ISitecoreUTSessionState.cs" Line="6" Column="22" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/UrlBuilders/TrackEventUrlBuilder.cs" Line="22" Column="40" />
+      <File FileName="Sitecore.UniversalTrackerClient/Syntax/IUTUrlParameters.cs" Line="3" Column="22" />
+      <File FileName="Sitecore.UniversalTrackerClient/Network/TrackInteractionTask.cs" Line="39" Column="85" />
+      <File FileName="Sitecore.UniversalTrackerClient/Network/UTResponseParser.cs" Line="25" Column="10" />
+      <File FileName="Demo/:Volumes:Sitecore:GitHub:SDKs:Mobile.UniversalTracker.SDK:Sitecore.UniversalTrackerClient:Sitecore.UniversalTrackerClient:Network:UTTrackInteractionResponseParser.cs" Line="13" Column="24" />
+      <File FileName="Sitecore.UniversalTrackerClient/Entities/UTInteraction.cs" Line="6" Column="15" />
+      <File FileName="Sitecore.UniversalTrackerClient/Network/AbstractPostEventTask.cs" Line="52" Column="12" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Volumes/Sitecore/GitHub/SDKs/sitecore-SSC-sdk/lib/SitecoreMobileSDK-PCL/Sitecore.MobileSDK.csproj" line="312" column="162" />
-      <Breakpoint file="/Volumes/Sitecore/GitHub/SDKs/Mobile.UniversalTracker.SDK/Sitecore.UniversalTrackerClient/Demo/UniversalTrackerDemo/ViewController.cs" relfile="Demo/UniversalTrackerDemo/ViewController.cs" line="37" column="1" />
       <Catchpoint exceptionName="System.Exception" includeSubclasses="True" />
+      <Breakpoint file="/Volumes/Sitecore/GitHub/SDKs/Mobile.UniversalTracker.SDK/Sitecore.UniversalTrackerClient/Sitecore.UniversalTrackerClient/Network/TaskFlow/RestApiCallFlow.cs" relfile="Sitecore.UniversalTrackerClient/Network/TaskFlow/RestApiCallFlow.cs" line="85" column="31" />
+      <Breakpoint file="/Volumes/Sitecore/GitHub/SDKs/Mobile.UniversalTracker.SDK/Sitecore.UniversalTrackerClient/Sitecore.UniversalTrackerClient/Network/TrackEventTask.cs" relfile="Sitecore.UniversalTrackerClient/Network/TrackEventTask.cs" line="41" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

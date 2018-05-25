@@ -30,5 +30,24 @@
 
 			return new TrackEventParameters(mergedSessionConfig, utEvent);
         }
+
+        public ITrackInteractionRequest FillTrackInteractionGaps(ITrackInteractionRequest userRequest)
+        {
+            var utInteraction = new UTInteraction(
+                userRequest.Interaction.CampaignId,
+                userRequest.Interaction.ChannelId,
+                userRequest.Interaction.EngagementValue,
+                userRequest.Interaction.StartDateTime,
+                userRequest.Interaction.EndDateTime,
+                userRequest.Interaction.Events,
+                userRequest.Interaction.Initiator,
+                userRequest.Interaction.UserAgent,
+                userRequest.Interaction.VenueId
+            );
+
+            IUTSessionConfig mergedSessionConfig = this.SessionConfigMerger.FillSessionConfigGaps(userRequest.SessionConfig);
+
+            return new TrackInteractionParameters(mergedSessionConfig, utInteraction);
+        }
     }
 }

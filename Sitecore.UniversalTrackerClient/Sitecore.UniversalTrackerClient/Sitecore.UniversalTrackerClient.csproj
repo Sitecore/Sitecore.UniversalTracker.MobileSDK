@@ -69,13 +69,20 @@
     <Compile Include="Session\Config\SessionConfigUrlBuilder.cs" />
     <Compile Include="Request\UrlBuilders\TrackEventUrlBuilder.cs" />
     <Compile Include="Network\TrackEventTask.cs" />
-    <Compile Include="Network\UTTrackEventResponseParser.cs" />
+    <Compile Include="Network\UTResponseParser.cs" />
     <Compile Include="Request\RequestBuilder\IBaseRequestParametersBuilder.cs" />
     <Compile Include="Request\RequestBuilder\IEventrequestParametersBuilder.cs" />
     <Compile Include="Request\RequestBuilder\UTrequestBuilder.cs" />
     <Compile Include="Request\RequestBuilder\AbstractEventRequestBuilder.cs" />
     <Compile Include="Request\RequestBuilder\TrackEventForItemIdRequestBuilder.cs" />
     <Compile Include="Validators\ItemIdValidator.cs" />
+    <Compile Include="Request\RequestBuilder\IInteractionParametersBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\TrackInteractionRequestBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\AbstractInteractionRequestBuilder.cs" />
+    <Compile Include="Request\TrackInteractionParameters.cs" />
+    <Compile Include="Response\UTInteractiontResponse.cs" />
+    <Compile Include="Request\UrlBuilders\TrackInteractionUrlBuilder.cs" />
+    <Compile Include="Network\TrackInteractionTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Syntax\" />

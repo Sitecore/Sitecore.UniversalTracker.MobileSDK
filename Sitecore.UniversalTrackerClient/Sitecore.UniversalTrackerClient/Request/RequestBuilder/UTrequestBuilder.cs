@@ -9,12 +9,15 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
         {
         }
         
-		public static IEventrequestParametersBuilder<ITrackEventRequest> TrackEventRequestForItem(string itemId)
+		public static IEventrequestParametersBuilder<ITrackEventRequest> TrackEventForItem(string itemId)
         {
             return new TrackEventForItemIdRequestBuilder(itemId);
         }
-        
-        
+
+        public static IInteractionParametersBuilder<ITrackInteractionRequest> TrackInteraction()
+        {
+            return new TrackInteractionRequestBuilder();
+        }
 
     }
 }
