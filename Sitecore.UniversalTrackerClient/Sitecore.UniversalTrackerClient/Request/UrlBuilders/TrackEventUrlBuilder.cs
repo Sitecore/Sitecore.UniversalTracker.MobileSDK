@@ -6,7 +6,7 @@
     public class TrackInteractionUrlBuilder<T> : AbstractTrackUrlBuilder<T>
 		where T : class, ITrackInteractionRequest
     {
-        public TrackInteractionUrlBuilder(IUTUrlParameters utGrammar) :
+        public TrackInteractionUrlBuilder(IUTGrammar utGrammar) :
 		base(utGrammar)
         {
         }

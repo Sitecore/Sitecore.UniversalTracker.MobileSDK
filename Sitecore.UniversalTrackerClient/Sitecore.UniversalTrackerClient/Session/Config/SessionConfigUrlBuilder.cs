@@ -6,7 +6,7 @@
 
 	public class SessionConfigUrlBuilder
     {
-        public SessionConfigUrlBuilder(IUTUrlParameters utGrammar)
+        public SessionConfigUrlBuilder(IUTGrammar utGrammar)
         {
 			this.utGrammar = utGrammar;
 
@@ -44,6 +44,6 @@
           
         }
 
-		private IUTUrlParameters utGrammar;
+        private IUTGrammar utGrammar;
     }
 }

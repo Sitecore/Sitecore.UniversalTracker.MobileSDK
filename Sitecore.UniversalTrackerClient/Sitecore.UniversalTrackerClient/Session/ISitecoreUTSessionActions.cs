@@ -11,6 +11,10 @@
 
         Task<UTEventResponse> TrackEventAsync(ITrackEventRequest request, CancellationToken cancelToken = default(CancellationToken));
 
+        Task<UTEventResponse> TrackLocationEventAsync(ITrackLocationEventRequest request, CancellationToken cancelToken = default(CancellationToken));
+
+        Task<UTEventResponse> TrackErrorEventAsync(ITrackErrorEventRequest request, CancellationToken cancelToken = default(CancellationToken));
+
         Task<UTInteractionResponse> TrackInteractionAsync(ITrackInteractionRequest request, CancellationToken cancelToken = default(CancellationToken));
     }
 }

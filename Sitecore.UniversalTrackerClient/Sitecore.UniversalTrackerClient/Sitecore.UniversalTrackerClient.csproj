@@ -30,8 +30,8 @@
   <ItemGroup>
     <Compile Include="UTSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Syntax\IUTUrlParameters.cs" />
-    <Compile Include="Syntax\UTUrlParameters.cs" />
+    <Compile Include="Syntax\IUTGrammar.cs" />
+    <Compile Include="Syntax\UTGrammar.cs" />
     <Compile Include="Session\ISitecoreUTSession.cs" />
     <Compile Include="Session\ISitecoreUTSessionActions.cs" />
     <Compile Include="Session\ISitecoreUTSessionState.cs" />
@@ -74,15 +74,21 @@
     <Compile Include="Request\RequestBuilder\IEventrequestParametersBuilder.cs" />
     <Compile Include="Request\RequestBuilder\UTrequestBuilder.cs" />
     <Compile Include="Request\RequestBuilder\AbstractEventRequestBuilder.cs" />
-    <Compile Include="Request\RequestBuilder\TrackEventForItemIdRequestBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\EventForItemIdRequestBuilder.cs" />
     <Compile Include="Validators\ItemIdValidator.cs" />
     <Compile Include="Request\RequestBuilder\IInteractionParametersBuilder.cs" />
-    <Compile Include="Request\RequestBuilder\TrackInteractionRequestBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\InteractionRequestBuilder.cs" />
     <Compile Include="Request\RequestBuilder\AbstractInteractionRequestBuilder.cs" />
     <Compile Include="Request\TrackInteractionParameters.cs" />
     <Compile Include="Response\UTInteractiontResponse.cs" />
     <Compile Include="Request\UrlBuilders\TrackInteractionUrlBuilder.cs" />
     <Compile Include="Network\TrackInteractionTask.cs" />
+    <Compile Include="Request\RequestBuilder\LocationEventRequestBuilder.cs" />
+    <Compile Include="Request\Shugar\ITrackErrorEventRequest.cs" />
+    <Compile Include="Request\Shugar\ITrackLocationEventRequest.cs" />
+    <Compile Include="Request\RequestBuilder\ErrorEventRequestBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\AppLaunchEventRequestBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\AppFinishedEventRequestBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Syntax\" />
@@ -97,6 +103,7 @@
     <Folder Include="Entities\" />
     <Folder Include="Request\UrlBuilders\" />
     <Folder Include="Request\RequestBuilder\" />
+    <Folder Include="Request\Shugar\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

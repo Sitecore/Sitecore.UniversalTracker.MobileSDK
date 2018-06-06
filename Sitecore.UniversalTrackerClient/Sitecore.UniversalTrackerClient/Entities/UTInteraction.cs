@@ -32,6 +32,23 @@ namespace Sitecore.UniversalTrackerClient.Entities
 			this.VenueId = venueId;
         }
 
+        public IUTInteraction DeepCopyUTInteraction()
+        {
+            var result = new UTInteraction(
+                this.CampaignId,
+                this.ChannelId,
+                this.EngagementValue,
+                this.StartDateTime,
+                this.EndDateTime,
+                this.Events,
+                this.Initiator,
+                this.UserAgent,
+                this.VenueId
+            );
+
+            return result;
+        }
+
 		public string CampaignId
         {
             get;

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversalTrackerDemo", "Dem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversalTrackerDemo.UITests", "Demo\UniversalTrackerDemo.UITests\UniversalTrackerDemo.UITests.csproj", "{EB62A010-5D3E-48E5-BB40-41DC6F2FF726}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversalTracker.Tests", "UniversalTracker.Tests\UniversalTracker.Tests.csproj", "{FC9E62D6-4FE2-4C4A-B9F1-1F67962007E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,5 +55,17 @@ Global
 		{EB62A010-5D3E-48E5-BB40-41DC6F2FF726}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{EB62A010-5D3E-48E5-BB40-41DC6F2FF726}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{EB62A010-5D3E-48E5-BB40-41DC6F2FF726}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{FC9E62D6-4FE2-4C4A-B9F1-1F67962007E8}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{FC9E62D6-4FE2-4C4A-B9F1-1F67962007E8}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{FC9E62D6-4FE2-4C4A-B9F1-1F67962007E8}.Release|Any CPU.ActiveCfg = Release|iPhone
+		{FC9E62D6-4FE2-4C4A-B9F1-1F67962007E8}.Release|Any CPU.Build.0 = Release|iPhone
+		{FC9E62D6-4FE2-4C4A-B9F1-1F67962007E8}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{FC9E62D6-4FE2-4C4A-B9F1-1F67962007E8}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{FC9E62D6-4FE2-4C4A-B9F1-1F67962007E8}.Release|iPhone.ActiveCfg = Release|iPhone
+		{FC9E62D6-4FE2-4C4A-B9F1-1F67962007E8}.Release|iPhone.Build.0 = Release|iPhone
+		{FC9E62D6-4FE2-4C4A-B9F1-1F67962007E8}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{FC9E62D6-4FE2-4C4A-B9F1-1F67962007E8}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{FC9E62D6-4FE2-4C4A-B9F1-1F67962007E8}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{FC9E62D6-4FE2-4C4A-B9F1-1F67962007E8}.Debug|iPhone.Build.0 = Debug|iPhone
 	EndGlobalSection
 EndGlobal

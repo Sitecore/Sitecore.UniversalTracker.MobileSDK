@@ -6,15 +6,22 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
     using Sitecore.UniversalTrackerClient.Validators;
     using System.Collections.Generic;
 
-    public class TrackEventForItemIdRequestBuilder : AbstractEventRequestBuilder<ITrackEventRequest>
+    public class EventForItemIdRequestBuilder<T> : AbstractEventRequestBuilder<T>
+        where T : class, ITrackEventRequest
     {
-        public TrackEventForItemIdRequestBuilder(string itemId)
+        
+        protected EventForItemIdRequestBuilder()
+        {
+
+        }
+
+        public EventForItemIdRequestBuilder(string itemId)
         {
             ItemIdValidator.ValidateItemId(itemId, this.GetType().Name + ".itemId");
             this.ItemId(itemId);
         }
 
-        public override ITrackEventRequest Build()
+        public override T Build()
         {
 #warning @igk check thar all required fields is not null here!!!
 
@@ -31,7 +38,7 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
 
             TrackEventParameters result =
                 new TrackEventParameters(null, this.EventParametersAccumulator);
-            return result;
+            return result as T;
         }
     }
 }

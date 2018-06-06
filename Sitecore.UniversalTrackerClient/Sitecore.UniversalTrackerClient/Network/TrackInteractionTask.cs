@@ -36,9 +36,9 @@
 
             HttpRequestMessage result = new HttpRequestMessage(HttpMethod.Post, url);
 
-            string serializedEvent = JsonConvert.SerializeObject(request.Interaction);
+            string serializedInteraction = JsonConvert.SerializeObject(request.Interaction);
 
-            StringContent bodycontent = new StringContent(serializedEvent, Encoding.UTF8, "application/json");
+            StringContent bodycontent = new StringContent(serializedInteraction, Encoding.UTF8, "application/json");
 
             result.Content = bodycontent;
 

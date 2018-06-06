@@ -1,10 +1,14 @@
-﻿using System;
-using System.Collections.ObjectModel;
-
+﻿
 namespace Sitecore.UniversalTrackerClient.Entities
 {
+    using System;
+    using System.Collections.ObjectModel;
+
     public interface IUTInteraction
     {
+
+        IUTInteraction DeepCopyUTInteraction();
+
 		/// <summary>
         /// Returns campaign's GUID.
         /// For example: "110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9"

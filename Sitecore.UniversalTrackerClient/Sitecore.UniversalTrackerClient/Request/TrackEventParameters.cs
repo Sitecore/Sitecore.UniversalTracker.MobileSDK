@@ -3,7 +3,11 @@
 	using Sitecore.UniversalTrackerClient.Entities;
 	using Sitecore.UniversalTrackerClient.Session.Config;
 
-	public class TrackEventParameters : ITrackEventRequest
+	public class TrackEventParameters : 
+                    ITrackEventRequest,
+                    ITrackLocationEventRequest,
+                    ITrackErrorEventRequest
+
     {
 		public TrackEventParameters(IUTSessionConfig sessionConfig,  IUTEvent uTEvent)
         {

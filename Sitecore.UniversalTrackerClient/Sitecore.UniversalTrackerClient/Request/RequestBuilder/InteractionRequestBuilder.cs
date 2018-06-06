@@ -2,11 +2,9 @@
 
 namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
 {
-    internal class TrackInteractionRequestBuilder : AbstractInteractionRequestBuilder<ITrackInteractionRequest>
+    internal class InteractionRequestBuilder : AbstractInteractionRequestBuilder<ITrackInteractionRequest>
     {
-
-
-        public TrackInteractionRequestBuilder()
+        public InteractionRequestBuilder()
         {
         }
 

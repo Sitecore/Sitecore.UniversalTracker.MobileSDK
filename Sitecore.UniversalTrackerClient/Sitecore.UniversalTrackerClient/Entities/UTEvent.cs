@@ -31,6 +31,22 @@ namespace Sitecore.UniversalTrackerClient.Entities
 			this.Duration = duration;
         }
       
+        public IUTEvent DeepCopyUTEvent()
+        {
+            var result = new UTEvent(
+                this.Timestamp,
+                this.CustomValues,
+                this.DefinitionId,
+                this.ItemId,
+                this.EngagementValue,
+                this.ParentEventId,
+                this.Text,
+                this.Duration
+            );
+
+            return result;
+        }
+
 		public Dictionary<string, string> CustomValues {
 			get;
 			private set;
@@ -70,5 +86,6 @@ namespace Sitecore.UniversalTrackerClient.Entities
             get;
             private set;
         }
-	}
+
+    }
 }

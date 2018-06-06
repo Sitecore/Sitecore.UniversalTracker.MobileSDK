@@ -9,14 +9,34 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
         {
         }
         
-		public static IEventrequestParametersBuilder<ITrackEventRequest> TrackEventForItem(string itemId)
+		public static IEventrequestParametersBuilder<ITrackEventRequest> EventForItem(string itemId)
         {
-            return new TrackEventForItemIdRequestBuilder(itemId);
+            return new EventForItemIdRequestBuilder<ITrackEventRequest>(itemId);
         }
 
-        public static IInteractionParametersBuilder<ITrackInteractionRequest> TrackInteraction()
+        public static IEventrequestParametersBuilder<ITrackLocationEventRequest> LocationEvent(double latitude, double longitude)
         {
-            return new TrackInteractionRequestBuilder();
+            return new LocationEventRequestBuilder(latitude, longitude);
+        }
+
+        public static IEventrequestParametersBuilder<ITrackErrorEventRequest> ErrorEvent(string error, string errorDescription)
+        {
+            return new ErrorEventRequestBuilder(error, errorDescription);
+        }
+
+        public static IEventrequestParametersBuilder<ITrackEventRequest> AppLaunchedEvent()
+        {
+            return new AppLaunchEventRequestBuilder();
+        }
+
+        public static IEventrequestParametersBuilder<ITrackEventRequest> AppFinishedEvent()
+        {
+            return new AppFinishedEventRequestBuilder();
+        }
+
+        public static IInteractionParametersBuilder<ITrackInteractionRequest> Interaction()
+        {
+            return new InteractionRequestBuilder();
         }
 
     }

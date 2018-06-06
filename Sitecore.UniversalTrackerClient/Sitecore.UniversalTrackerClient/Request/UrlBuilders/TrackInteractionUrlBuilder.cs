@@ -6,7 +6,7 @@
     public class TrackEventUrlBuilder<T> : AbstractTrackUrlBuilder<T>
 		where T : class, ITrackEventRequest
     {
-        public TrackEventUrlBuilder(IUTUrlParameters utGrammar) :
+        public TrackEventUrlBuilder(IUTGrammar utGrammar) :
 		base(utGrammar)
         {
         }

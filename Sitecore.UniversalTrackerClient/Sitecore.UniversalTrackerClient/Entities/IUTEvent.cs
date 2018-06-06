@@ -1,10 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
 namespace Sitecore.UniversalTrackerClient.Entities
 {
+    using System;
+    using System.Collections.Generic;
+
     public interface IUTEvent
     {
+
+        IUTEvent DeepCopyUTEvent();
+
+
 		/// <summary>
         ///     A dictionary of string for event custom data for legacy support.
         /// </summary>
@@ -12,7 +17,6 @@ namespace Sitecore.UniversalTrackerClient.Entities
         ///     The custom values.
         /// </value>
         Dictionary<string, string> CustomValues { get; }
-
 
         /// <summary>
         ///     Gets or sets the definition ID for the type of this event.

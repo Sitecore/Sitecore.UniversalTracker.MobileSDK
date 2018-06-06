@@ -24,7 +24,7 @@ namespace Sitecore.UniversalTrackerClient
 
         protected readonly IUTSessionConfig sessionConfig;
         private readonly string uTTokenValue;
-        private readonly IUTUrlParameters utGrammar = UTUrlParameters.UTV1UrlParameters();
+        private readonly IUTGrammar utGrammar = UTGrammar.UTV1Grammar();
 
         #endregion Private Variables
 
@@ -120,6 +120,16 @@ namespace Sitecore.UniversalTrackerClient
             var taskFlow = new TrackEventTask<ITrackEventRequest>(urlBuilder, this.httpClient);
 
             return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+        }
+
+        public async Task<UTEventResponse> TrackLocationEventAsync(ITrackLocationEventRequest request, CancellationToken cancelToken = default(CancellationToken))
+        {
+            return await this.TrackEventAsync(request, cancelToken);
+        }
+
+        public async  Task<UTEventResponse> TrackErrorEventAsync(ITrackErrorEventRequest request, CancellationToken cancelToken = default(CancellationToken))
+        {
+            return await this.TrackEventAsync(request, cancelToken);
         }
 
         public async Task<UTInteractionResponse> TrackInteractionAsync(ITrackInteractionRequest request, CancellationToken cancelToken)

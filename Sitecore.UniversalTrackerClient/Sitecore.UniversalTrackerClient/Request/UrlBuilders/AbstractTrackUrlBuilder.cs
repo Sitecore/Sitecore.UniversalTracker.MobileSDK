@@ -8,7 +8,7 @@
 	public abstract class AbstractTrackUrlBuilder<TRequest>
     where TRequest : IBaseRequest
     {
-		public AbstractTrackUrlBuilder(IUTUrlParameters utGrammar)
+        public AbstractTrackUrlBuilder(IUTGrammar utGrammar)
         {
 			this.UTGrammar = utGrammar;
 
@@ -109,7 +109,7 @@
         #endregion Abstract Methods
 
         #region instance variables
-		protected IUTUrlParameters UTGrammar;
+        protected IUTGrammar UTGrammar;
         #endregion instance variables
     }
 }
