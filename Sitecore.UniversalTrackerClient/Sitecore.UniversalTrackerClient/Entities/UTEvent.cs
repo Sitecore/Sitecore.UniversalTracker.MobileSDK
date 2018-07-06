@@ -5,9 +5,14 @@ namespace Sitecore.UniversalTrackerClient.Entities
 {
 	public class UTEvent : IUTEvent
     {
-		private UTEvent(){
+        protected UTEvent(){
 			
 		}
+
+        public static UTEvent GetEmptyEvent()
+        {
+            return new UTEvent(new DateTime(), null, null, null, -1, null, null, new TimeSpan());
+        }
 
 #warning @igk figure out which parameters is required
         public UTEvent(

@@ -20,10 +20,7 @@
             
 			string autocompletedInstanceUrl = SessionConfigValidator.AutocompleteInstanceUrl(config.InstanceUrl);
 
-            string result =
-				autocompletedInstanceUrl + this.utGrammar.AnalyticsEndpoint;
-
-            return result.ToLowerInvariant();
+            return autocompletedInstanceUrl.ToLowerInvariant();
         }
 
 

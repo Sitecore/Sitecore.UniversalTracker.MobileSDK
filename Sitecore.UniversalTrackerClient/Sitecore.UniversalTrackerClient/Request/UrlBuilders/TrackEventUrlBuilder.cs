@@ -3,23 +3,23 @@
 	using System;
     using Sitecore.UniversalTrackerClient.UserRequest;
 
-    public class TrackInteractionUrlBuilder<T> : AbstractTrackUrlBuilder<T>
-		where T : class, ITrackInteractionRequest
+    public class TrackEventUrlBuilder<T> : AbstractTrackUrlBuilder<T>
+        where T : class, IBaseRequest
     {
-        public TrackInteractionUrlBuilder(IUTGrammar utGrammar) :
+        public TrackEventUrlBuilder(IUTGrammar utGrammar) :
 		base(utGrammar)
         {
         }
 
         protected override string GetSpecificPartForRequest(T request)
         {
-            return ""; //@igk in test needs
+            return "";
             throw new NotImplementedException();
         }
 
         protected override void ValidateSpecificRequest(T request)
         {
-            return;//@igk in test needs
+            return;
             throw new NotImplementedException();
         }
     }

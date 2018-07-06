@@ -6,6 +6,8 @@
 	public class TrackEventParameters : 
                     ITrackEventRequest,
                     ITrackLocationEventRequest,
+                    ITrackPageClosedEventRequest,
+                    ITrackPageOpenedEventRequest,
                     ITrackErrorEventRequest
 
     {

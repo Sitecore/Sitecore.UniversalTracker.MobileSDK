@@ -7,6 +7,7 @@
 
         public UTEventResponse(int responseCode)
         {
+            this.StatusCode = responseCode;
         }
 
         public bool isSuccessful

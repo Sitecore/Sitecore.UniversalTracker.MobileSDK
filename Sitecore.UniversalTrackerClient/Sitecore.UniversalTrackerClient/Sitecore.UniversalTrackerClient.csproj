@@ -67,28 +67,49 @@
     <Compile Include="Request\UrlBuilders\AbstractTrackUrlBuilder.cs" />
     <Compile Include="Syntax\RestGrammar.cs" />
     <Compile Include="Session\Config\SessionConfigUrlBuilder.cs" />
-    <Compile Include="Request\UrlBuilders\TrackEventUrlBuilder.cs" />
+    <Compile Include="Request\UrlBuilders\TrackInteractionUrlBuilder.cs" />
     <Compile Include="Network\TrackEventTask.cs" />
     <Compile Include="Network\UTResponseParser.cs" />
     <Compile Include="Request\RequestBuilder\IBaseRequestParametersBuilder.cs" />
-    <Compile Include="Request\RequestBuilder\IEventrequestParametersBuilder.cs" />
-    <Compile Include="Request\RequestBuilder\UTrequestBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\IEventRequestParametersBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\UTRequestBuilder.cs" />
     <Compile Include="Request\RequestBuilder\AbstractEventRequestBuilder.cs" />
-    <Compile Include="Request\RequestBuilder\EventForItemIdRequestBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\EventForDefenitionIdRequestBuilder.cs" />
     <Compile Include="Validators\ItemIdValidator.cs" />
     <Compile Include="Request\RequestBuilder\IInteractionParametersBuilder.cs" />
     <Compile Include="Request\RequestBuilder\InteractionRequestBuilder.cs" />
     <Compile Include="Request\RequestBuilder\AbstractInteractionRequestBuilder.cs" />
     <Compile Include="Request\TrackInteractionParameters.cs" />
     <Compile Include="Response\UTInteractiontResponse.cs" />
-    <Compile Include="Request\UrlBuilders\TrackInteractionUrlBuilder.cs" />
+    <Compile Include="Request\UrlBuilders\TrackEventUrlBuilder.cs" />
     <Compile Include="Network\TrackInteractionTask.cs" />
-    <Compile Include="Request\RequestBuilder\LocationEventRequestBuilder.cs" />
     <Compile Include="Request\Shugar\ITrackErrorEventRequest.cs" />
     <Compile Include="Request\Shugar\ITrackLocationEventRequest.cs" />
-    <Compile Include="Request\RequestBuilder\ErrorEventRequestBuilder.cs" />
-    <Compile Include="Request\RequestBuilder\AppLaunchEventRequestBuilder.cs" />
-    <Compile Include="Request\RequestBuilder\AppFinishedEventRequestBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\Extensions\AppFinishedEventRequestBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\Extensions\AppLaunchEventRequestBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\Extensions\ErrorEventRequestBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\Extensions\LocationEventRequestBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\Extensions\PageOpenedEventRequestBuilder.cs" />
+    <Compile Include="Helpers\DateTimeHelper.cs" />
+    <Compile Include="Request\RequestBuilder\Extensions\PageClosedEventRequestBuilder.cs" />
+    <Compile Include="Request\Shugar\ITrackPageClosedEventRequest.cs" />
+    <Compile Include="Request\Shugar\ITrackPageOpenedEventRequest.cs" />
+    <Compile Include="Request\Shugar\IDeviceInformationEventRequest.cs" />
+    <Compile Include="Request\RequestBuilder\Extensions\DeviceInformationEventRequestBuilder.cs" />
+    <Compile Include="Entities\IUTGoal.cs" />
+    <Compile Include="Entities\IUTOutcome.cs" />
+    <Compile Include="Entities\IUTCampaignEvent.cs" />
+    <Compile Include="Entities\IUTDownloadEvent.cs" />
+    <Compile Include="Entities\IUTSearchEvent.cs" />
+    <Compile Include="Entities\IUTPageViewEvent.cs" />
+    <Compile Include="Session\ISitecoreUTSessionWithAutoInteraction.cs" />
+    <Compile Include="Request\ITrackOutcomeRequest.cs" />
+    <Compile Include="Entities\UTOutcome.cs" />
+    <Compile Include="Request\RequestBuilder\IOutcomeRequestParametersBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\OutcomeRequestParametersBuilder.cs" />
+    <Compile Include="Request\TrackEventParameters %28copy%29.cs" />
+    <Compile Include="Network\AbstractTrackBaseEventTask.cs" />
+    <Compile Include="Network\TrackOutcomeTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Syntax\" />
@@ -104,6 +125,8 @@
     <Folder Include="Request\UrlBuilders\" />
     <Folder Include="Request\RequestBuilder\" />
     <Folder Include="Request\Shugar\" />
+    <Folder Include="Request\RequestBuilder\Extensions\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

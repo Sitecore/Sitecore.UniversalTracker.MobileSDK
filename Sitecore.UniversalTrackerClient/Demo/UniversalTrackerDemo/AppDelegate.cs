@@ -1,4 +1,5 @@
-﻿using Foundation;
+﻿using System.Net;
+using Foundation;
 using UIKit;
 
 namespace UniversalTrackerDemo
@@ -25,6 +26,15 @@ namespace UniversalTrackerDemo
 //#if ENABLE_TEST_CLOUD
 //			Xamarin.Calabash.Start();
 //#endif
+
+
+            //FIXME: remove this
+#warning !!!!ignoring ssl certification!!!!
+            //ignoring ssl certification to test https request
+            ServicePointManager
+              .ServerCertificateValidationCallback +=
+                (sender, cert, chain, sslPolicyErrors) => true;
+
 
             return true;
         }

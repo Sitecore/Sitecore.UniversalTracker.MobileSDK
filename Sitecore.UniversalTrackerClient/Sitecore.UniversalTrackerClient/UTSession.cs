@@ -12,8 +12,9 @@ namespace Sitecore.UniversalTrackerClient
     using Sitecore.UniversalTrackerClient.Session.Config;
     using Sitecore.UniversalTrackerClient.TaskFlow;
 	using Sitecore.UniversalTrackerClient.UserRequest;
+    using Sitecore.UniversalTrackerClient.Validators;
 
-	public class UTSession : ISitecoreUTSession
+    public class UTSession : ISitecoreUTSession
     {
         #region Private Variables
 
@@ -111,13 +112,15 @@ namespace Sitecore.UniversalTrackerClient
 
         public async Task<UTEventResponse> TrackEventAsync(ITrackEventRequest request, CancellationToken cancelToken = default(CancellationToken))
         {
+            BaseValidator.CheckNullAndThrow(request, this.GetType().Name + ".request");
+
             ITrackEventRequest requestCopy = request.DeepCopyTrackEventRequest();
 
 
             ITrackEventRequest autocompletedRequest = this.requestMerger.FillTrackEventGaps(requestCopy);
 
 			var urlBuilder = new TrackEventUrlBuilder<ITrackEventRequest>(this.utGrammar);
-            var taskFlow = new TrackEventTask<ITrackEventRequest>(urlBuilder, this.httpClient);
+            var taskFlow = new TrackEventTask(urlBuilder, this.httpClient);
 
             return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
         }
@@ -132,15 +135,17 @@ namespace Sitecore.UniversalTrackerClient
             return await this.TrackEventAsync(request, cancelToken);
         }
 
-        public async Task<UTInteractionResponse> TrackInteractionAsync(ITrackInteractionRequest request, CancellationToken cancelToken)
+        public async Task<UTEventResponse> TracOutcomeEventAsync(ITrackOutcomeRequest request, CancellationToken cancelToken = default(CancellationToken))
         {
-            ITrackInteractionRequest requestCopy = request.DeepCopyTrackInteractionRequest();
+            BaseValidator.CheckNullAndThrow(request, this.GetType().Name + ".request");
+
+            ITrackOutcomeRequest requestCopy = request.DeepCopyTrackOutcomeRequest();
 
 
-            ITrackInteractionRequest autocompletedRequest = this.requestMerger.FillTrackInteractionGaps(requestCopy);
+            ITrackOutcomeRequest autocompletedRequest = this.requestMerger.FillTrackOutcomeGaps(requestCopy);
 
-            var urlBuilder = new TrackInteractionUrlBuilder<ITrackInteractionRequest>(this.utGrammar);
-            var taskFlow = new TrackInteractionTask<ITrackInteractionRequest>(urlBuilder, this.httpClient);
+            var urlBuilder = new TrackEventUrlBuilder<ITrackOutcomeRequest>(this.utGrammar);
+            var taskFlow = new TrackOutcomeTask(urlBuilder, this.httpClient);
 
             return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
         }
@@ -157,6 +162,28 @@ namespace Sitecore.UniversalTrackerClient
 
         #endregion Authentication
 
+        #region Interaction
 
+        public async Task AutoInteractionAsync(ITrackEventRequest request, CancellationToken cancelToken = default(CancellationToken))
+        {
+
+        }
+
+        public async Task<UTEventResponse> TrackInteractionAsync(ITrackInteractionRequest request, CancellationToken cancelToken)
+        {
+            BaseValidator.CheckNullAndThrow(request, this.GetType().Name + ".request");
+
+            ITrackInteractionRequest requestCopy = request.DeepCopyTrackInteractionRequest();
+
+
+            ITrackInteractionRequest autocompletedRequest = this.requestMerger.FillTrackInteractionGaps(requestCopy);
+
+            var urlBuilder = new TrackEventUrlBuilder<ITrackInteractionRequest>(this.utGrammar);
+            var taskFlow = new TrackInteractionTask(urlBuilder, this.httpClient);
+
+            return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+        }
+
+        #endregion Interaction
     }
 }

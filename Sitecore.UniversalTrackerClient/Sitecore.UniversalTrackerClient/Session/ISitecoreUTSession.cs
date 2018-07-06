@@ -5,7 +5,8 @@ namespace Sitecore.UniversalTrackerClient.Session
     public interface ISitecoreUTSession :
     IDisposable,
     ISitecoreUTSessionState,
-    ISitecoreUTSessionActions
+    ISitecoreUTSessionActions,
+    ISitecoreUTSessionWithAutoInteraction
     {
 
     }

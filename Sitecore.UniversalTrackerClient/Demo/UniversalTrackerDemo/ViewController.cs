@@ -1,11 +1,13 @@
-﻿using System;
-using Sitecore.UniversalTrackerClient.Entities;
-using Sitecore.UniversalTrackerClient.Request.RequestBuilder;
-using Sitecore.UniversalTrackerClient.Session.SessionBuilder;
-using UIKit;
-
+﻿
 namespace UniversalTrackerDemo
 {
+    using System;
+    using System.Collections.Generic;
+    using Sitecore.UniversalTrackerClient.Entities;
+    using Sitecore.UniversalTrackerClient.Request.RequestBuilder;
+    using Sitecore.UniversalTrackerClient.Session.SessionBuilder;
+    using UIKit;
+
     public partial class ViewController : UIViewController
     {
         protected ViewController(IntPtr handle) : base(handle)
@@ -24,22 +26,24 @@ namespace UniversalTrackerDemo
         {
             using
                (
-                   var session = SitecoreUTSessionBuilder.SessionWithHost("http://host.com/")
+                    var session = SitecoreUTSessionBuilder.SessionWithHost("https://utwebtests")
+                                                         .TokenValue("SecretTOken")
                                                          .BuildSession()
-
                )
             {
 
                 #region Track_Interaction
 
-                var interactionRequest = UTRequestBuilder.Interaction()
-                                                         .CampaignId("someCampId")
+               
+
+                var interactionRequest = UTRequestBuilder.Interaction(UTEvent.GetEmptyEvent())
+                                                         .ChannelId("27b4e611-a73d-4a95-b20a-811d295bdf65")
                                                          .EndDateTime(DateTime.Now)
                                                          .Initiator(InteractionInitiator.Contact)
                                                          .Build();
 
                 var interactionResponse = await session.TrackInteractionAsync(interactionRequest);
-                Console.WriteLine("Track INTERACTION RESULT: " + interactionResponse.ToString());
+                Console.WriteLine("Track INTERACTION RESULT: " + interactionResponse.StatusCode.ToString());
 
 
                 #endregion Track_Interaction
@@ -49,13 +53,19 @@ namespace UniversalTrackerDemo
 
                 #region Track_Base_Event
 
-                var eventRequest = UTRequestBuilder.EventForItem("01f8ffbf-d662-4a87-beee-413307055c48")
-                                              .AddCustomValuesToSet("key1", "value1")
-                                              .AddCustomValuesToSet("key2", "value2")
-                                              .DefinitionId("someid")
-                                              .Duration(new TimeSpan(1000))
-                                              .ParentEventId("01f8ffbf-d662-4a87-beee-413307055c48")
-                                              .Build();
+                Dictionary<string, string> customParameters = new Dictionary<string, string>();
+                customParameters.Add("param11", "paramValue11");
+                customParameters.Add("param22", "paramValue22");
+                customParameters.Add("param33", "paramValue33");
+                //customParameters.Add("key2", "value2");
+
+                var eventRequest = UTRequestBuilder.EventWithDefenitionId("01f8ffbf-d662-4a87-beee-413307055c48")
+                                                   .AddCustomValues("key1", "value1")
+                                                   .AddCustomValues("key2", "value2")
+                                                   .AddCustomValues(customParameters)
+                                                   .Duration(new TimeSpan(1000))
+                                                   .ParentEventId("01f8ffbf-d662-4a87-beee-413307055c48")
+                                                   .Build();
 
                 var eventResponse = await session.TrackEventAsync(eventRequest);
                 Console.WriteLine("Track EVENT RESULT: " + eventResponse.ToString());
@@ -92,7 +102,8 @@ namespace UniversalTrackerDemo
 
                 #region App_Launched_Event
 
-                var appLaunchedEventRequest = UTRequestBuilder.AppLaunchedEvent().Build();
+                var appLaunchedEventRequest = UTRequestBuilder.AppLaunchedEvent()
+                                                              .Build();
 
                 var appLaunchedEventResponse = await session.TrackEventAsync(appLaunchedEventRequest);
                 Console.WriteLine("Track APP LAUNCHED EVENT RESULT: " + appLaunchedEventResponse.ToString());
@@ -101,12 +112,51 @@ namespace UniversalTrackerDemo
 
                 #region App_Finished_Event
 
-                var appFinishedEventRequest = UTRequestBuilder.AppFinishedEvent().Build();
+                var appFinishedEventRequest = UTRequestBuilder.AppFinishedEvent()
+                                                              .Build();
 
                 var appFinishedEventResponse = await session.TrackEventAsync(appFinishedEventRequest);
                 Console.WriteLine("Track APP FINISHED EVENT RESULT: " + appFinishedEventResponse.ToString());
 
                 #endregion App_Finished_Event
+
+                #region Page_Opened_Event
+
+                DateTime timeStamp = DateTime.UtcNow;
+
+                var pageOpenedEventRequestRB = UTRequestBuilder.PageOpenedEvent("pageId", timeStamp);
+                var pageOpenedEventRequest = pageOpenedEventRequestRB.Build();
+                                                             
+
+                var pageOpenedEventResponse = await session.TrackEventAsync(pageOpenedEventRequest);
+
+                Console.WriteLine("Track APP LAUNCHED EVENT RESULT: " + pageOpenedEventResponse.ToString());
+
+                #endregion Page_Opened_Event
+
+                #region Page_Closed_Event
+
+                var pageClosedEventRequest = UTRequestBuilder.PageClosedEvent("pageId", timeStamp)
+                                                             .Build();
+
+                var pageClosedEventResponse = await session.TrackEventAsync(pageClosedEventRequest);
+                Console.WriteLine("Track APP FINISHED EVENT RESULT: " + pageClosedEventResponse.ToString());
+
+                #endregion Page_Closed_Even
+
+
+                #region Outcome_Event
+
+                var ountcome = UTRequestBuilder.OutcomeWithDefenitionId("01f8ffbf-d662-4a87-beee-413307055c48")
+                                               .Text("")
+                                               .CurrencyCode("bla")
+                                               .MonetaryValue(11)
+                                               .Build();
+
+                //var ountcomeResponse = await session.TrackEventAsync(ountcome);
+                //Console.WriteLine("Track APP FINISHED EVENT RESULT: " + ountcomeResponse.ToString());
+
+                #endregion Outcome_Event
             }
 
         }

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversalTrackerDemo.UITest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversalTracker.Tests", "UniversalTracker.Tests\UniversalTracker.Tests.csproj", "{FC9E62D6-4FE2-4C4A-B9F1-1F67962007E8}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UniversalTracker.Tests.Shared", "UniversalTrackerTestsShared\UniversalTracker.Tests.Shared.shproj", "{16ACBE7D-ADC7-45F4-86D3-6074959BE983}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

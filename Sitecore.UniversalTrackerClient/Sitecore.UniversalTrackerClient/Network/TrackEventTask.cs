@@ -1,91 +1,27 @@
 ﻿namespace Sitecore.UniversalTrackerClient.TaskFlow
 {
-	using System;
 	using System.Text;
-	using System.Diagnostics;
 	using System.Net.Http;
-	using System.Threading;
-	using System.Threading.Tasks;
-	using Sitecore.UniversalTrackerClient.Response;
 	using Sitecore.UniversalTrackerClient.UserRequest;
 
-	using Newtonsoft.Json.Linq;
 	using Sitecore.UniversalTrackerClient.Request.UrlBuilders;
 	using Newtonsoft.Json;
 
-	internal class TrackEventTask<T> : IRestApiCallTasks<T, HttpRequestMessage, string, UTEventResponse>
-		where T : class, ITrackEventRequest
-
+    internal class TrackEventTask : AbstractTrackBaseEventTask<ITrackEventRequest>
     {
-        private readonly TrackEventUrlBuilder<T> trackEventUrlBuilder;
-        private readonly HttpClient httpClient;
 
-		public TrackEventTask(
-            TrackEventUrlBuilder<T> trackEventUrlBuilder,
-          HttpClient httpClient)
+        public TrackEventTask(
+            TrackEventUrlBuilder<ITrackEventRequest> trackEventUrlBuilder,
+            HttpClient httpClient) : base(trackEventUrlBuilder, httpClient)
         {
-            this.trackEventUrlBuilder = trackEventUrlBuilder;
-            this.httpClient = httpClient;
-
-            this.Validate();
-        }
-
-        public HttpRequestMessage BuildRequestUrlForRequestAsync(T request, CancellationToken cancelToken)
-        {
-            var url = this.trackEventUrlBuilder.GetUrlForRequest(request);
-
-            HttpRequestMessage result = new HttpRequestMessage(HttpMethod.Post, url);
-
-			string serializedEvent = JsonConvert.SerializeObject(request.Event);
-
-			StringContent bodycontent = new StringContent(serializedEvent, Encoding.UTF8, "application/json");
-
-            result.Content = bodycontent;
-
-            return result;
 
         }
 
-        public async Task<string> SendRequestForUrlAsync(HttpRequestMessage request, CancellationToken cancelToken)
+        public override StringContent BodyContentForRequest(ITrackEventRequest request)
         {
-            //TODO: @igk debug request output, remove later
-            Debug.WriteLine("REQUEST: " + request);
-            var result = await this.httpClient.SendAsync(request, cancelToken);
-
-            this.statusCode = (int)result.StatusCode;
-
-            return await result.Content.ReadAsStringAsync();
+            string serializedEvent = JsonConvert.SerializeObject(request.Event);
+            return new StringContent(serializedEvent, Encoding.UTF8, "application/json");
         }
-
-		public async Task<UTEventResponse> ParseResponseDataAsync(string httpData, CancellationToken cancelToken)
-        {
-			Func<UTEventResponse> syncParseResponse = () =>
-            {
-                //TODO: @igk debug response output, remove later
-                Debug.WriteLine("RESPONSE: " + httpData);
-
-
-				return UTResponseParser.ParseEvent(httpData, this.statusCode, cancelToken);
-            };
-            return await Task.Factory.StartNew(syncParseResponse, cancelToken);
-        }
-
-      
-
-        private void Validate()
-        {
-            if (null == this.httpClient)
-            {
-                throw new ArgumentNullException("TrackEventTask.httpClient cannot be null");
-            }
-
-            if (null == this.trackEventUrlBuilder)
-            {
-                throw new ArgumentNullException("TrackEventTask.TrackEventBuilder cannot be null");
-            }
-        }
-
-        private int statusCode = 0;
 
     }
 }

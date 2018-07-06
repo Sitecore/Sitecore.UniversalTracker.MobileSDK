@@ -65,7 +65,7 @@
         {
 			SessionConfigUrlBuilder sessionBuilder = new SessionConfigUrlBuilder(this.UTGrammar);
 			string hostUrl = sessionBuilder.BuildUrlString(request.SessionConfig);
-			hostUrl = hostUrl + this.UTGrammar.AnalyticsEndpoint;
+            hostUrl = hostUrl + RestGrammar.PathComponentSeparator + this.UTGrammar.AnalyticsEndpoint;
 
             return hostUrl;
         }

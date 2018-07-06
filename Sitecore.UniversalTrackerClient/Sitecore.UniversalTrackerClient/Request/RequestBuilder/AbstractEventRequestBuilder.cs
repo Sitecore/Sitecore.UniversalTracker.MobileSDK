@@ -5,7 +5,7 @@
     using Sitecore.UniversalTrackerClient.Entities;
     using Sitecore.UniversalTrackerClient.Validators;
 
-    public abstract class AbstractEventRequestBuilder<T> : IEventrequestParametersBuilder<T>
+    public abstract class AbstractEventRequestBuilder<T> : IEventRequestParametersBuilder<T>
   where T : class
     {
 
@@ -13,7 +13,7 @@
 
         protected IDictionary<string, string> FieldsRawValuesByName;
 
-        public IEventrequestParametersBuilder<T> AddCustomValuesToSet(IDictionary<string, string> customValues)
+        public IEventRequestParametersBuilder<T> AddCustomValues(IDictionary<string, string> customValues)
         {
             BaseValidator.CheckNullAndThrow(customValues, this.GetType().Name + ".customFieldsValues");
 
@@ -22,15 +22,15 @@
                 return this;
             }
 
-            foreach (var fieldElem in FieldsRawValuesByName)
+            foreach (var fieldElem in customValues)
             {
-                this.AddCustomValuesToSet(fieldElem.Key, fieldElem.Value);
+                this.AddCustomValues(fieldElem.Key, fieldElem.Value);
             }
 
             return this;
         }
 
-        public IEventrequestParametersBuilder<T> AddCustomValuesToSet(string customFieldName, string customFieldValue)
+        public IEventRequestParametersBuilder<T> AddCustomValues(string customFieldName, string customFieldValue)
         {
             BaseValidator.CheckForNullAndEmptyOrThrow(customFieldName, this.GetType().Name + ".customFieldName");
 
@@ -56,7 +56,7 @@
         }
 
 
-        public IEventrequestParametersBuilder<T> DefinitionId(string definitionId)
+        public IEventRequestParametersBuilder<T> DefinitionId(string definitionId)
         {
             BaseValidator.CheckForNullEmptyAndWhiteSpaceOrThrow(definitionId, this.GetType().Name + ".definitionId");
             BaseValidator.CheckForTwiceSetAndThrow(this.EventParametersAccumulator.DefinitionId,
@@ -77,7 +77,7 @@
         }
 
 
-        public IEventrequestParametersBuilder<T> ItemId(string itemId)
+        public IEventRequestParametersBuilder<T> ItemId(string itemId)
         {
             BaseValidator.CheckForNullEmptyAndWhiteSpaceOrThrow(itemId, this.GetType().Name + ".itemId");
             BaseValidator.CheckForTwiceSetAndThrow(this.EventParametersAccumulator.ItemId,
@@ -97,7 +97,7 @@
             return this;
         }
 
-        public IEventrequestParametersBuilder<T> EngagementValue(int engagementValue)
+        public IEventRequestParametersBuilder<T> EngagementValue(int engagementValue)
         {
             BaseValidator.CheckForTwiceSetAndThrow(this.EventParametersAccumulator.EngagementValue,
                                                    this.GetType().Name + ".engagementValue");
@@ -116,7 +116,7 @@
             return this;
         }
 
-        public IEventrequestParametersBuilder<T> ParentEventId(string parentEventId)
+        public IEventRequestParametersBuilder<T> ParentEventId(string parentEventId)
         {
             BaseValidator.CheckForNullEmptyAndWhiteSpaceOrThrow(parentEventId, this.GetType().Name + ".parentEventId");
             BaseValidator.CheckForTwiceSetAndThrow(this.EventParametersAccumulator.ParentEventId,
@@ -136,7 +136,7 @@
             return this;
         }
 
-        public IEventrequestParametersBuilder<T> Text(string text)
+        public IEventRequestParametersBuilder<T> Text(string text)
         {
             BaseValidator.CheckForNullEmptyAndWhiteSpaceOrThrow(text, this.GetType().Name + ".text");
             BaseValidator.CheckForTwiceSetAndThrow(this.EventParametersAccumulator.Text,
@@ -156,7 +156,7 @@
             return this;
         }
 
-        public IEventrequestParametersBuilder<T> Timestamp(DateTime timestamp)
+        public IEventRequestParametersBuilder<T> Timestamp(DateTime timestamp)
         {
             #warning @igk check initiator for twice!???
 
@@ -174,7 +174,7 @@
             return this;
         }
 
-        public IEventrequestParametersBuilder<T> Duration(TimeSpan duration)
+        public IEventRequestParametersBuilder<T> Duration(TimeSpan duration)
         {
             //BaseValidator.CheckForTwiceSetAndThrow(this.EventParametersAccumulator.Duration,
                                                    //this.GetType().Name + ".duration");
