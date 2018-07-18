@@ -10,8 +10,9 @@
   where T : class
     {
         protected Collection<IUTEvent> EventsAggregator = new Collection<IUTEvent>();
-        protected UTInteraction InteractioinParametersAccumulator = new UTInteraction(null, null, -1, new DateTime(), new DateTime(), null, InteractionInitiator.Unknown, null, null);
+        protected UTContact? ContactAggregator = null;
 
+        protected UTInteraction InteractioinParametersAccumulator = UTInteraction.GetEmptyInteraction();
 
         public IInteractionParametersBuilder<T> AddEvents(Collection<IUTEvent> utEvents)
         {
@@ -55,7 +56,9 @@
                 this.InteractioinParametersAccumulator.Events,
                 this.InteractioinParametersAccumulator.Initiator,
                 this.InteractioinParametersAccumulator.UserAgent,
-                this.InteractioinParametersAccumulator.VenueId);
+                this.InteractioinParametersAccumulator.VenueId,
+                this.InteractioinParametersAccumulator.Contact
+            );
 
             return this;
         }
@@ -75,7 +78,9 @@
                 this.InteractioinParametersAccumulator.Events,
                 this.InteractioinParametersAccumulator.Initiator,
                 this.InteractioinParametersAccumulator.UserAgent,
-                this.InteractioinParametersAccumulator.VenueId);
+                this.InteractioinParametersAccumulator.VenueId,
+                this.InteractioinParametersAccumulator.Contact
+            );
 
             return this;
         }
@@ -93,7 +98,9 @@
                 this.InteractioinParametersAccumulator.Events,
                 this.InteractioinParametersAccumulator.Initiator,
                 this.InteractioinParametersAccumulator.UserAgent,
-                this.InteractioinParametersAccumulator.VenueId);
+                this.InteractioinParametersAccumulator.VenueId,
+                this.InteractioinParametersAccumulator.Contact
+            );
 
             return this;
         }
@@ -112,7 +119,9 @@
                 this.InteractioinParametersAccumulator.Events,
                 this.InteractioinParametersAccumulator.Initiator,
                 this.InteractioinParametersAccumulator.UserAgent,
-                this.InteractioinParametersAccumulator.VenueId);
+                this.InteractioinParametersAccumulator.VenueId,
+                this.InteractioinParametersAccumulator.Contact
+            );
 
             return this;
         }
@@ -131,7 +140,9 @@
                 this.InteractioinParametersAccumulator.Events,
                 initiator,
                 this.InteractioinParametersAccumulator.UserAgent,
-                this.InteractioinParametersAccumulator.VenueId);
+                this.InteractioinParametersAccumulator.VenueId,
+                this.InteractioinParametersAccumulator.Contact
+            );
 
             return this;
         }
@@ -149,7 +160,9 @@
                 this.InteractioinParametersAccumulator.Events,
                 this.InteractioinParametersAccumulator.Initiator,
                 this.InteractioinParametersAccumulator.UserAgent,
-                this.InteractioinParametersAccumulator.VenueId);
+                this.InteractioinParametersAccumulator.VenueId,
+                this.InteractioinParametersAccumulator.Contact
+            );
 
             return this;
         }
@@ -169,7 +182,9 @@
                 this.InteractioinParametersAccumulator.Events,
                 this.InteractioinParametersAccumulator.Initiator,
                 userAgent,
-                this.InteractioinParametersAccumulator.VenueId);
+                this.InteractioinParametersAccumulator.VenueId,
+                this.InteractioinParametersAccumulator.Contact
+            );
 
             return this;
         }
@@ -189,9 +204,34 @@
                 this.InteractioinParametersAccumulator.Events,
                 this.InteractioinParametersAccumulator.Initiator,
                 this.InteractioinParametersAccumulator.UserAgent,
-                venueId);
+                venueId,
+                this.InteractioinParametersAccumulator.Contact
+            );
 
             return this;
+        }
+
+        public IInteractionParametersBuilder<T> Contact(string source, string identifier)
+        {
+            UTContact contact = new UTContact();
+            contact.Source = source;
+            contact.Identifier = identifier;
+
+            this.ContactAggregator = contact;
+
+            return this;
+        }
+
+        public void CheckDefaultsAndThrow(bool denyEmptyEvent = true)
+        {
+            if (denyEmptyEvent)
+            {
+                BaseValidator.CheckCollectionForNullAndEmptyOrThrow(this.EventsAggregator, this.GetType().Name + ".utEvents");
+            }
+
+            BaseValidator.CheckNullAndThrow(this.ContactAggregator, this.GetType().Name + ".utContact");
+            BaseValidator.CheckNullAndThrow(this.InteractioinParametersAccumulator.Initiator, this.GetType().Name + ".utInitiator");
+            BaseValidator.CheckNullAndThrow(this.InteractioinParametersAccumulator.ChannelId, this.GetType().Name + ".utChannelId");
         }
 
         public abstract T Build();

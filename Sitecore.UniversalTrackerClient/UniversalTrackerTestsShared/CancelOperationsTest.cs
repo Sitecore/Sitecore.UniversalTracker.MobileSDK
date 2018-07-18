@@ -39,7 +39,7 @@ namespace UniversalTrackerTestsShared
 
 
             var cancelToken = CreateCancelTokenWithDelay(standardDelay);
-            UTEventResponse response = null;
+            UTResponse response = null;
 
             // do not use Task.WaitAll() since it may cause deadlocks
             TestDelegate testCode = async () =>
@@ -71,7 +71,7 @@ namespace UniversalTrackerTestsShared
 
 
             var cancelToken = CreateCancelTokenWithDelay(standardDelay);
-            UTEventResponse response = null;
+            UTResponse response = null;
 
             // do not use Task.WaitAll() since it may cause deadlocks
             TestDelegate testCode = async () =>
@@ -104,7 +104,7 @@ namespace UniversalTrackerTestsShared
 
 
             var cancelToken = CreateCancelTokenWithDelay(standardDelay);
-            UTEventResponse response = null;
+            UTResponse response = null;
 
             // do not use Task.WaitAll() since it may cause deadlocks
             TestDelegate testCode = async () =>
@@ -135,7 +135,7 @@ namespace UniversalTrackerTestsShared
 
 
             var cancelToken = CreateCancelTokenWithDelay(standardDelay);
-            UTEventResponse response = null;
+            UTResponse response = null;
 
             // do not use Task.WaitAll() since it may cause deadlocks
             TestDelegate testCode = async () =>
@@ -166,7 +166,7 @@ namespace UniversalTrackerTestsShared
 
 
             var cancelToken = CreateCancelTokenWithDelay(standardDelay);
-            UTEventResponse response = null;
+            UTResponse response = null;
 
             // do not use Task.WaitAll() since it may cause deadlocks
             TestDelegate testCode = async () =>
@@ -197,7 +197,7 @@ namespace UniversalTrackerTestsShared
 
 
             var cancelToken = CreateCancelTokenWithDelay(standardDelay);
-            UTEventResponse response = null;
+            UTResponse response = null;
 
             // do not use Task.WaitAll() since it may cause deadlocks
             TestDelegate testCode = async () =>

@@ -9,7 +9,9 @@
         {
 #warning not implemented!!!
             UTGrammar result = new UTGrammar();
-            result.AnalyticsEndpoint = "interaction";
+
+            result.AnalyticsInteractionEndpoint = "interaction";
+            result.AnalyticsEventEndpoint = "event";
 
             result.LatitudeFieldName = "utlatitude";
             result.LongitudeFieldName = "utlongitude";
@@ -39,7 +41,8 @@
         {
         }
 
-        public string AnalyticsEndpoint         { get; private set; }
+        public string AnalyticsInteractionEndpoint  { get; private set; }
+        public string AnalyticsEventEndpoint        { get; private set; }
 
         public string LatitudeFieldName         { get; private set; }
         public string LongitudeFieldName        { get; private set; }

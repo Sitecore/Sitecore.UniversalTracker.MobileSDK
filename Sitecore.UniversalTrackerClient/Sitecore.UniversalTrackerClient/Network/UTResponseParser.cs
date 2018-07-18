@@ -10,11 +10,11 @@ namespace Sitecore.UniversalTrackerClient.TaskFlow
         {
         }
 
-		public static UTEventResponse ParseEvent(string responseString, int statusCode, CancellationToken cancelToken)
+		public static UTResponse ParseEvent(string responseString, int statusCode, CancellationToken cancelToken)
         {
 
 #warning @igk not implemented!!!
-			return new UTEventResponse(statusCode);
+            return new UTResponse(statusCode, responseString);
         }
 
     }

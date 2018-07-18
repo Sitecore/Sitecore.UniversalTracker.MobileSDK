@@ -2,11 +2,13 @@
 namespace Sitecore.UniversalTrackerClient
 {
     using System;
+    using System.Collections.ObjectModel;
     using System.Net;
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
-	using Sitecore.UniversalTrackerClient.Request.UrlBuilders;
+    using Sitecore.UniversalTrackerClient.Entities;
+    using Sitecore.UniversalTrackerClient.Request.UrlBuilders;
 	using Sitecore.UniversalTrackerClient.Response;
     using Sitecore.UniversalTrackerClient.Session;
     using Sitecore.UniversalTrackerClient.Session.Config;
@@ -23,20 +25,37 @@ namespace Sitecore.UniversalTrackerClient
         private CookieContainer cookies;
         private HttpClientHandler handler;
 
-        protected readonly IUTSessionConfig sessionConfig;
+        protected IUTSessionConfig sessionConfig;
+        protected readonly IUTInteraction defaultInteraction;
+
         private readonly string uTTokenValue;
-        private readonly IUTGrammar utGrammar = UTGrammar.UTV1Grammar();
+        private readonly IUTGrammar utGrammar;
+
+        private string activeInteractionId = null;
 
         #endregion Private Variables
 
-        public UTSession(
+        public UTSession
+        (
             IUTSessionConfig config,
-            string uTTokenValue = null)
+            string uTTokenValue = null,
+            IUTInteraction interaction= null,
+            IUTGrammar grammar = null
+        )
         {
             if (null == config)
             {
 				throw new ArgumentNullException(nameof(UTSession), " config cannot be null");
             }
+
+            if (grammar == null)
+            {
+                grammar = UTGrammar.UTV1Grammar();
+            }
+
+            this.utGrammar = grammar;
+
+            this.defaultInteraction = interaction;
 
             this.sessionConfig = config.SessionConfigShallowCopy();
             this.requestMerger = new UserRequestMerger(this.sessionConfig);
@@ -110,12 +129,16 @@ namespace Sitecore.UniversalTrackerClient
 
         #region TrackEvent
 
-        public async Task<UTEventResponse> TrackEventAsync(ITrackEventRequest request, CancellationToken cancelToken = default(CancellationToken))
+        public async Task<UTResponse> TrackEventAsync(ITrackEventRequest request, CancellationToken cancelToken = default(CancellationToken))
         {
             BaseValidator.CheckNullAndThrow(request, this.GetType().Name + ".request");
 
             ITrackEventRequest requestCopy = request.DeepCopyTrackEventRequest();
 
+            if ( this.InteractionNotExists() )
+            {
+                return await this.CreateInteractionAndSentEventAsync(request, cancelToken);
+            }
 
             ITrackEventRequest autocompletedRequest = this.requestMerger.FillTrackEventGaps(requestCopy);
 
@@ -125,22 +148,24 @@ namespace Sitecore.UniversalTrackerClient
             return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
         }
 
-        public async Task<UTEventResponse> TrackLocationEventAsync(ITrackLocationEventRequest request, CancellationToken cancelToken = default(CancellationToken))
+        public async Task<UTResponse> TrackLocationEventAsync(ITrackLocationEventRequest request, CancellationToken cancelToken = default(CancellationToken))
         {
             return await this.TrackEventAsync(request, cancelToken);
         }
 
-        public async  Task<UTEventResponse> TrackErrorEventAsync(ITrackErrorEventRequest request, CancellationToken cancelToken = default(CancellationToken))
+        public async  Task<UTResponse> TrackErrorEventAsync(ITrackErrorEventRequest request, CancellationToken cancelToken = default(CancellationToken))
         {
             return await this.TrackEventAsync(request, cancelToken);
         }
 
-        public async Task<UTEventResponse> TracOutcomeEventAsync(ITrackOutcomeRequest request, CancellationToken cancelToken = default(CancellationToken))
+        public async Task<UTResponse> TrackOutcomeEventAsync(ITrackOutcomeRequest request, CancellationToken cancelToken = default(CancellationToken))
         {
             BaseValidator.CheckNullAndThrow(request, this.GetType().Name + ".request");
 
             ITrackOutcomeRequest requestCopy = request.DeepCopyTrackOutcomeRequest();
 
+            //@igk order matters!!!
+            //this.AutoInteractionAsync(request, cancelToken); //FIXME: !!!!
 
             ITrackOutcomeRequest autocompletedRequest = this.requestMerger.FillTrackOutcomeGaps(requestCopy);
 
@@ -152,36 +177,90 @@ namespace Sitecore.UniversalTrackerClient
 
         #endregion TrackEvent
 
-        #region Authentication
-
-        public async Task<UTAuthResponse> AuthenticateAsync(CancellationToken cancelToken = default(CancellationToken))
-        {
-#warning not implemented!!!
-            return null;
-        }
-
-        #endregion Authentication
 
         #region Interaction
 
-        public async Task AutoInteractionAsync(ITrackEventRequest request, CancellationToken cancelToken = default(CancellationToken))
+        public async Task<UTResponse> CreateInteractionAndSentEventAsync(ITrackEventRequest request, CancellationToken cancelToken = default(CancellationToken))
         {
+            UTResponse interactionResponse = null;
 
+
+            Collection<IUTEvent> events = new Collection<IUTEvent>();
+
+
+            //FIXME: @igk temperary fix, to support instance bug, remove this code after fix
+            //start code to remove
+
+            var utEvent = new UTEvent
+                (
+                    request.Event.Timestamp,
+                    request.Event.CustomValues,
+                    request.Event.DefinitionId,
+                    request.Event.ItemId,
+                    request.Event.EngagementValue,
+                    request.Event.ParentEventId,
+                    request.Event.Text,
+                    request.Event.Duration,
+                    null
+                );
+
+            //end code to remove
+
+            events.Add(utEvent);
+
+            var interaction = new UTInteraction
+                (
+                this.defaultInteraction.CampaignId,
+                this.defaultInteraction.ChannelId,
+                this.defaultInteraction.EngagementValue,
+                this.defaultInteraction.StartDateTime,
+                this.defaultInteraction.EndDateTime,
+                events,
+                this.defaultInteraction.Initiator,
+                this.defaultInteraction.UserAgent,
+                this.defaultInteraction.VenueId,
+                this.defaultInteraction.Contact
+            );
+
+            var interactionRequest = new TrackInteractionParameters(null, interaction);
+
+            interactionResponse = await this.TrackInteractionAsync(interactionRequest, cancelToken);
+
+            return interactionResponse;
         }
 
-        public async Task<UTEventResponse> TrackInteractionAsync(ITrackInteractionRequest request, CancellationToken cancelToken)
+        public async Task<UTResponse> TrackInteractionAsync(ITrackInteractionRequest request, CancellationToken cancelToken)
         {
             BaseValidator.CheckNullAndThrow(request, this.GetType().Name + ".request");
 
             ITrackInteractionRequest requestCopy = request.DeepCopyTrackInteractionRequest();
 
-
             ITrackInteractionRequest autocompletedRequest = this.requestMerger.FillTrackInteractionGaps(requestCopy);
 
-            var urlBuilder = new TrackEventUrlBuilder<ITrackInteractionRequest>(this.utGrammar);
+            var urlBuilder = new TrackInteractionUrlBuilder<ITrackInteractionRequest>(this.utGrammar);
             var taskFlow = new TrackInteractionTask(urlBuilder, this.httpClient);
 
-            return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+            var response = await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+            if (response.Successful)
+            {
+                this.sessionConfig = new UTSessionConfig(this.sessionConfig.InstanceUrl, response.Description);
+            }
+
+            return response;
+        }
+
+        private bool InteractionNotExists()
+        {
+            bool interactionExpired = this.IsActiveInteractionExpired();
+            bool interactionNotCreated = this.sessionConfig.ActiveInteractionId == null;
+
+            return interactionExpired || interactionNotCreated;
+        }
+
+        private bool IsActiveInteractionExpired()
+        {
+#warning @igk not implemented!!
+            return false;
         }
 
         #endregion Interaction

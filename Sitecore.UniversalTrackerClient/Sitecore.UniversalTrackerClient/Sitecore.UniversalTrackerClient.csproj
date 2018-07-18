@@ -44,8 +44,8 @@
     <Compile Include="Network\TaskFlow\IDownloadApiCallTasks.cs" />
     <Compile Include="Network\TaskFlow\IRestApiCallTasks.cs" />
     <Compile Include="Network\TaskFlow\RestApiCallFlow.cs" />
-    <Compile Include="Response\UTTrackResponseParser.cs" />
-    <Compile Include="Response\UTEventResponse.cs" />
+    <Compile Include="Response\UTResponseParser.cs" />
+    <Compile Include="Response\UTResponse.cs" />
     <Compile Include="Response\UTAuthResponse.cs" />
     <Compile Include="Request\ITrackEventRequest.cs" />
     <Compile Include="Request\TrackEventParameters.cs" />
@@ -80,7 +80,6 @@
     <Compile Include="Request\RequestBuilder\InteractionRequestBuilder.cs" />
     <Compile Include="Request\RequestBuilder\AbstractInteractionRequestBuilder.cs" />
     <Compile Include="Request\TrackInteractionParameters.cs" />
-    <Compile Include="Response\UTInteractiontResponse.cs" />
     <Compile Include="Request\UrlBuilders\TrackEventUrlBuilder.cs" />
     <Compile Include="Network\TrackInteractionTask.cs" />
     <Compile Include="Request\Shugar\ITrackErrorEventRequest.cs" />
@@ -96,20 +95,28 @@
     <Compile Include="Request\Shugar\ITrackPageOpenedEventRequest.cs" />
     <Compile Include="Request\Shugar\IDeviceInformationEventRequest.cs" />
     <Compile Include="Request\RequestBuilder\Extensions\DeviceInformationEventRequestBuilder.cs" />
-    <Compile Include="Entities\IUTGoal.cs" />
+    <Compile Include="Entities\UTGoal.cs" />
     <Compile Include="Entities\IUTOutcome.cs" />
     <Compile Include="Entities\IUTCampaignEvent.cs" />
     <Compile Include="Entities\IUTDownloadEvent.cs" />
     <Compile Include="Entities\IUTSearchEvent.cs" />
-    <Compile Include="Entities\IUTPageViewEvent.cs" />
     <Compile Include="Session\ISitecoreUTSessionWithAutoInteraction.cs" />
     <Compile Include="Request\ITrackOutcomeRequest.cs" />
     <Compile Include="Entities\UTOutcome.cs" />
     <Compile Include="Request\RequestBuilder\IOutcomeRequestParametersBuilder.cs" />
     <Compile Include="Request\RequestBuilder\OutcomeRequestParametersBuilder.cs" />
-    <Compile Include="Request\TrackEventParameters %28copy%29.cs" />
+    <Compile Include="Request\TrackOutcomeParameters.cs" />
     <Compile Include="Network\AbstractTrackBaseEventTask.cs" />
     <Compile Include="Network\TrackOutcomeTask.cs" />
+    <Compile Include="Request\RequestBuilder\InteractionBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\UTEntitiesBuilder.cs" />
+    <Compile Include="Entities\UTPageView.cs" />
+    <Compile Include="Entities\IUTPageView.cs" />
+    <Compile Include="Request\RequestBuilder\PageViewRequestParametersBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\IPageViewRequestParametersBuilder.cs" />
+    <Compile Include="Request\ITrackPageViewRequest.cs" />
+    <Compile Include="Request\TrackPageViewParameters.cs" />
+    <Compile Include="Network\TrackPageEventTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Syntax\" />

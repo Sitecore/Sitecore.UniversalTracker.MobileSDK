@@ -11,19 +11,19 @@ namespace Sitecore.UniversalTrackerClient.Entities
 
         public static UTEvent GetEmptyEvent()
         {
-            return new UTEvent(new DateTime(), null, null, null, -1, null, null, new TimeSpan());
+            return new UTEvent(null, null, null, null, null, null, null, null);
         }
 
-#warning @igk figure out which parameters is required
         public UTEvent(
-			DateTime timestamp, 
+			DateTime? timestamp, 
 			Dictionary<string, string> customValues, 
 			string definitionId, 
 			string itemId, 
-			int engagementValue, 
+			int? engagementValue, 
 			string parentEventId, 
 			string text, 
-			TimeSpan duration
+			TimeSpan? duration,
+            string type = "event"
 		)
         {
 			this.CustomValues = customValues;
@@ -33,7 +33,8 @@ namespace Sitecore.UniversalTrackerClient.Entities
 			this.EngagementValue = engagementValue;
 			this.ParentEventId = parentEventId;
 			this.Text = text;
-			this.Duration = duration;
+            this.Duration = duration;
+            this.Type = type;
         }
       
         public IUTEvent DeepCopyUTEvent()
@@ -53,44 +54,70 @@ namespace Sitecore.UniversalTrackerClient.Entities
         }
 
 		public Dictionary<string, string> CustomValues {
+            
 			get;
-			private set;
+            protected set;
 		}
 
-		public string DefinitionId {
+		public string DefinitionId 
+        {
             get;
-            private set;
+            protected set;
         }
 
 		public string ItemId{
             get;
-            private set;
+            protected set;
         }
 
-		public int EngagementValue{
+		public int? EngagementValue
+        {
             get;
-            private set;
+            protected set;
         }
 
-		public string ParentEventId{
+		public string ParentEventId
+        {
             get;
-            private set;
+            protected set;
         }
 
-		public string Text{
+		public string Text
+        {
             get;
-            private set;
+            protected set;
         }
 
-		public DateTime Timestamp {
+		public DateTime? Timestamp 
+        {
             get;
-            private set;
+            protected set;
         }
 
-		public TimeSpan Duration{
+        public TimeSpan? Duration
+        {
             get;
-            private set;
+            protected set;
         }
 
+        public string Type
+        {
+            get;
+            protected set;
+        }
+
+        public string TrackingInteractionId
+        {
+            get;
+            protected set;
+        }
+
+        public void ApplyActiveInteractionWith(string interactionId)
+        {
+            if (this.TrackingInteractionId == null)
+            {
+                this.TrackingInteractionId = interactionId;
+            }
+        }
     }
 }

@@ -5,7 +5,6 @@
 
 	public interface ITrackInteractionRequest : IBaseRequest
     {
-#warning not implemented!!!
 
 		IUTInteraction Interaction { get; }
 

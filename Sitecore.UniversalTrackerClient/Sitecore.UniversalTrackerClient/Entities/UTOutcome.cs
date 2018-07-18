@@ -3,13 +3,13 @@ namespace Sitecore.UniversalTrackerClient.Entities
 {
     public class UTOutcome : UTEvent, IUTOutcome
     {
+
         private UTOutcome()
         {
         }
 
         public UTOutcome(IUTEvent utEvent, string currencyCode, decimal monetaryValue) 
-            : base
-        (
+            : base  (
                 utEvent.Timestamp,
                 utEvent.CustomValues,
                 utEvent.DefinitionId,
@@ -17,7 +17,8 @@ namespace Sitecore.UniversalTrackerClient.Entities
                 utEvent.EngagementValue,
                 utEvent.ParentEventId,
                 utEvent.Text,
-                utEvent.Duration
+                utEvent.Duration,
+                "outcome"
             )
         {
             this.CurrencyCode = currencyCode;
@@ -58,5 +59,7 @@ namespace Sitecore.UniversalTrackerClient.Entities
 
             return utOutcome;
         }
+
+       
     }
 }

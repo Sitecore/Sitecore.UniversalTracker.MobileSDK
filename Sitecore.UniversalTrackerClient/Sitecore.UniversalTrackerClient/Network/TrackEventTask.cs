@@ -1,11 +1,12 @@
 ﻿namespace Sitecore.UniversalTrackerClient.TaskFlow
 {
-	using System.Text;
 	using System.Net.Http;
 	using Sitecore.UniversalTrackerClient.UserRequest;
 
 	using Sitecore.UniversalTrackerClient.Request.UrlBuilders;
 	using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
+    using Sitecore.UniversalTrackerClient.Entities;
 
     internal class TrackEventTask : AbstractTrackBaseEventTask<ITrackEventRequest>
     {
@@ -17,10 +18,19 @@
 
         }
 
-        public override StringContent BodyContentForRequest(ITrackEventRequest request)
+        public override string RequestContentInJSON(ITrackEventRequest request)
         {
-            string serializedEvent = JsonConvert.SerializeObject(request.Event);
-            return new StringContent(serializedEvent, Encoding.UTF8, "application/json");
+            Collection<IUTEvent> events = new Collection<IUTEvent>();
+            events.Add(request.Event);
+
+            string serializedEvent = JsonConvert.SerializeObject(events,
+                           Newtonsoft.Json.Formatting.None,
+                           new JsonSerializerSettings
+                           {
+                               NullValueHandling = NullValueHandling.Ignore
+                           });
+
+            return serializedEvent;
         }
 
     }

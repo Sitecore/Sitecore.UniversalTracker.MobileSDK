@@ -37,9 +37,7 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
 
         public IOutcomeRequestParametersBuilder MonetaryValue(decimal monetaryValue)
         {
-            BaseValidator.CheckForTwiceSetAndThrow(this.MonetaryValueValue,
-                                                   this.GetType().Name + ".monetaryValue");
-
+         
             this.MonetaryValueValue = monetaryValue;
 
             return this;
@@ -69,8 +67,7 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
 
             UTOutcome outcome = new UTOutcome(this.EventParametersAccumulator, this.CurrencyCodeValue, this.MonetaryValueValue);
 
-            TrackOutcomeParameters result =
-                new TrackOutcomeParameters(null, outcome);
+            TrackOutcomeParameters result = new TrackOutcomeParameters(null, outcome);
 
             return result;
         }

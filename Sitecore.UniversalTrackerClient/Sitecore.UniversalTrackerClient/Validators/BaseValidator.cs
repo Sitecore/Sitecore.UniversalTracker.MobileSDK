@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.UniversalTrackerClient.Validators
 {
     using System;
+    using System.Collections.ObjectModel;
 
     public class BaseValidator
     {
@@ -50,6 +51,19 @@
             }
         }
 
+        public static void CheckCollectionForNullAndEmptyOrThrow<T>(Collection<T> collection, string source)
+        {
+            if (collection == null)
+            {
+                throw new ArgumentNullException(source + " : " + "The input cannot be null.");
+            }
+
+            if (collection.Count == 0)
+            {
+                throw new ArgumentException(source + " : " + "The input cannot be empty.");
+            }
+        }
+
         public static void CheckForNullEmptyAndWhiteSpaceOrThrow(string str, string source)
         {
             CheckNullAndThrow(str, source);
@@ -59,6 +73,9 @@
                 throw new ArgumentException(source + " : " + "The input cannot be empty.");
             }
         }
+
+
+
 
     }
 }

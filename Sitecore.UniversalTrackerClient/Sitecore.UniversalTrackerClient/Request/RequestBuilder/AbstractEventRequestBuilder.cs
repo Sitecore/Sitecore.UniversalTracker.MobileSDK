@@ -9,7 +9,7 @@
   where T : class
     {
 
-        protected UTEvent EventParametersAccumulator = new UTEvent(new DateTime(), null, null, null, -1, null, null, new TimeSpan());
+        protected UTEvent EventParametersAccumulator = UTEvent.GetEmptyEvent();
 
         protected IDictionary<string, string> FieldsRawValuesByName;
 
@@ -79,7 +79,6 @@
 
         public IEventRequestParametersBuilder<T> ItemId(string itemId)
         {
-            BaseValidator.CheckForNullEmptyAndWhiteSpaceOrThrow(itemId, this.GetType().Name + ".itemId");
             BaseValidator.CheckForTwiceSetAndThrow(this.EventParametersAccumulator.ItemId,
                                                    this.GetType().Name + ".itemId");
 
@@ -118,7 +117,6 @@
 
         public IEventRequestParametersBuilder<T> ParentEventId(string parentEventId)
         {
-            BaseValidator.CheckForNullEmptyAndWhiteSpaceOrThrow(parentEventId, this.GetType().Name + ".parentEventId");
             BaseValidator.CheckForTwiceSetAndThrow(this.EventParametersAccumulator.ParentEventId,
                                                    this.GetType().Name + ".parentEventId");
 
@@ -138,7 +136,6 @@
 
         public IEventRequestParametersBuilder<T> Text(string text)
         {
-            BaseValidator.CheckForNullEmptyAndWhiteSpaceOrThrow(text, this.GetType().Name + ".text");
             BaseValidator.CheckForTwiceSetAndThrow(this.EventParametersAccumulator.Text,
                                                    this.GetType().Name + ".text");
 

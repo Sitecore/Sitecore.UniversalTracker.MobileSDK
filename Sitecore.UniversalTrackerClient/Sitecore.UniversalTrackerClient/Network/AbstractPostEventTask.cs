@@ -45,11 +45,11 @@
 
         public virtual async Task<TResponse> ParseResponseDataAsync(string data, CancellationToken cancelToken)
         {
-			Func<UTEventResponse> syncParseResponse = () =>
+			Func<UTResponse> syncParseResponse = () =>
             {
 #warning @igk debug response output, remove later
                 Debug.WriteLine("RESPONSE: " + data);
-                return UTResponseParser.ParseEvent(data, this.statusCode, cancelToken);
+                return TaskFlow.UTResponseParser.ParseEvent(data, this.statusCode, cancelToken);
             };
             return await Task.Factory.StartNew(syncParseResponse, cancelToken) as TResponse;
         }

@@ -10,7 +10,7 @@
     {
         public AbstractTrackUrlBuilder(IUTGrammar utGrammar)
         {
-			this.UTGrammar = utGrammar;
+			this.utGrammar = utGrammar;
 
             this.Validate();
         }
@@ -63,9 +63,9 @@
         #region Common Logic
         protected virtual string GetHostUrlForRequest(TRequest request)
         {
-			SessionConfigUrlBuilder sessionBuilder = new SessionConfigUrlBuilder(this.UTGrammar);
+			SessionConfigUrlBuilder sessionBuilder = new SessionConfigUrlBuilder(this.utGrammar);
 			string hostUrl = sessionBuilder.BuildUrlString(request.SessionConfig);
-            hostUrl = hostUrl + RestGrammar.PathComponentSeparator + this.UTGrammar.AnalyticsEndpoint;
+            hostUrl = hostUrl + RestGrammar.PathComponentSeparator + this.GetEndpointForRequest();
 
             return hostUrl;
         }
@@ -94,7 +94,7 @@
       
         private void Validate()
         {
-			if (null == this.UTGrammar)
+			if (null == this.utGrammar)
             {
                 throw new ArgumentNullException("[AbstractTrackUrlBuilder] urlGrammar cannot be null");
             }
@@ -103,13 +103,14 @@
         #endregion Common Logic
 
         #region Abstract Methods
+        protected abstract string GetEndpointForRequest();
         protected abstract string GetSpecificPartForRequest(TRequest request);
 
         protected abstract void ValidateSpecificRequest(TRequest request);
         #endregion Abstract Methods
 
         #region instance variables
-        protected IUTGrammar UTGrammar;
+        protected IUTGrammar utGrammar;
         #endregion instance variables
     }
 }

@@ -1,26 +1,36 @@
 ﻿namespace Sitecore.UniversalTrackerClient.TaskFlow
 {
-	using System.Text;
 	using System.Net.Http;
 	using Sitecore.UniversalTrackerClient.UserRequest;
 
 	using Sitecore.UniversalTrackerClient.Request.UrlBuilders;
 	using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
+    using Sitecore.UniversalTrackerClient.Entities;
 
     internal class TrackOutcomeTask : AbstractTrackBaseEventTask<ITrackOutcomeRequest>
     {
 
         public TrackOutcomeTask(
-            TrackEventUrlBuilder<ITrackOutcomeRequest> trackEventUrlBuilder,
-            HttpClient httpClient) : base(trackEventUrlBuilder, httpClient)
+            TrackEventUrlBuilder<ITrackOutcomeRequest> trackOutcomeUrlBuilder,
+            HttpClient httpClient) : base(trackOutcomeUrlBuilder, httpClient)
         {
 
         }
 
-        public override StringContent BodyContentForRequest(ITrackOutcomeRequest request)
+        public override string RequestContentInJSON(ITrackOutcomeRequest request)
         {
-            string serializedEvent = JsonConvert.SerializeObject(request.Outcome);
-            return new StringContent(serializedEvent, Encoding.UTF8, "application/json");
+            Collection<IUTOutcome> events = new Collection<IUTOutcome>();
+            events.Add(request.Outcome);
+
+            string serializedEvent = JsonConvert.SerializeObject(events,
+                           Newtonsoft.Json.Formatting.None,
+                           new JsonSerializerSettings
+                           {
+                               NullValueHandling = NullValueHandling.Ignore
+                           });
+
+            return serializedEvent;
         }
 
     }

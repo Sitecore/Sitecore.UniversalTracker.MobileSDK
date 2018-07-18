@@ -11,16 +11,20 @@
         {
         }
 
+        protected override string GetEndpointForRequest()
+        {
+            return this.utGrammar.AnalyticsInteractionEndpoint;
+        }
+
+
         protected override string GetSpecificPartForRequest(T request)
         {
-            return ""; //@igk in test needs
-            throw new NotImplementedException();
+            return ""; 
         }
 
         protected override void ValidateSpecificRequest(T request)
         {
-            return;//@igk in test needs
-            throw new NotImplementedException();
+            return;
         }
     }
 }

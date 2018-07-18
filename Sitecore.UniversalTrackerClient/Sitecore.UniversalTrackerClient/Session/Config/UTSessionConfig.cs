@@ -6,9 +6,10 @@
 
     public class UTSessionConfig : IUTSessionConfig
     {
-        public UTSessionConfig(string instanceUrl)
+        public UTSessionConfig(string instanceUrl, string activeInteractionId = null)
         {
             this.InstanceUrl = instanceUrl;
+            this.ActiveInteractionId = activeInteractionId;
 
             this.Validate();
         }
@@ -31,6 +32,12 @@
 
         #region Properties
         public string InstanceUrl
+        {
+            get;
+            protected set;
+        }
+
+        public string ActiveInteractionId
         {
             get;
             protected set;

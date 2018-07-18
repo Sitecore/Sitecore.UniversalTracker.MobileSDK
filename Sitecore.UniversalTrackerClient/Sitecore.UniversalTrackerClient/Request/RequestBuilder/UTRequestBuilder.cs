@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using Sitecore.UniversalTrackerClient.Entities;
-using Sitecore.UniversalTrackerClient.UserRequest;
-
+﻿
 namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
 {
+    using System;
+    using System.Collections.ObjectModel;
+    using Sitecore.UniversalTrackerClient.Entities;
+    using Sitecore.UniversalTrackerClient.UserRequest;
+
+
 	public class UTRequestBuilder
     {
 		private UTRequestBuilder()
@@ -68,14 +69,13 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
             var list = new Collection<IUTEvent>();
             list.Add(utEvent);
 
-            return new InteractionRequestBuilder(list);
+            return UTRequestBuilder.Interaction(list);
         }
 
         public static IInteractionParametersBuilder<ITrackInteractionRequest> Interaction(Collection<IUTEvent> utEvents)
         {
             return new InteractionRequestBuilder(utEvents);
         }
-
 
     }
 }

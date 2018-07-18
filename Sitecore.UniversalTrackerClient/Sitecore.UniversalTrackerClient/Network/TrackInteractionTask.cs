@@ -1,6 +1,5 @@
 ﻿namespace Sitecore.UniversalTrackerClient.TaskFlow
 {
-    using System.Text;
     using System.Net.Http;
     using Sitecore.UniversalTrackerClient.UserRequest;
 
@@ -11,13 +10,13 @@
     {
 
         public TrackInteractionTask(
-            TrackEventUrlBuilder<ITrackInteractionRequest> trackInteractionUrlBuilder,
+            TrackInteractionUrlBuilder<ITrackInteractionRequest> trackInteractionUrlBuilder,
             HttpClient httpClient) : base(trackInteractionUrlBuilder, httpClient)
         {
 
         }
 
-        public override StringContent BodyContentForRequest(ITrackInteractionRequest request)
+        public override string RequestContentInJSON(ITrackInteractionRequest request)
         {
             string serializedInteraction = JsonConvert.SerializeObject(request.Interaction,
                            Newtonsoft.Json.Formatting.None,
@@ -26,7 +25,7 @@
                                NullValueHandling = NullValueHandling.Ignore
                            });
 
-            return new StringContent(serializedInteraction, Encoding.UTF8, "application/json");
+            return serializedInteraction;
         }
 
     }

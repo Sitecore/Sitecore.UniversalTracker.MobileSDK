@@ -19,7 +19,9 @@ namespace Sitecore.UniversalTrackerClient.Session.Config
         }
         
         public string InstanceUrl { get; set; }
-      
+
+        public string ActiveInteractionId => throw new System.NotImplementedException();
+
         #region Comparator
         public override bool Equals(object obj)
         {

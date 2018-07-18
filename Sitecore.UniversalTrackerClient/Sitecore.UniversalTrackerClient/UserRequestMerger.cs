@@ -18,7 +18,9 @@
 
             var utEvent = userRequest.Event.DeepCopyUTEvent();
 
+            //order matters!
 			IUTSessionConfig mergedSessionConfig = this.SessionConfigMerger.FillSessionConfigGaps(userRequest.SessionConfig);
+            utEvent.ApplyActiveInteractionWith(mergedSessionConfig.ActiveInteractionId);
 
 			return new TrackEventParameters(mergedSessionConfig, utEvent);
         }
@@ -28,7 +30,9 @@
 
             var utOutcome = userRequest.Outcome.DeepCopyUTOutcome();
 
+            //order matters!
             IUTSessionConfig mergedSessionConfig = this.SessionConfigMerger.FillSessionConfigGaps(userRequest.SessionConfig);
+            utOutcome.ApplyActiveInteractionWith(mergedSessionConfig.ActiveInteractionId);
 
             return new TrackOutcomeParameters(mergedSessionConfig, utOutcome);
         }

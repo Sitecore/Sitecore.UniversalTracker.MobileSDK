@@ -41,7 +41,7 @@ namespace Sitecore.UniversalTrackerClient.Entities
         /// <value>
         ///     The engagement value.
         /// </value>
-        int EngagementValue { get; }
+        int? EngagementValue { get; }
 
         /// <summary>
         ///     Gets or sets the ID of another event in the interaction that defines the context for this event. For example, a
@@ -67,7 +67,7 @@ namespace Sitecore.UniversalTrackerClient.Entities
         /// <value>
         ///     The timestamp.
         /// </value>
-        DateTime Timestamp { get; }
+        DateTime? Timestamp { get; }
 
 
         /// <summary>
@@ -77,6 +77,14 @@ namespace Sitecore.UniversalTrackerClient.Entities
         /// <value>
         /// The duration.
         /// </value>
-        TimeSpan Duration { get; }
+        TimeSpan? Duration { get; }
+
+        string Type { get; }
+
+        string TrackingInteractionId { get; }
+
+        void ApplyActiveInteractionWith(string interactionId);
     }
+
+
 }

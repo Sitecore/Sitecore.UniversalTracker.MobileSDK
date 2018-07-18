@@ -2,7 +2,8 @@
 {
     public interface IUTGrammar
     {
-        string AnalyticsEndpoint { get; }
+        string AnalyticsInteractionEndpoint { get; }
+        string AnalyticsEventEndpoint { get; }
 
         string LatitudeFieldName { get; }
         string LongitudeFieldName { get; }

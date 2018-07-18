@@ -18,6 +18,7 @@
         IInteractionParametersBuilder<T> Initiator(InteractionInitiator initiator);
         IInteractionParametersBuilder<T> UserAgent(string userAgent);
         IInteractionParametersBuilder<T> VenueId(string venueId);
+        IInteractionParametersBuilder<T> Contact(string source, string identifier);
       
     }
 }

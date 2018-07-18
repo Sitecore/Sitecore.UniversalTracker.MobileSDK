@@ -31,7 +31,7 @@ namespace Sitecore.UniversalTrackerClient.Entities
         /// <value>
         ///     The engagement value.
         /// </value>
-		int EngagementValue { get; }
+		int? EngagementValue { get; }
 
 		/// <summary>
         ///     Gets or sets the point in time where this interaction started.
@@ -39,7 +39,7 @@ namespace Sitecore.UniversalTrackerClient.Entities
         /// <value>
         ///     The start date time.
         /// </value>
-		DateTime StartDateTime { get; }
+		DateTime? StartDateTime { get; }
 
 		/// <summary>
         ///     Gets or sets the point in time where this interaction ended. For the web channel this is when the session ended.
@@ -48,7 +48,7 @@ namespace Sitecore.UniversalTrackerClient.Entities
         /// <value>
         ///     The point in time the interaction ended.
         /// </value>
-		DateTime EndDateTime { get; }
+		DateTime? EndDateTime { get; }
 
         /// <summary>
         ///     The <see cref="Event" />s that occured in this interaction, including goals and outcomes.
@@ -65,7 +65,7 @@ namespace Sitecore.UniversalTrackerClient.Entities
         ///     The initiator.
         /// </value>
         // public enum InteractionInitiator
-		InteractionInitiator Initiator { get; }
+        InteractionInitiator? Initiator { get; }
 
 		/// <summary>
         ///     Gets or sets a string that describes the device, browser or similar used for the interaction.
@@ -83,13 +83,10 @@ namespace Sitecore.UniversalTrackerClient.Entities
         /// </value>
         string VenueId { get; }
 
-
+        UTContact? Contact { get; }
 
 		//@IGK aka  public IEntityReference<Contact> LastKnownContact { get; set; } looks like not available for me!!?
         //public IEntityReference<DeviceProfile> DeviceProfile { get; set; }
-
-		//@IGK not available for me
-		//IEntityReference<Contact> Contact { get; internal set; }
 
 		//@IGK not available for me
 		//EntityType EntityType
@@ -111,5 +108,11 @@ namespace Sitecore.UniversalTrackerClient.Entities
         ///     The initiator of the interaction is unknown.
         /// </summary>
         Unknown = 2
+    }
+
+    public struct UTContact 
+    {
+        public string Source;
+        public string Identifier;
     }
 }

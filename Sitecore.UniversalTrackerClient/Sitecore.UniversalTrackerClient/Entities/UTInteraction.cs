@@ -9,16 +9,22 @@ namespace Sitecore.UniversalTrackerClient.Entities
         {
         }
 
+        public static UTInteraction GetEmptyInteraction()
+        {
+            return new UTInteraction(null, null, null, null, null, null, null, null, null, null);
+        }
+
 		public UTInteraction(
 			string campaignId, 
 			string channelId, 
-			int engagementValue, 
-			DateTime startDateTime, 
-			DateTime endDateTime, 
+			int? engagementValue, 
+			DateTime? startDateTime, 
+			DateTime? endDateTime, 
 			Collection<IUTEvent> events, 
-			InteractionInitiator initiator, 
+			InteractionInitiator? initiator, 
 			string userAgent,
-			string venueId
+			string venueId,
+            UTContact? contact
 		)
         {
 			this.CampaignId = campaignId;
@@ -27,9 +33,10 @@ namespace Sitecore.UniversalTrackerClient.Entities
 			this.StartDateTime = startDateTime;
 			this.EndDateTime = endDateTime;
 			this.Events = events;
-			this.Initiator = initiator;
+            this.Initiator = initiator;
 			this.UserAgent = userAgent;
 			this.VenueId = venueId;
+            this.Contact = contact;
         }
 
         public IUTInteraction DeepCopyUTInteraction()
@@ -43,7 +50,8 @@ namespace Sitecore.UniversalTrackerClient.Entities
                 this.Events,
                 this.Initiator,
                 this.UserAgent,
-                this.VenueId
+                this.VenueId,
+                this.Contact
             );
 
             return result;
@@ -61,19 +69,19 @@ namespace Sitecore.UniversalTrackerClient.Entities
             private set;
         }
 
-		public int EngagementValue
+		public int? EngagementValue
         {
             get;
             private set;
         }
 
-		public DateTime StartDateTime
+		public DateTime? StartDateTime
         {
             get;
             private set;
         }
 
-		public DateTime EndDateTime
+		public DateTime? EndDateTime
         {
             get;
             private set;
@@ -85,7 +93,7 @@ namespace Sitecore.UniversalTrackerClient.Entities
             private set;
         }
 
-		public InteractionInitiator Initiator
+        public InteractionInitiator? Initiator
         {
             get;
             private set;
@@ -98,6 +106,12 @@ namespace Sitecore.UniversalTrackerClient.Entities
         }
 
 		public string VenueId
+        {
+            get;
+            private set;
+        }
+
+        public UTContact? Contact
         {
             get;
             private set;
