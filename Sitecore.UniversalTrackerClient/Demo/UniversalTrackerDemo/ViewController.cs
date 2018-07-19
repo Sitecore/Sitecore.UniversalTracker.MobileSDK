@@ -6,7 +6,6 @@ namespace UniversalTrackerDemo
     using Sitecore.UniversalTrackerClient.Entities;
     using Sitecore.UniversalTrackerClient.Request.RequestBuilder;
     using Sitecore.UniversalTrackerClient.Session.SessionBuilder;
-    using Sitecore.UniversalTrackerClient.UserRequest;
     using UIKit;
 
     public partial class ViewController : UIViewController
@@ -75,12 +74,31 @@ namespace UniversalTrackerDemo
 
                 #endregion Track_Base_Event
 
+                #region Track_PageView
+
+                var pageViewRequest = UTRequestBuilder.PageViewWithDefenitionId("01f8ffbf-d662-4a87-beee-413307055c48")
+                                                      .Timestamp(DateTime.Now)
+                                                      .ItemId("01f8ffbf-d662-4a87-beee-413307055c48")
+                                                      .ItemVersion(1)
+                                                      .ItemLanguage("en")
+                                                      .AddCustomValues("key", "value")
+                                                      .Build();
+
+                var pageViewResponse = await session.TrackPageViewEventAsync(pageViewRequest);
+                Console.WriteLine("Track PAGEVIEW EVENT RESULT: " + pageViewResponse.ToString());
+
+                #endregion Track_PageView
+
+
+
                 //#region Track_Location_Event
 
                 //double lat = 37.342454;
                 //double lon = -122.342454;
 
                 //var locationEventRequest = UTRequestBuilder.LocationEvent(lat, lon)
+                //                                           .DefinitionId("01f8ffbf-d662-4a87-beee-413307055c48")
+                //                                           .Timestamp(DateTime.Now)
                 //                                           .Build();
 
                 //var locationEventResponse = await session.TrackLocationEventAsync(locationEventRequest);

@@ -37,6 +37,18 @@
             return new TrackOutcomeParameters(mergedSessionConfig, utOutcome);
         }
 
+        public ITrackPageViewRequest FillTrackPageViewGaps(ITrackPageViewRequest userRequest)
+        {
+
+            var utPageView = userRequest.PageView.DeepCopyUTPageView();
+
+            //order matters!
+            IUTSessionConfig mergedSessionConfig = this.SessionConfigMerger.FillSessionConfigGaps(userRequest.SessionConfig);
+            utPageView.ApplyActiveInteractionWith(mergedSessionConfig.ActiveInteractionId);
+
+            return new TrackPageViewParameters(mergedSessionConfig, utPageView);
+        }
+
 
         public ITrackInteractionRequest FillTrackInteractionGaps(ITrackInteractionRequest userRequest)
         {

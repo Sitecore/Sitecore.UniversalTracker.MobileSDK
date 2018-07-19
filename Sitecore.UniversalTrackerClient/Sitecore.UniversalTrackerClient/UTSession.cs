@@ -20,7 +20,7 @@ namespace Sitecore.UniversalTrackerClient
     {
         #region Private Variables
 
-        private readonly UserRequestMerger requestMerger;
+        private UserRequestMerger requestMerger;
         private HttpClient httpClient;
         private CookieContainer cookies;
         private HttpClientHandler handler;
@@ -30,8 +30,6 @@ namespace Sitecore.UniversalTrackerClient
 
         private readonly string uTTokenValue;
         private readonly IUTGrammar utGrammar;
-
-        private string activeInteractionId = null;
 
         #endregion Private Variables
 
@@ -131,13 +129,13 @@ namespace Sitecore.UniversalTrackerClient
 
         public async Task<UTResponse> TrackEventAsync(ITrackEventRequest request, CancellationToken cancelToken = default(CancellationToken))
         {
-            BaseValidator.CheckNullAndThrow(request, this.GetType().Name + ".request");
+            BaseValidator.CheckNullAndThrow(request, this.GetType().Name + ".EventRequest ");
 
             ITrackEventRequest requestCopy = request.DeepCopyTrackEventRequest();
 
             if ( this.InteractionNotExists() )
             {
-                return await this.CreateInteractionAndSentEventAsync(request, cancelToken);
+                return await this.CreateInteractionAndSentEventAsync(request.Event, cancelToken);
             }
 
             ITrackEventRequest autocompletedRequest = this.requestMerger.FillTrackEventGaps(requestCopy);
@@ -160,12 +158,15 @@ namespace Sitecore.UniversalTrackerClient
 
         public async Task<UTResponse> TrackOutcomeEventAsync(ITrackOutcomeRequest request, CancellationToken cancelToken = default(CancellationToken))
         {
-            BaseValidator.CheckNullAndThrow(request, this.GetType().Name + ".request");
+            BaseValidator.CheckNullAndThrow(request, this.GetType().Name + ".OutcomeRequest");
 
             ITrackOutcomeRequest requestCopy = request.DeepCopyTrackOutcomeRequest();
 
-            //@igk order matters!!!
-            //this.AutoInteractionAsync(request, cancelToken); //FIXME: !!!!
+            //FIXNE: @igk
+            if (this.InteractionNotExists())
+            {
+                return await this.CreateInteractionAndSentEventAsync(request.Outcome, cancelToken);
+            }
 
             ITrackOutcomeRequest autocompletedRequest = this.requestMerger.FillTrackOutcomeGaps(requestCopy);
 
@@ -175,12 +176,32 @@ namespace Sitecore.UniversalTrackerClient
             return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
         }
 
+        public async Task<UTResponse> TrackPageViewEventAsync(ITrackPageViewRequest request, CancellationToken cancelToken = default(CancellationToken))
+        {
+            BaseValidator.CheckNullAndThrow(request, this.GetType().Name + ".PageViewRequest");
+
+            ITrackPageViewRequest requestCopy = request.DeepCopyTrackPageViewRequest();
+
+            //FIXNE: @igk
+            if (this.InteractionNotExists())
+            {
+                return await this.CreateInteractionAndSentEventAsync(request.PageView, cancelToken);
+            }
+
+            ITrackPageViewRequest autocompletedRequest = this.requestMerger.FillTrackPageViewGaps(requestCopy);
+
+            var urlBuilder = new TrackEventUrlBuilder<ITrackPageViewRequest>(this.utGrammar);
+            var taskFlow = new TrackPageViewTask(urlBuilder, this.httpClient);
+
+            return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+        }
+
         #endregion TrackEvent
 
 
         #region Interaction
 
-        public async Task<UTResponse> CreateInteractionAndSentEventAsync(ITrackEventRequest request, CancellationToken cancelToken = default(CancellationToken))
+        public async Task<UTResponse> CreateInteractionAndSentEventAsync(IUTEvent utEvent, CancellationToken cancelToken = default(CancellationToken))
         {
             UTResponse interactionResponse = null;
 
@@ -191,22 +212,22 @@ namespace Sitecore.UniversalTrackerClient
             //FIXME: @igk temperary fix, to support instance bug, remove this code after fix
             //start code to remove
 
-            var utEvent = new UTEvent
+            var utEventWithoutType = new UTEvent
                 (
-                    request.Event.Timestamp,
-                    request.Event.CustomValues,
-                    request.Event.DefinitionId,
-                    request.Event.ItemId,
-                    request.Event.EngagementValue,
-                    request.Event.ParentEventId,
-                    request.Event.Text,
-                    request.Event.Duration,
-                    null
+                    utEvent.Timestamp,
+                    utEvent.CustomValues,
+                    utEvent.DefinitionId,
+                    utEvent.ItemId,
+                    utEvent.EngagementValue,
+                    utEvent.ParentEventId,
+                    utEvent.Text,
+                    utEvent.Duration,
+                    null //!!!
                 );
 
             //end code to remove
 
-            events.Add(utEvent);
+            events.Add(utEventWithoutType);
 
             var interaction = new UTInteraction
                 (
@@ -243,7 +264,9 @@ namespace Sitecore.UniversalTrackerClient
             var response = await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
             if (response.Successful)
             {
+                //@igk order matters
                 this.sessionConfig = new UTSessionConfig(this.sessionConfig.InstanceUrl, response.Description);
+                this.requestMerger = new UserRequestMerger(this.sessionConfig);
             }
 
             return response;

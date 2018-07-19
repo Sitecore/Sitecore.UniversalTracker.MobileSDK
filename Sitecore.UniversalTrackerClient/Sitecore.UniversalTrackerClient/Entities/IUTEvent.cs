@@ -79,7 +79,7 @@ namespace Sitecore.UniversalTrackerClient.Entities
         /// </value>
         TimeSpan? Duration { get; }
 
-        string Type { get; }
+        string type { get; }
 
         string TrackingInteractionId { get; }
 

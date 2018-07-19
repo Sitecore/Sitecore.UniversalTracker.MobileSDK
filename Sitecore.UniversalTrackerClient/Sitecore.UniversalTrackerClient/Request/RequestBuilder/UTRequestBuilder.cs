@@ -29,6 +29,11 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
             return new OutcomeRequestParametersBuilder(defenitionId);
         }
 
+        public static IPageViewRequestParametersBuilder PageViewWithDefenitionId(string defenitionId)
+        {
+            return new PageViewRequestParametersBuilder(defenitionId);
+        }
+
         public static IEventRequestParametersBuilder<ITrackLocationEventRequest> LocationEvent(double latitude, double longitude)
         {
             return new LocationEventRequestBuilder(latitude, longitude);

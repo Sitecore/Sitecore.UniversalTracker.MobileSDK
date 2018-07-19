@@ -34,7 +34,7 @@ namespace Sitecore.UniversalTrackerClient.Entities
 			this.ParentEventId = parentEventId;
 			this.Text = text;
             this.Duration = duration;
-            this.Type = type;
+            this.type = type;
         }
       
         public IUTEvent DeepCopyUTEvent()
@@ -100,7 +100,9 @@ namespace Sitecore.UniversalTrackerClient.Entities
             protected set;
         }
 
-        public string Type
+
+        #warning @igk - http://tfs4dk1.dk.sitecore.net/tfs/PD-Products-01/Products/_workitems/edit/230819 capitalise Type field when fixed
+        public string type
         {
             get;
             protected set;

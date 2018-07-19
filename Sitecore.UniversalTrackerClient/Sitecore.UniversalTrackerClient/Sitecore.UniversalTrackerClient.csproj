@@ -116,7 +116,7 @@
     <Compile Include="Request\RequestBuilder\IPageViewRequestParametersBuilder.cs" />
     <Compile Include="Request\ITrackPageViewRequest.cs" />
     <Compile Include="Request\TrackPageViewParameters.cs" />
-    <Compile Include="Network\TrackPageEventTask.cs" />
+    <Compile Include="Network\TrackPageViewTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Syntax\" />
