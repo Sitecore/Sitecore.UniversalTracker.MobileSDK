@@ -23,8 +23,6 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
 
         public override T Build()
         {
-            BaseValidator.CheckNullAndThrow(this.EventParametersAccumulator.DefinitionId, this.GetType().Name + ".utDefinitionId");
-            BaseValidator.CheckNullAndThrow(this.EventParametersAccumulator.Timestamp, this.GetType().Name + ".utTimestamp");
 
             Dictionary<string, string> customParameters = null;
 

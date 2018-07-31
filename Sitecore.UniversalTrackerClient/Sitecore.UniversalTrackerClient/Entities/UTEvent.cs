@@ -5,7 +5,8 @@ namespace Sitecore.UniversalTrackerClient.Entities
 {
 	public class UTEvent : IUTEvent
     {
-        protected UTEvent(){
+        protected UTEvent()
+        {
 			
 		}
 
@@ -23,7 +24,8 @@ namespace Sitecore.UniversalTrackerClient.Entities
 			string parentEventId, 
 			string text, 
 			TimeSpan? duration,
-            string type = "event"
+            string type = "event",
+            string trackingInteractionId = null
 		)
         {
 			this.CustomValues = customValues;
@@ -35,6 +37,7 @@ namespace Sitecore.UniversalTrackerClient.Entities
 			this.Text = text;
             this.Duration = duration;
             this.type = type;
+            this.TrackingInteractionId = trackingInteractionId;
         }
       
         public IUTEvent DeepCopyUTEvent()
@@ -47,13 +50,16 @@ namespace Sitecore.UniversalTrackerClient.Entities
                 this.EngagementValue,
                 this.ParentEventId,
                 this.Text,
-                this.Duration
+                this.Duration,
+                this.type,
+                this.TrackingInteractionId
             );
 
             return result;
         }
 
-		public Dictionary<string, string> CustomValues {
+		public Dictionary<string, string> CustomValues 
+        {
             
 			get;
             protected set;
@@ -65,7 +71,8 @@ namespace Sitecore.UniversalTrackerClient.Entities
             protected set;
         }
 
-		public string ItemId{
+		public string ItemId
+        {
             get;
             protected set;
         }
@@ -102,10 +109,14 @@ namespace Sitecore.UniversalTrackerClient.Entities
 
 
         #warning @igk - http://tfs4dk1.dk.sitecore.net/tfs/PD-Products-01/Products/_workitems/edit/230819 capitalise Type field when fixed
+
+        #warning FIXME:
+        //FIXME: @igk public setter added to support backend bug, it must be replaced with protected
+
         public string type
         {
             get;
-            protected set;
+            set; 
         }
 
         public string TrackingInteractionId
@@ -114,12 +125,5 @@ namespace Sitecore.UniversalTrackerClient.Entities
             protected set;
         }
 
-        public void ApplyActiveInteractionWith(string interactionId)
-        {
-            if (this.TrackingInteractionId == null)
-            {
-                this.TrackingInteractionId = interactionId;
-            }
-        }
     }
 }

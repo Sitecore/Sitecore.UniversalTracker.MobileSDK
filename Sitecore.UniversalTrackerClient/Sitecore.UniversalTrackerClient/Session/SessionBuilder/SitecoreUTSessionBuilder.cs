@@ -10,7 +10,8 @@
     {
         private string instanceUrl;
         private string uTTokenValue;
-        private IUTInteraction defaultInteraction;
+        private string deviceIdentifierValue;
+        private IUTInteraction defaultInteractionValue;
 
         #region Constructor
         private SitecoreUTSessionBuilder()
@@ -52,10 +53,24 @@
                 return this;
             }
 
-            BaseValidator.CheckForTwiceSetAndThrow(this.defaultInteraction, this.GetType().Name + ".interactionRequest");
+            BaseValidator.CheckForTwiceSetAndThrow(this.defaultInteractionValue, this.GetType().Name + ".defaultInteraction");
 
-            this.defaultInteraction = interaction;
+            this.defaultInteractionValue = interaction;
 
+            return this;
+        }
+
+        public IUTSessionBuilder DeviceIdentifier(string deviceIdentifier)
+        {
+            if (string.IsNullOrEmpty(deviceIdentifier))
+            {
+                return this;
+            }
+
+            BaseValidator.CheckForTwiceSetAndThrow(this.deviceIdentifierValue, this.GetType().Name + ".deviceIdentifier");
+            BaseValidator.CheckForNullEmptyAndWhiteSpaceOrThrow(deviceIdentifier, this.GetType().Name + ".deviceIdentifier");
+
+            this.deviceIdentifierValue = deviceIdentifier;
             return this;
         }
 
@@ -63,7 +78,7 @@
         public ISitecoreUTSession BuildSession()
         {
             var config = new UTSessionConfig(this.instanceUrl);
-            var session = new UTSession(config, this.instanceUrl, this.defaultInteraction);
+            var session = new UTSession(config, this.defaultInteractionValue, this.deviceIdentifierValue, this.uTTokenValue);
 
             return session;
         }

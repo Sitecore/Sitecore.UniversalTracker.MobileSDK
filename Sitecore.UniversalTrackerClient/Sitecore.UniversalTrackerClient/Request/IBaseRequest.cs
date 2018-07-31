@@ -8,5 +8,6 @@ namespace Sitecore.UniversalTrackerClient.UserRequest
 		IBaseRequest DeepCopyBaseRequest();
         
 		IUTSessionConfig SessionConfig { get; }
+
     }
 }

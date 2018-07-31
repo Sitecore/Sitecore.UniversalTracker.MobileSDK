@@ -1,14 +1,14 @@
 ﻿using System;
 namespace Sitecore.UniversalTrackerClient.Entities
 {
-    public class UTPageView : UTEvent, IUTPageView
+    public class UTSearch : UTEvent, IUTSearch
     {
 
-        private UTPageView()
+        private UTSearch()
         {
         }
 
-        public UTPageView(IUTEvent utEvent, string itemLanguage, int? itemVersion, string url, SitecoreDeviceData sitecoreRenderingDevice) 
+        public UTSearch(IUTEvent utEvent, string keywords) 
             : base  (
                 utEvent.Timestamp,
                 utEvent.CustomValues,
@@ -18,40 +18,19 @@ namespace Sitecore.UniversalTrackerClient.Entities
                 utEvent.ParentEventId,
                 utEvent.Text,
                 utEvent.Duration,
-                "pageview"
+                "search"
             )
         {
-            this.ItemLanguage = itemLanguage;
-            this.ItemVersion = itemVersion;
-            this.Url = url;
-            this.SitecoreRenderingDevice = sitecoreRenderingDevice;
+            this.Keywords = keywords;
         }
 
-        public string ItemLanguage
+        public string Keywords
         {
             get;
             private set;
         }
 
-        public int? ItemVersion
-        {
-            get;
-            private set;
-        }
-
-        public string Url
-        {
-            get;
-            private set;
-        }
-
-        public SitecoreDeviceData SitecoreRenderingDevice
-        {
-            get;
-            private set;
-        }
-
-        public IUTPageView DeepCopyUTPageView()
+        public IUTSearch DeepCopyUTSearch()
         {
             var utEvent = new UTEvent(
                 this.Timestamp,
@@ -65,15 +44,12 @@ namespace Sitecore.UniversalTrackerClient.Entities
             );
 
 
-            var utPageView = new UTPageView(
+            var utSearch = new UTSearch(
                 utEvent,
-                this.ItemLanguage,
-                this.ItemVersion,
-                this.Url,
-                this.SitecoreRenderingDevice
+                this.Keywords
             );
 
-            return utPageView;
+            return utSearch;
         }
 
        

@@ -1,11 +1,13 @@
-﻿namespace Sitecore.UniversalTrackerClient.Response
+﻿using System.Collections.ObjectModel;
+
+namespace Sitecore.UniversalTrackerClient.Response
 {
     public class UTResponse 
     {
         
 #warning not implemented!!!
 
-        public UTResponse(int responseCode, string description)
+        public UTResponse(int responseCode, string description, Collection<string> errors)
         {
             this.StatusCode = responseCode;
             this.Description = description;
@@ -32,6 +34,12 @@
         }
 
         public int StatusCode
+        {
+            get;
+            private set;
+        }
+
+        public Collection<string> Errors
         {
             get;
             private set;

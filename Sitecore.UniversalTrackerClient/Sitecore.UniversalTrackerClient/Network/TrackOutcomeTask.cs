@@ -7,6 +7,7 @@
 	using Newtonsoft.Json;
     using System.Collections.ObjectModel;
     using Sitecore.UniversalTrackerClient.Entities;
+    using System.Diagnostics;
 
     internal class TrackOutcomeTask : AbstractTrackBaseEventTask<ITrackOutcomeRequest>
     {
@@ -29,6 +30,9 @@
                            {
                                NullValueHandling = NullValueHandling.Ignore
                            });
+
+            Debug.WriteLine("SERIALIZED OUTCOME EVENT:");
+            Debug.WriteLine(serializedEvent);
 
             return serializedEvent;
         }

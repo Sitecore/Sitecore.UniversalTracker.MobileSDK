@@ -29,10 +29,12 @@
 
             result.DeviceNameFieldName = "utdevicename";
             result.OperatingSystemNameFieldName = "utoperatingsystemname";
+            result.OperatingSystemVersionFieldName = "utoperatingsystemversion";
             result.DeviceModelFieldName = "utdevicemodel";
             result.DeviceLocalizedModelFieldName = "utdevicelocalizedmodel";
             result.BatteryLevelFieldName = "utbatterylevel";
 
+            result.DeviceIdentifierKeyValue = "utdeviceidentifier";
 
             return result;
         }
@@ -57,10 +59,13 @@
         public string PageClosedFieldName   { get; private set; }
         public string PageIdFieldName       { get; private set; }
 
-        public string DeviceNameFieldName           { get; private set; }
-        public string OperatingSystemNameFieldName  { get; private set; }
-        public string DeviceModelFieldName          { get; private set; }
-        public string DeviceLocalizedModelFieldName { get; private set; }
-        public string BatteryLevelFieldName         { get; private set; }
+        public string DeviceNameFieldName             { get; private set; }
+        public string OperatingSystemNameFieldName    { get; private set; }
+        public string OperatingSystemVersionFieldName { get; private set; }
+        public string DeviceModelFieldName            { get; private set; }
+        public string DeviceLocalizedModelFieldName   { get; private set; }
+        public string BatteryLevelFieldName           { get; private set; }
+
+        public string DeviceIdentifierKeyValue { get; private set; }
     }
 }

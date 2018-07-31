@@ -8,7 +8,6 @@
     public abstract class AbstractEventRequestBuilder<T> : IEventRequestParametersBuilder<T>
   where T : class
     {
-
         protected UTEvent EventParametersAccumulator = UTEvent.GetEmptyEvent();
 
         protected IDictionary<string, string> FieldsRawValuesByName;
@@ -55,10 +54,15 @@
             return this;
         }
 
+        public IEventRequestParametersBuilder<T> DeviceIdentifier(string deviceIdentifier)
+        {
+            return this.AddCustomValues(UTGrammar.UTV1Grammar().DeviceIdentifierKeyValue, deviceIdentifier);
+        }
+
+
 
         public IEventRequestParametersBuilder<T> DefinitionId(string definitionId)
         {
-            BaseValidator.CheckForNullEmptyAndWhiteSpaceOrThrow(definitionId, this.GetType().Name + ".definitionId");
             BaseValidator.CheckForTwiceSetAndThrow(this.EventParametersAccumulator.DefinitionId,
                                                    this.GetType().Name + ".EventParametersAccumulator");
 
@@ -155,7 +159,8 @@
 
         public IEventRequestParametersBuilder<T> Timestamp(DateTime timestamp)
         {
-            #warning @igk check initiator for twice!???
+            BaseValidator.CheckForTwiceSetAndThrow(this.EventParametersAccumulator.Timestamp,
+                                                   this.GetType().Name + ".parentEventId");
 
             this.EventParametersAccumulator = new UTEvent(
                 timestamp,
@@ -173,8 +178,8 @@
 
         public IEventRequestParametersBuilder<T> Duration(TimeSpan duration)
         {
-            //BaseValidator.CheckForTwiceSetAndThrow(this.EventParametersAccumulator.Duration,
-                                                   //this.GetType().Name + ".duration");
+            BaseValidator.CheckForTwiceSetAndThrow(this.EventParametersAccumulator.Duration,
+                                                   this.GetType().Name + ".duration");
 
             this.EventParametersAccumulator = new UTEvent(
                 this.EventParametersAccumulator.Timestamp,

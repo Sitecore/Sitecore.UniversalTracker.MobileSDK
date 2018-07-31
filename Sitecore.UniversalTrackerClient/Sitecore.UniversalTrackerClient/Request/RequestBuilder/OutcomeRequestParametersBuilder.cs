@@ -45,7 +45,7 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
 
         public override ITrackOutcomeRequest Build()
         {
-#warning @igk check thar all required fields is not null here!!!
+#warning @igk check that all required fields is not null here!!!
 
             Dictionary<string, string> customParameters = null;
 
@@ -77,6 +77,13 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
         public new IOutcomeRequestParametersBuilder AddCustomValues(IDictionary<string, string> customValues)
         {
             base.AddCustomValues(customValues);
+
+            return this;
+        }
+
+        public new IOutcomeRequestParametersBuilder DeviceIdentifier(string deviceIdentifier)
+        {
+            base.DeviceIdentifier(deviceIdentifier);
 
             return this;
         }

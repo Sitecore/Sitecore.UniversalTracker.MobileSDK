@@ -69,7 +69,6 @@
     <Compile Include="Session\Config\SessionConfigUrlBuilder.cs" />
     <Compile Include="Request\UrlBuilders\TrackInteractionUrlBuilder.cs" />
     <Compile Include="Network\TrackEventTask.cs" />
-    <Compile Include="Network\UTResponseParser.cs" />
     <Compile Include="Request\RequestBuilder\IBaseRequestParametersBuilder.cs" />
     <Compile Include="Request\RequestBuilder\IEventRequestParametersBuilder.cs" />
     <Compile Include="Request\RequestBuilder\UTRequestBuilder.cs" />
@@ -99,7 +98,7 @@
     <Compile Include="Entities\IUTOutcome.cs" />
     <Compile Include="Entities\IUTCampaignEvent.cs" />
     <Compile Include="Entities\IUTDownloadEvent.cs" />
-    <Compile Include="Entities\IUTSearchEvent.cs" />
+    <Compile Include="Entities\IUTSearch.cs" />
     <Compile Include="Session\ISitecoreUTSessionWithAutoInteraction.cs" />
     <Compile Include="Request\ITrackOutcomeRequest.cs" />
     <Compile Include="Entities\UTOutcome.cs" />
@@ -117,6 +116,12 @@
     <Compile Include="Request\ITrackPageViewRequest.cs" />
     <Compile Include="Request\TrackPageViewParameters.cs" />
     <Compile Include="Network\TrackPageViewTask.cs" />
+    <Compile Include="Request\ITrackSearchRequest.cs" />
+    <Compile Include="Request\TrackSearchParameters.cs" />
+    <Compile Include="Network\TrackSearchTask.cs" />
+    <Compile Include="Request\RequestBuilder\SearchRequestParametersBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\ISearchRequestParametersBuilder.cs" />
+    <Compile Include="Entities\UTSearch.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Syntax\" />

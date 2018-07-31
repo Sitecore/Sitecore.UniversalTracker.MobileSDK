@@ -79,11 +79,11 @@ namespace Sitecore.UniversalTrackerClient.Entities
         /// </value>
         TimeSpan? Duration { get; }
 
-        string type { get; }
+#warning FIXME:
+        //FIXME: @igk backend bug, use upper case 'T' when fixed
+        string type { get; set; }
 
         string TrackingInteractionId { get; }
-
-        void ApplyActiveInteractionWith(string interactionId);
     }
 
 

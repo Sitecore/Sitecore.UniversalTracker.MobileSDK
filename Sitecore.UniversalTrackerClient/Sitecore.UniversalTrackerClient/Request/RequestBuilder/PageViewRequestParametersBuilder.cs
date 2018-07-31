@@ -97,6 +97,13 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
 
 #region fluent support
 
+        public new IPageViewRequestParametersBuilder DeviceIdentifier(string deviceIdentifier)
+        {
+            base.DeviceIdentifier(deviceIdentifier);
+
+            return this;
+        }
+
         public new IPageViewRequestParametersBuilder AddCustomValues(IDictionary<string, string> customValues)
         {
             base.AddCustomValues(customValues);

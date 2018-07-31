@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.UniversalTrackerClient.Response
 {
+    using System.Collections.ObjectModel;
     using System.Diagnostics;
     using System.Threading;
+    using Newtonsoft.Json;
     using Sitecore.UniversalTrackerClient.Validators;
 
     public class UTResponseParser
@@ -21,8 +23,23 @@
 
             Debug.WriteLine("RESPONSE to PARSE RESULT: " + responseString);
 
+            string description = null;
+
+            Collection<string> errors = null;
+
+            bool responseContainsArray =    responseString.StartsWith("[", System.StringComparison.CurrentCultureIgnoreCase) 
+                                         && responseString.EndsWith("]", System.StringComparison.CurrentCultureIgnoreCase);
+
+            if (responseContainsArray)
+            {
+                errors = JsonConvert.DeserializeObject<Collection<string>>(responseString);
+            }
+            else
+            {
+                description = responseString;
+            }
 #warning not implemented!!!
-            return new UTResponse(responseCode, responseString);
+            return new UTResponse(responseCode, description, errors);
         }
 
     }

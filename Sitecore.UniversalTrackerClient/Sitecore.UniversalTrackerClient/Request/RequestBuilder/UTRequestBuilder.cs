@@ -13,7 +13,6 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
         {
         }
 
-
 		public static IEventRequestParametersBuilder<ITrackEventRequest> EventWithDefenitionId(string defenitionId)
         {
             return new EventForDefenitionIdRequestBuilder<ITrackEventRequest>(defenitionId);
@@ -32,6 +31,11 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
         public static IPageViewRequestParametersBuilder PageViewWithDefenitionId(string defenitionId)
         {
             return new PageViewRequestParametersBuilder(defenitionId);
+        }
+
+        public static ISearchRequestParametersBuilder SearchEvent(string defenitionId)
+        {
+            return new SearchRequestParametersBuilder(defenitionId);
         }
 
         public static IEventRequestParametersBuilder<ITrackLocationEventRequest> LocationEvent(double latitude, double longitude)

@@ -33,5 +33,11 @@
 
 		IEventRequestParametersBuilder<T> Duration(TimeSpan duration);
 
+        /// <summary>
+        /// Optional device identifier, expected value - identifierForVendor for iOS, getSerial for android or similar...
+        /// </summary>
+        /// <returns>request</returns>
+        IEventRequestParametersBuilder<T> DeviceIdentifier(string deviceIdentifier);
+
     }
 }

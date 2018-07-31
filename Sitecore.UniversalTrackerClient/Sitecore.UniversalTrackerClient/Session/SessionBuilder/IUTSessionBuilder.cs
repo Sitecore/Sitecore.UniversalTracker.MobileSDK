@@ -11,5 +11,10 @@ namespace Sitecore.UniversalTrackerClient.Session.SessionBuilder
 
         IUTSessionBuilder DefaultInteraction(IUTInteraction interaction);
 
+        /// <summary>
+        /// Optional device identifier, expected value - identifierForVendor for iOS, getSerial for android or similar...
+        /// </summary>
+        /// <returns>request</returns>
+        IUTSessionBuilder DeviceIdentifier(string deviceIdentifier);
     }
 }

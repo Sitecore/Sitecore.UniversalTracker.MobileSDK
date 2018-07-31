@@ -24,26 +24,29 @@ namespace Sitecore.UniversalTrackerClient
         private HttpClient httpClient;
         private CookieContainer cookies;
         private HttpClientHandler handler;
+        private string defaultDeviceIdentifier;
 
         protected IUTSessionConfig sessionConfig;
-        protected readonly IUTInteraction defaultInteraction;
 
         private readonly string uTTokenValue;
         private readonly IUTGrammar utGrammar;
+
+        private IUTInteraction defaultInteraction;
 
         #endregion Private Variables
 
         public UTSession
         (
             IUTSessionConfig config,
-            string uTTokenValue = null,
-            IUTInteraction interaction= null,
+            IUTInteraction defaultInteraction,
+            string deviceIdentifier,
+            string uTTokenValue,
             IUTGrammar grammar = null
         )
         {
             if (null == config)
             {
-				throw new ArgumentNullException(nameof(UTSession), " config cannot be null");
+				throw new ArgumentNullException(nameof(UTSession), " config can not be null");
             }
 
             if (grammar == null)
@@ -53,10 +56,11 @@ namespace Sitecore.UniversalTrackerClient
 
             this.utGrammar = grammar;
 
-            this.defaultInteraction = interaction;
+            this.defaultInteraction = defaultInteraction;
+            this.defaultDeviceIdentifier = deviceIdentifier;
 
             this.sessionConfig = config.SessionConfigShallowCopy();
-            this.requestMerger = new UserRequestMerger(this.sessionConfig);
+            this.requestMerger = new UserRequestMerger(this.sessionConfig, this.defaultDeviceIdentifier);
 
             this.uTTokenValue = uTTokenValue;
 
@@ -196,6 +200,26 @@ namespace Sitecore.UniversalTrackerClient
             return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
         }
 
+        public async Task<UTResponse> TrackSearchEventAsync(ITrackSearchRequest request, CancellationToken cancelToken = default(CancellationToken))
+        {
+            BaseValidator.CheckNullAndThrow(request, this.GetType().Name + ".SearchEventRequest");
+
+            ITrackSearchRequest requestCopy = request.DeepCopySearchRequest();
+
+            //FIXNE: @igk
+            if (this.InteractionNotExists())
+            {
+                return await this.CreateInteractionAndSentEventAsync(request.SearchEvent, cancelToken);
+            }
+
+            ITrackSearchRequest autocompletedRequest = this.requestMerger.FillTrackSearchGaps(requestCopy);
+
+            var urlBuilder = new TrackEventUrlBuilder<ITrackSearchRequest>(this.utGrammar);
+            var taskFlow = new TrackSearchTask(urlBuilder, this.httpClient);
+
+            return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+        }
+
         #endregion TrackEvent
 
 
@@ -209,25 +233,14 @@ namespace Sitecore.UniversalTrackerClient
             Collection<IUTEvent> events = new Collection<IUTEvent>();
 
 
-            //FIXME: @igk temperary fix, to support instance bug, remove this code after fix
+            //FIXME: @igk temporary fix, to support instance bug, remove this code after fix
             //start code to remove
 
-            var utEventWithoutType = new UTEvent
-                (
-                    utEvent.Timestamp,
-                    utEvent.CustomValues,
-                    utEvent.DefinitionId,
-                    utEvent.ItemId,
-                    utEvent.EngagementValue,
-                    utEvent.ParentEventId,
-                    utEvent.Text,
-                    utEvent.Duration,
-                    null //!!!
-                );
+            utEvent.type = null;
 
             //end code to remove
 
-            events.Add(utEventWithoutType);
+            events.Add(utEvent);
 
             var interaction = new UTInteraction
                 (
@@ -266,7 +279,7 @@ namespace Sitecore.UniversalTrackerClient
             {
                 //@igk order matters
                 this.sessionConfig = new UTSessionConfig(this.sessionConfig.InstanceUrl, response.Description);
-                this.requestMerger = new UserRequestMerger(this.sessionConfig);
+                this.requestMerger = new UserRequestMerger(this.sessionConfig, this.defaultDeviceIdentifier);
             }
 
             return response;

@@ -65,7 +65,7 @@
                 //TODO: @igk debug response output, remove later
                 Debug.WriteLine("RESPONSE: " + httpData);
 
-				return UTResponseParser.ParseEvent(httpData, this.statusCode, cancelToken);
+                return UTResponseParser.Parse(httpData, this.statusCode, cancelToken);
             };
             return await Task.Factory.StartNew(syncParseResponse, cancelToken);
         }

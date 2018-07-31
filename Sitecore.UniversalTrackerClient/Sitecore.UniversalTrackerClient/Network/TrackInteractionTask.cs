@@ -5,6 +5,7 @@
 
     using Sitecore.UniversalTrackerClient.Request.UrlBuilders;
     using Newtonsoft.Json;
+    using System.Diagnostics;
 
     internal class TrackInteractionTask : AbstractTrackBaseEventTask<ITrackInteractionRequest>
     {
@@ -24,6 +25,9 @@
                            {
                                NullValueHandling = NullValueHandling.Ignore
                            });
+
+            Debug.WriteLine("SERIALIZED INTERACTION EVENT:");
+            Debug.WriteLine(serializedInteraction);
 
             return serializedInteraction;
         }
