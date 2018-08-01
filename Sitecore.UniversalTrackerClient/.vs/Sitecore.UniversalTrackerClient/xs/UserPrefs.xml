@@ -1,7 +1,10 @@
 ﻿<Properties StartupConfiguration="{9DB00321-73CD-4C5F-A290-78E98192B730}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Sitecore.UniversalTrackerClient/Request/RequestBuilder/EntitiesBuilders/UTEntitiesBuilder.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Sitecore.UniversalTrackerClient/Request/RequestBuilder/IPageViewRequestParametersBuilder.cs">
     <Files>
       <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/EntitiesBuilders/UTEntitiesBuilder.cs" Line="16" Column="10" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/OutcomeRequestParametersBuilder.cs" Line="16" Column="1" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/UTRequestBuilder.cs" Line="31" Column="47" />
+      <File FileName="Sitecore.UniversalTrackerClient/Request/RequestBuilder/IPageViewRequestParametersBuilder.cs" Line="9" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
