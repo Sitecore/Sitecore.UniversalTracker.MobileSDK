@@ -23,12 +23,13 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
             return new EventForDefenitionIdRequestBuilder<ITrackEventRequest>(defenitionId);
         }
 
-        public static IOutcomeRequestParametersBuilder OutcomeWithDefenitionId(string defenitionId)
+        public static IOutcomeRequestParametersBuilder<ITrackOutcomeRequest> OutcomeWithDefenitionId(string defenitionId)
         {
             return new OutcomeRequestParametersBuilder(defenitionId);
         }
 
         public static IPageViewRequestParametersBuilder PageViewWithDefenitionId(string defenitionId)
+
         {
             return new PageViewRequestParametersBuilder(defenitionId);
         }

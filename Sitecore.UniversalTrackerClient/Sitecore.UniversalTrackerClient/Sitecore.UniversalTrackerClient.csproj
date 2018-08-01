@@ -72,12 +72,10 @@
     <Compile Include="Request\RequestBuilder\IBaseRequestParametersBuilder.cs" />
     <Compile Include="Request\RequestBuilder\IEventRequestParametersBuilder.cs" />
     <Compile Include="Request\RequestBuilder\UTRequestBuilder.cs" />
-    <Compile Include="Request\RequestBuilder\AbstractEventRequestBuilder.cs" />
     <Compile Include="Request\RequestBuilder\EventForDefenitionIdRequestBuilder.cs" />
     <Compile Include="Validators\ItemIdValidator.cs" />
     <Compile Include="Request\RequestBuilder\IInteractionParametersBuilder.cs" />
     <Compile Include="Request\RequestBuilder\InteractionRequestBuilder.cs" />
-    <Compile Include="Request\RequestBuilder\AbstractInteractionRequestBuilder.cs" />
     <Compile Include="Request\TrackInteractionParameters.cs" />
     <Compile Include="Request\UrlBuilders\TrackEventUrlBuilder.cs" />
     <Compile Include="Network\TrackInteractionTask.cs" />
@@ -103,12 +101,9 @@
     <Compile Include="Request\ITrackOutcomeRequest.cs" />
     <Compile Include="Entities\UTOutcome.cs" />
     <Compile Include="Request\RequestBuilder\IOutcomeRequestParametersBuilder.cs" />
-    <Compile Include="Request\RequestBuilder\OutcomeRequestParametersBuilder.cs" />
     <Compile Include="Request\TrackOutcomeParameters.cs" />
     <Compile Include="Network\AbstractTrackBaseEventTask.cs" />
     <Compile Include="Network\TrackOutcomeTask.cs" />
-    <Compile Include="Request\RequestBuilder\InteractionBuilder.cs" />
-    <Compile Include="Request\RequestBuilder\UTEntitiesBuilder.cs" />
     <Compile Include="Entities\UTPageView.cs" />
     <Compile Include="Entities\IUTPageView.cs" />
     <Compile Include="Request\RequestBuilder\PageViewRequestParametersBuilder.cs" />
@@ -122,6 +117,19 @@
     <Compile Include="Request\RequestBuilder\SearchRequestParametersBuilder.cs" />
     <Compile Include="Request\RequestBuilder\ISearchRequestParametersBuilder.cs" />
     <Compile Include="Entities\UTSearch.cs" />
+    <Compile Include="Request\RequestBuilder\EntitiesBuilders\UTEntitiesBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\EntitiesBuilders\InteractionBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\EntitiesBuilders\EventBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\EntitiesBuilders\GoalBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\EntitiesBuilders\OutcomeBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\OutcomeRequestParametersBuilder %28copy%29.cs" />
+    <Compile Include="Request\RequestBuilder\EntitiesBuilders\PageViewBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\EntitiesBuilders\SearchBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\AbstractsBuilders\AbstractEventRequestBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\AbstractsBuilders\AbstractInteractionRequestBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\AbstractsBuilders\OutcomeAbstractRequestParametersBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\AbstractsBuilders\PageViewAbstractRequestParametersBuilder.cs" />
+    <Compile Include="Request\RequestBuilder\AbstractsBuilders\SearchAbstractRequestParametersBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Syntax\" />
@@ -139,6 +147,8 @@
     <Folder Include="Request\Shugar\" />
     <Folder Include="Request\RequestBuilder\Extensions\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Request\RequestBuilder\EntitiesBuilders\" />
+    <Folder Include="Request\RequestBuilder\AbstractsBuilders\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

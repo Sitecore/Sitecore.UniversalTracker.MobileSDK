@@ -6,14 +6,9 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
     using Sitecore.UniversalTrackerClient.Validators;
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
 
-    public class PageViewRequestParametersBuilder : AbstractEventRequestBuilder<ITrackPageViewRequest>, IPageViewRequestParametersBuilder
+    public class PageViewRequestParametersBuilder : PageViewAbstractRequestParametersBuilder<ITrackPageViewRequest>
     {
-        private string ItemLanguageValue;
-        private string UrlValue;
-        private int ItemVersionValue;
-        private SitecoreDeviceData SitecoreRenderingDeviceValue;
         private PageViewRequestParametersBuilder()
         {
 
@@ -23,43 +18,6 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
         {
             ItemIdValidator.ValidateItemId(defenitionId, this.GetType().Name + ".defenitionId");
             this.DefinitionId(defenitionId);
-        }
-
-        public IPageViewRequestParametersBuilder ItemLanguage(string itemLanguage)
-        {
-
-            BaseValidator.CheckForTwiceSetAndThrow(this.ItemLanguageValue, this.GetType().Name + ".itemLanguage");
-
-            this.ItemLanguageValue = itemLanguage;
-
-            return this;
-        }
-
-        public IPageViewRequestParametersBuilder Url(string url)
-        {
-
-            BaseValidator.CheckForTwiceSetAndThrow(this.UrlValue, this.GetType().Name + ".url");
-            
-            this.UrlValue = url;
-
-            return this;
-        }
-
-        public IPageViewRequestParametersBuilder ItemVersion(int itemVersion)
-        {
-         
-            this.ItemVersionValue = itemVersion;
-
-            return this;
-        }
-
-        public IPageViewRequestParametersBuilder SitecoreRenderingDevice(string id, string Name)
-        {
-            BaseValidator.CheckForTwiceSetAndThrow(this.SitecoreRenderingDeviceValue, this.GetType().Name + ".sitecoreRenderingDeviceValue");
-
-            this.SitecoreRenderingDeviceValue = new SitecoreDeviceData(id, Name);
-
-            return this;
         }
 
         public override ITrackPageViewRequest Build()
@@ -94,82 +52,6 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
 
             return result;
         }
-
-#region fluent support
-
-        public new IPageViewRequestParametersBuilder DeviceIdentifier(string deviceIdentifier)
-        {
-            base.DeviceIdentifier(deviceIdentifier);
-
-            return this;
-        }
-
-        public new IPageViewRequestParametersBuilder AddCustomValues(IDictionary<string, string> customValues)
-        {
-            base.AddCustomValues(customValues);
-
-            return this;
-        }
-
-        public new IPageViewRequestParametersBuilder AddCustomValues(string customFieldName, string customFieldValue)
-        {
-            base.AddCustomValues(customFieldName, customFieldValue);
-
-            return this;
-        }
-
-
-        public new IPageViewRequestParametersBuilder DefinitionId(string definitionId)
-        {
-            base.DefinitionId(definitionId);
-
-            return this;
-        }
-
-
-        public new IPageViewRequestParametersBuilder ItemId(string itemId)
-        {
-            base.ItemId(itemId);
-
-            return this;
-        }
-
-        public new IPageViewRequestParametersBuilder EngagementValue(int engagementValue)
-        {
-            base.EngagementValue(engagementValue);
-
-            return this;
-        }
-
-        public new IPageViewRequestParametersBuilder ParentEventId(string parentEventId)
-        {
-            base.ParentEventId(parentEventId);
-
-            return this;
-        }
-
-        public new IPageViewRequestParametersBuilder Text(string text)
-        {
-            base.Text(text);
-
-            return this;
-        }
-
-        public new IPageViewRequestParametersBuilder Timestamp(DateTime timestamp)
-        {
-            base.Timestamp(timestamp);
-
-            return this;
-        }
-
-        public new IPageViewRequestParametersBuilder Duration(TimeSpan duration)
-        {
-            base.Duration(duration);
-
-            return this;
-        }
-
-#endregion fluent support
 
     }
 }

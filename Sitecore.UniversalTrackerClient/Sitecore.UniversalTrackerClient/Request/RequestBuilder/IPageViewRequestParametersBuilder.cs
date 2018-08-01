@@ -6,35 +6,36 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
     using Sitecore.UniversalTrackerClient.Entities;
     using Sitecore.UniversalTrackerClient.UserRequest;
 
-    public interface IPageViewRequestParametersBuilder : IEventRequestParametersBuilder<ITrackPageViewRequest>
+    public interface IPageViewRequestParametersBuilder<T> : IEventRequestParametersBuilder<T>
+        where T : class
     {
-        IPageViewRequestParametersBuilder ItemLanguage(string itemLanguage);
+        IPageViewRequestParametersBuilder<T> ItemLanguage(string itemLanguage);
 
-        IPageViewRequestParametersBuilder ItemVersion(int itemVersion);
+        IPageViewRequestParametersBuilder<T> ItemVersion(int itemVersion);
 
-        IPageViewRequestParametersBuilder Url(string url);
+        IPageViewRequestParametersBuilder<T> Url(string url);
 
-        IPageViewRequestParametersBuilder SitecoreRenderingDevice(string id, string name);
+        IPageViewRequestParametersBuilder<T> SitecoreRenderingDevice(string id, string name);
 
         #region fluent support
 
-        new IPageViewRequestParametersBuilder AddCustomValues(IDictionary<string, string> customValues);
+        new IPageViewRequestParametersBuilder<T> AddCustomValues(IDictionary<string, string> customValues);
 
-        new IPageViewRequestParametersBuilder AddCustomValues(string customFieldName, string customFieldValue);
+        new IPageViewRequestParametersBuilder<T> AddCustomValues(string customFieldName, string customFieldValue);
 
-        new IPageViewRequestParametersBuilder DefinitionId(string definitionId);
+        new IPageViewRequestParametersBuilder<T> DefinitionId(string definitionId);
 
-        new IPageViewRequestParametersBuilder ItemId(string itemId);
+        new IPageViewRequestParametersBuilder<T> ItemId(string itemId);
 
-        new IPageViewRequestParametersBuilder EngagementValue(int engagementValue);
+        new IPageViewRequestParametersBuilder<T> EngagementValue(int engagementValue);
 
-        new IPageViewRequestParametersBuilder ParentEventId(string parentEventId);
+        new IPageViewRequestParametersBuilder<T> ParentEventId(string parentEventId);
 
-        new IPageViewRequestParametersBuilder Text(string text);
+        new IPageViewRequestParametersBuilder<T> Text(string text);
 
-        new IPageViewRequestParametersBuilder Timestamp(DateTime timestamp);
+        new IPageViewRequestParametersBuilder<T> Timestamp(DateTime timestamp);
 
-        new IPageViewRequestParametersBuilder Duration(TimeSpan duration);
+        new IPageViewRequestParametersBuilder<T> Duration(TimeSpan duration);
 
         #endregion fluent support
     }

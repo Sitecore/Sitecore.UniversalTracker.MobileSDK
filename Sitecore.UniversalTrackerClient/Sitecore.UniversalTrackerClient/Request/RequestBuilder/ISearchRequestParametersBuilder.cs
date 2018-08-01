@@ -6,29 +6,30 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
     using Sitecore.UniversalTrackerClient.Entities;
     using Sitecore.UniversalTrackerClient.UserRequest;
 
-    public interface ISearchRequestParametersBuilder : IEventRequestParametersBuilder<ITrackSearchRequest>
+    public interface ISearchRequestParametersBuilder<T> : IEventRequestParametersBuilder<T>
+        where T : class
     {
-        ISearchRequestParametersBuilder Keywords(string keywords);
+        ISearchRequestParametersBuilder<T>  Keywords(string keywords);
 
         #region fluent support
 
-        new ISearchRequestParametersBuilder AddCustomValues(IDictionary<string, string> customValues);
+        new ISearchRequestParametersBuilder<T>  AddCustomValues(IDictionary<string, string> customValues);
 
-        new ISearchRequestParametersBuilder AddCustomValues(string customFieldName, string customFieldValue);
+        new ISearchRequestParametersBuilder<T>  AddCustomValues(string customFieldName, string customFieldValue);
 
-        new ISearchRequestParametersBuilder DefinitionId(string definitionId);
+        new ISearchRequestParametersBuilder<T>  DefinitionId(string definitionId);
 
-        new ISearchRequestParametersBuilder ItemId(string itemId);
+        new ISearchRequestParametersBuilder<T>  ItemId(string itemId);
 
-        new ISearchRequestParametersBuilder EngagementValue(int engagementValue);
+        new ISearchRequestParametersBuilder<T>  EngagementValue(int engagementValue);
 
-        new ISearchRequestParametersBuilder ParentEventId(string parentEventId);
+        new ISearchRequestParametersBuilder<T>  ParentEventId(string parentEventId);
 
-        new ISearchRequestParametersBuilder Text(string text);
+        new ISearchRequestParametersBuilder<T>  Text(string text);
 
-        new ISearchRequestParametersBuilder Timestamp(DateTime timestamp);
+        new ISearchRequestParametersBuilder<T>  Timestamp(DateTime timestamp);
 
-        new ISearchRequestParametersBuilder Duration(TimeSpan duration);
+        new ISearchRequestParametersBuilder<T>  Duration(TimeSpan duration);
 
         #endregion fluent support
     }

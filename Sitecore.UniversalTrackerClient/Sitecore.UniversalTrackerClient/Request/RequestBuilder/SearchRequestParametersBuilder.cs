@@ -6,12 +6,9 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
     using Sitecore.UniversalTrackerClient.Validators;
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
 
-    public class SearchRequestParametersBuilder : AbstractEventRequestBuilder<ITrackSearchRequest>, ISearchRequestParametersBuilder
+    public class SearchRequestParametersBuilder : SearchAbstractRequestParametersBuilder<ITrackSearchRequest>
     {
-        private string KeywordsValue;
-
         private SearchRequestParametersBuilder()
         {
 
@@ -21,16 +18,6 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
         {
             ItemIdValidator.ValidateItemId(defenitionId, this.GetType().Name + ".defenitionId");
             this.DefinitionId(defenitionId);
-        }
-
-        public ISearchRequestParametersBuilder Keywords(string keywords)
-        {
-
-            BaseValidator.CheckForTwiceSetAndThrow(this.KeywordsValue, this.GetType().Name + ".keywords");
-
-            this.KeywordsValue = keywords;
-
-            return this;
         }
 
         public override ITrackSearchRequest Build()
@@ -62,82 +49,6 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
 
             return result;
         }
-
-#region fluent support
-
-        public new ISearchRequestParametersBuilder DeviceIdentifier(string deviceIdentifier)
-        {
-            base.DeviceIdentifier(deviceIdentifier);
-
-            return this;
-        }
-
-        public new ISearchRequestParametersBuilder AddCustomValues(IDictionary<string, string> customValues)
-        {
-            base.AddCustomValues(customValues);
-
-            return this;
-        }
-
-        public new ISearchRequestParametersBuilder AddCustomValues(string customFieldName, string customFieldValue)
-        {
-            base.AddCustomValues(customFieldName, customFieldValue);
-
-            return this;
-        }
-
-
-        public new ISearchRequestParametersBuilder DefinitionId(string definitionId)
-        {
-            base.DefinitionId(definitionId);
-
-            return this;
-        }
-
-
-        public new ISearchRequestParametersBuilder ItemId(string itemId)
-        {
-            base.ItemId(itemId);
-
-            return this;
-        }
-
-        public new ISearchRequestParametersBuilder EngagementValue(int engagementValue)
-        {
-            base.EngagementValue(engagementValue);
-
-            return this;
-        }
-
-        public new ISearchRequestParametersBuilder ParentEventId(string parentEventId)
-        {
-            base.ParentEventId(parentEventId);
-
-            return this;
-        }
-
-        public new ISearchRequestParametersBuilder Text(string text)
-        {
-            base.Text(text);
-
-            return this;
-        }
-
-        public new ISearchRequestParametersBuilder Timestamp(DateTime timestamp)
-        {
-            base.Timestamp(timestamp);
-
-            return this;
-        }
-
-        public new ISearchRequestParametersBuilder Duration(TimeSpan duration)
-        {
-            base.Duration(duration);
-
-            return this;
-        }
-
-#endregion fluent support
 
     }
 }

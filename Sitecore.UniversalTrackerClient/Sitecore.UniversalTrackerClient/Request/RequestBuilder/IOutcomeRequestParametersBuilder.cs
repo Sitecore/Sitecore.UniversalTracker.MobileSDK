@@ -5,32 +5,33 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
     using System.Collections.Generic;
     using Sitecore.UniversalTrackerClient.UserRequest;
 
-    public interface IOutcomeRequestParametersBuilder : IEventRequestParametersBuilder<ITrackOutcomeRequest>
+    public interface IOutcomeRequestParametersBuilder<T> : IEventRequestParametersBuilder<T>
+        where T: class
     {
-        IOutcomeRequestParametersBuilder CurrencyCode(string currencyCode);
+        IOutcomeRequestParametersBuilder<T> CurrencyCode(string currencyCode);
 
-        IOutcomeRequestParametersBuilder MonetaryValue(decimal monetaryValue);
+        IOutcomeRequestParametersBuilder<T> MonetaryValue(decimal monetaryValue);
 
 
         #region fluent support
 
-        new IOutcomeRequestParametersBuilder AddCustomValues(IDictionary<string, string> customValues);
+        new IOutcomeRequestParametersBuilder<T> AddCustomValues(IDictionary<string, string> customValues);
 
-        new IOutcomeRequestParametersBuilder AddCustomValues(string customFieldName, string customFieldValue);
+        new IOutcomeRequestParametersBuilder<T> AddCustomValues(string customFieldName, string customFieldValue);
 
-        new IOutcomeRequestParametersBuilder DefinitionId(string definitionId);
+        new IOutcomeRequestParametersBuilder<T> DefinitionId(string definitionId);
 
-        new IOutcomeRequestParametersBuilder ItemId(string itemId);
+        new IOutcomeRequestParametersBuilder<T> ItemId(string itemId);
 
-        new IOutcomeRequestParametersBuilder EngagementValue(int engagementValue);
+        new IOutcomeRequestParametersBuilder<T> EngagementValue(int engagementValue);
 
-        new IOutcomeRequestParametersBuilder ParentEventId(string parentEventId);
+        new IOutcomeRequestParametersBuilder<T> ParentEventId(string parentEventId);
 
-        new IOutcomeRequestParametersBuilder Text(string text);
+        new IOutcomeRequestParametersBuilder<T> Text(string text);
 
-        new IOutcomeRequestParametersBuilder Timestamp(DateTime timestamp);
+        new IOutcomeRequestParametersBuilder<T> Timestamp(DateTime timestamp);
 
-        new IOutcomeRequestParametersBuilder Duration(TimeSpan duration);
+        new IOutcomeRequestParametersBuilder<T> Duration(TimeSpan duration);
 
         #endregion fluent support
     }
