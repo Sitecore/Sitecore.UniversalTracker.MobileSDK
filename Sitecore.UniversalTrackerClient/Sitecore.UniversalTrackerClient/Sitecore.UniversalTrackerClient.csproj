@@ -122,7 +122,7 @@
     <Compile Include="Request\RequestBuilder\EntitiesBuilders\EventBuilder.cs" />
     <Compile Include="Request\RequestBuilder\EntitiesBuilders\GoalBuilder.cs" />
     <Compile Include="Request\RequestBuilder\EntitiesBuilders\OutcomeBuilder.cs" />
-    <Compile Include="Request\RequestBuilder\OutcomeRequestParametersBuilder %28copy%29.cs" />
+    <Compile Include="Request\RequestBuilder\OutcomeRequestParametersBuilder.cs" />
     <Compile Include="Request\RequestBuilder\EntitiesBuilders\PageViewBuilder.cs" />
     <Compile Include="Request\RequestBuilder\EntitiesBuilders\SearchBuilder.cs" />
     <Compile Include="Request\RequestBuilder\AbstractsBuilders\AbstractEventRequestBuilder.cs" />

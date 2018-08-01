@@ -28,13 +28,13 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
             return new OutcomeRequestParametersBuilder(defenitionId);
         }
 
-        public static IPageViewRequestParametersBuilder PageViewWithDefenitionId(string defenitionId)
+        public static IPageViewRequestParametersBuilder<ITrackPageViewRequest> PageViewWithDefenitionId(string defenitionId)
 
         {
             return new PageViewRequestParametersBuilder(defenitionId);
         }
 
-        public static ISearchRequestParametersBuilder SearchEvent(string defenitionId)
+        public static ISearchRequestParametersBuilder<ITrackSearchRequest> SearchEvent(string defenitionId)
         {
             return new SearchRequestParametersBuilder(defenitionId);
         }
