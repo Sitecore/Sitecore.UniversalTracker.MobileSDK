@@ -1,14 +1,14 @@
 ﻿using System;
 namespace Sitecore.UniversalTrackerClient.Entities
 {
-    public class UTSearch : UTEvent, IUTSearch
+    public class UTPageView : UTEvent, IUTPageView
     {
 
-        private UTSearch()
+        private UTPageView()
         {
         }
 
-        public UTSearch(IUTEvent utEvent, string keywords) 
+        public UTPageView(IUTEvent utEvent, string itemLanguage, int? itemVersion, string url, SitecoreDeviceData sitecoreRenderingDevice) 
             : base  (
                 utEvent.Timestamp,
                 utEvent.CustomValues,
@@ -18,19 +18,41 @@ namespace Sitecore.UniversalTrackerClient.Entities
                 utEvent.ParentEventId,
                 utEvent.Text,
                 utEvent.Duration,
-                "search"
+                utEvent.TrackingInteractionId,
+                "pageview"
             )
         {
-            this.Keywords = keywords;
+            this.ItemLanguage = itemLanguage;
+            this.ItemVersion = itemVersion;
+            this.Url = url;
+            this.SitecoreRenderingDevice = sitecoreRenderingDevice;
         }
 
-        public string Keywords
+        public string ItemLanguage
         {
             get;
             private set;
         }
 
-        public IUTSearch DeepCopyUTSearch()
+        public int? ItemVersion
+        {
+            get;
+            private set;
+        }
+
+        public string Url
+        {
+            get;
+            private set;
+        }
+
+        public SitecoreDeviceData SitecoreRenderingDevice
+        {
+            get;
+            private set;
+        }
+
+        public IUTPageView DeepCopyUTPageView()
         {
             var utEvent = new UTEvent(
                 this.Timestamp,
@@ -40,16 +62,20 @@ namespace Sitecore.UniversalTrackerClient.Entities
                 this.EngagementValue,
                 this.ParentEventId,
                 this.Text,
-                this.Duration
+                this.Duration,
+                this.TrackingInteractionId
             );
 
 
-            var utSearch = new UTSearch(
+            var utPageView = new UTPageView(
                 utEvent,
-                this.Keywords
+                this.ItemLanguage,
+                this.ItemVersion,
+                this.Url,
+                this.SitecoreRenderingDevice
             );
 
-            return utSearch;
+            return utPageView;
         }
 
        

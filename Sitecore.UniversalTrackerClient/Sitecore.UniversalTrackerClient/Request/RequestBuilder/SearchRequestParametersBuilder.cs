@@ -7,17 +7,19 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
     using System;
     using System.Collections.Generic;
 
-    public class SearchRequestParametersBuilder : SearchAbstractRequestParametersBuilder<ITrackSearchRequest>
+    public class SearchRequestParametersBuilder : AbstractEventRequestBuilder<ITrackSearchRequest>
     {
+        private string Keywords;
+
         private SearchRequestParametersBuilder()
         {
 
         }
 
-        public SearchRequestParametersBuilder(string defenitionId)
+        public SearchRequestParametersBuilder(string keywords)
         {
-            ItemIdValidator.ValidateItemId(defenitionId, this.GetType().Name + ".defenitionId");
-            this.DefinitionId(defenitionId);
+            BaseValidator.CheckForNullAndEmptyOrThrow(keywords, this.GetType().Name + ".keywords");
+            this.Keywords = keywords;
         }
 
         public override ITrackSearchRequest Build()
@@ -37,12 +39,13 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
                     this.EventParametersAccumulator.EngagementValue,
                     this.EventParametersAccumulator.ParentEventId,
                     this.EventParametersAccumulator.Text,
-                    this.EventParametersAccumulator.Duration
+                    this.EventParametersAccumulator.Duration,
+                    this.EventParametersAccumulator.TrackingInteractionId
                 );
 
             UTSearch utSearch = new UTSearch(
                 this.EventParametersAccumulator,
-                this.KeywordsValue
+                this.Keywords
             );
 
             TrackSearchParameters result = new TrackSearchParameters(null, utSearch);

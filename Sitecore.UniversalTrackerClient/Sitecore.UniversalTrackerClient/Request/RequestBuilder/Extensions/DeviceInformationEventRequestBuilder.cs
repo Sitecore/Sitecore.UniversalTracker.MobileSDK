@@ -1,7 +1,6 @@
 ﻿
 namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
 {
-    using Sitecore.UniversalTrackerClient.Helpers;
     using Sitecore.UniversalTrackerClient.UserRequest;
     using System;
     using System.Collections.Generic;

@@ -1,18 +1,21 @@
 ﻿
 namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
 {
-    using System.Collections.Generic;
     using Sitecore.UniversalTrackerClient.Entities;
+    using Sitecore.UniversalTrackerClient.UserRequest;
+    using Sitecore.UniversalTrackerClient.Validators;
+    using System;
+    using System.Collections.Generic;
 
-    internal class PageViewBuilder : PageViewAbstractRequestParametersBuilder<IUTPageView>
+    public class DownloadRequestParametersBuilder : AbstractEventRequestBuilder<ITrackDownloadRequest>
     {
-        public PageViewBuilder()
+        public DownloadRequestParametersBuilder()
         {
+
         }
 
-        public override IUTPageView Build()
+        public override ITrackDownloadRequest Build()
         {
-
             Dictionary<string, string> customParameters = null;
 
             if (this.FieldsRawValuesByName != null)
@@ -29,21 +32,16 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
                     this.EventParametersAccumulator.ParentEventId,
                     this.EventParametersAccumulator.Text,
                     this.EventParametersAccumulator.Duration,
-                    this.EventParametersAccumulator.TrackingInteractionId,
-                    this.EventParametersAccumulator.type
+                    this.EventParametersAccumulator.TrackingInteractionId
                 );
 
+            UTDownload utDownload = new UTDownload(this.EventParametersAccumulator);
 
-            var result = new UTPageView
-                (
-                    this.EventParametersAccumulator, 
-                    this.ItemLanguageValue, 
-                    this.ItemVersionValue, 
-                    this.UrlValue, 
-                    this.SitecoreRenderingDeviceValue
-                );
+            TrackDownloadParameters result = new TrackDownloadParameters(null, utDownload);
 
             return result;
         }
+
     }
 }
+

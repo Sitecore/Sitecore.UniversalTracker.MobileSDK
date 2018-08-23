@@ -4,39 +4,39 @@ namespace Sitecore.UniversalTrackerClient.UserRequest
     using Sitecore.UniversalTrackerClient.Entities;
     using Sitecore.UniversalTrackerClient.Session.Config;
 
-    public class TrackOutcomeParameters : ITrackOutcomeRequest
+    public class TrackGoalParameters : ITrackGoalRequest
 
     {
-        public TrackOutcomeParameters(IUTSessionConfig sessionConfig, IUTOutcome utOutcome)
+        public TrackGoalParameters(IUTSessionConfig sessionConfig, IUTGoal utGoal)
         {
             this.SessionConfig = sessionConfig;
-            this.Outcome = utOutcome;
+            this.Goal = utGoal;
         }
 
-        public virtual ITrackOutcomeRequest DeepCopyTrackOutcomeRequest()
+        public virtual ITrackGoalRequest DeepCopyTrackGoalRequest()
         {
             IUTSessionConfig connection = null;
-            IUTOutcome utOutcome = null;
+            IUTGoal utGoal = null;
 
             if (null != this.SessionConfig)
             {
                 connection = this.SessionConfig.SessionConfigShallowCopy();
             }
 
-            if (null != this.Outcome)
+            if (null != this.Goal)
             {
-                utOutcome = this.Outcome;
+                utGoal = this.Goal;
             }
 
-            return new TrackOutcomeParameters(connection, utOutcome);
+            return new TrackGoalParameters(connection, utGoal);
         }
 
         public IBaseRequest DeepCopyBaseRequest()
         {
-            return this.DeepCopyTrackOutcomeRequest();
+            return this.DeepCopyTrackGoalRequest();
         }
 
-        public IUTOutcome Outcome { get; private set; }
+        public IUTGoal Goal { get; private set; }
 
         public IUTSessionConfig SessionConfig { get; private set; }
 

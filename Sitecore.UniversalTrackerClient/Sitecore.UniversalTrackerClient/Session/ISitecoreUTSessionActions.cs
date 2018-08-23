@@ -9,6 +9,12 @@
     {
         Task<UTResponse> TrackEventAsync(ITrackEventRequest request, CancellationToken cancelToken = default(CancellationToken));
 
+        Task<UTResponse> TrackGoalAsync(ITrackGoalRequest request, CancellationToken cancelToken = default(CancellationToken));
+
+        Task<UTResponse> TrackCampaignEventAsync(ITrackCampaignRequest request, CancellationToken cancelToken = default(CancellationToken));
+
+        Task<UTResponse> TrackDownloadEventAsync(ITrackDownloadRequest request, CancellationToken cancelToken = default(CancellationToken));
+
         Task<UTResponse> TrackPageViewEventAsync(ITrackPageViewRequest request, CancellationToken cancelToken = default(CancellationToken));
 
         Task<UTResponse> TrackSearchEventAsync(ITrackSearchRequest request, CancellationToken cancelToken = default(CancellationToken));

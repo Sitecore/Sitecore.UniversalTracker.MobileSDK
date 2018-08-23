@@ -74,7 +74,8 @@
                 this.EventParametersAccumulator.EngagementValue,
                 this.EventParametersAccumulator.ParentEventId,
                 this.EventParametersAccumulator.Text,
-                this.EventParametersAccumulator.Duration
+                this.EventParametersAccumulator.Duration,
+                this.EventParametersAccumulator.TrackingInteractionId
             );
 
             return this;
@@ -94,7 +95,8 @@
                 this.EventParametersAccumulator.EngagementValue,
                 this.EventParametersAccumulator.ParentEventId,
                 this.EventParametersAccumulator.Text,
-                this.EventParametersAccumulator.Duration
+                this.EventParametersAccumulator.Duration,
+                this.EventParametersAccumulator.TrackingInteractionId
             );
 
             return this;
@@ -113,7 +115,8 @@
                 engagementValue,
                 this.EventParametersAccumulator.ParentEventId,
                 this.EventParametersAccumulator.Text,
-                this.EventParametersAccumulator.Duration
+                this.EventParametersAccumulator.Duration,
+                this.EventParametersAccumulator.TrackingInteractionId
             );
 
             return this;
@@ -132,7 +135,8 @@
                 this.EventParametersAccumulator.EngagementValue,
                 parentEventId,
                 this.EventParametersAccumulator.Text,
-                this.EventParametersAccumulator.Duration
+                this.EventParametersAccumulator.Duration,
+                this.EventParametersAccumulator.TrackingInteractionId
             );
 
             return this;
@@ -151,7 +155,8 @@
                 this.EventParametersAccumulator.EngagementValue,
                 this.EventParametersAccumulator.ParentEventId,
                 text,
-                this.EventParametersAccumulator.Duration
+                this.EventParametersAccumulator.Duration,
+                this.EventParametersAccumulator.TrackingInteractionId
             );
 
             return this;
@@ -170,7 +175,8 @@
                 this.EventParametersAccumulator.EngagementValue,
                 this.EventParametersAccumulator.ParentEventId,
                 this.EventParametersAccumulator.Text,
-                this.EventParametersAccumulator.Duration
+                this.EventParametersAccumulator.Duration,
+                this.EventParametersAccumulator.TrackingInteractionId
             );
 
             return this;
@@ -189,7 +195,8 @@
                 this.EventParametersAccumulator.EngagementValue,
                 this.EventParametersAccumulator.ParentEventId,
                 this.EventParametersAccumulator.Text,
-                duration
+                duration,
+                this.EventParametersAccumulator.TrackingInteractionId
             );
 
             return this;

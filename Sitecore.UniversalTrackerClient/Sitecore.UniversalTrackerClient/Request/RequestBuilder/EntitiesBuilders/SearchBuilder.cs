@@ -3,11 +3,16 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
 {
     using System.Collections.Generic;
     using Sitecore.UniversalTrackerClient.Entities;
+    using Sitecore.UniversalTrackerClient.Validators;
 
-    internal class SearchBuilder : SearchAbstractRequestParametersBuilder<IUTSearch>
+    internal class SearchBuilder : AbstractEventRequestBuilder<IUTSearch>
     {
-        public SearchBuilder()
+        private string Keywords;
+
+        public SearchBuilder(string keywords)
         {
+            BaseValidator.CheckForNullAndEmptyOrThrow(keywords, this.GetType().Name + ".keywords");
+            this.Keywords = keywords;
         }
 
         public override IUTSearch Build()
@@ -28,10 +33,11 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
                     this.EventParametersAccumulator.EngagementValue,
                     this.EventParametersAccumulator.ParentEventId,
                     this.EventParametersAccumulator.Text,
-                    this.EventParametersAccumulator.Duration
+                    this.EventParametersAccumulator.Duration,
+                    this.EventParametersAccumulator.TrackingInteractionId
                 );
 
-            var result = new UTSearch(this.EventParametersAccumulator, this.KeywordsValue);
+            var result = new UTSearch(this.EventParametersAccumulator, this.Keywords);
 
             return result;
         }

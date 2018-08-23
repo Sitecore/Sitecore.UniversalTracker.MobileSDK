@@ -4,14 +4,14 @@ namespace Sitecore.UniversalTrackerClient.Entities
     using System;
     using System.Collections.Generic;
 
-    public class UTGoal : UTEvent, IUTGoal
+    public class UTDownload : UTEvent, IUTDownload
     {
-        private UTGoal()
+        private UTDownload()
         {
 
         }
 
-        public UTGoal(IUTEvent uTEvent) : base(
+        public UTDownload(IUTEvent uTEvent) : base(
             uTEvent.Timestamp,
             uTEvent.CustomValues,
             uTEvent.DefinitionId,
@@ -21,13 +21,13 @@ namespace Sitecore.UniversalTrackerClient.Entities
             uTEvent.Text,
             uTEvent.Duration,
             uTEvent.TrackingInteractionId,
-            "goal"
+            "download"
         )
         {
 
         }
 
-        public IUTGoal DeepCopyUTGoal()
+        public IUTDownload DeepCopyUTDownload()
         {
             var utEvent = new UTEvent(
                 this.Timestamp,
@@ -42,9 +42,9 @@ namespace Sitecore.UniversalTrackerClient.Entities
             );
 
 
-            var utGoal = new UTGoal(utEvent);
+            var utDownload = new UTDownload(utEvent);
 
-            return utGoal;
+            return utDownload;
         }
     }
 }

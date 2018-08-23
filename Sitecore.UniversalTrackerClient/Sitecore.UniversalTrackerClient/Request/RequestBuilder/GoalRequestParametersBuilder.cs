@@ -1,16 +1,28 @@
 ﻿
 namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
 {
-    using System.Collections.Generic;
     using Sitecore.UniversalTrackerClient.Entities;
+    using Sitecore.UniversalTrackerClient.UserRequest;
+    using Sitecore.UniversalTrackerClient.Validators;
+    using System;
+    using System.Collections.Generic;
 
-    internal class PageViewBuilder : PageViewAbstractRequestParametersBuilder<IUTPageView>
+    public class GoalRequestParametersBuilder: AbstractEventRequestBuilder<ITrackGoalRequest>
     {
-        public PageViewBuilder()
+        
+        private GoalRequestParametersBuilder()
         {
+
         }
 
-        public override IUTPageView Build()
+        public GoalRequestParametersBuilder(string defenitionId, DateTime timestamp)
+        {
+            ItemIdValidator.ValidateItemId(defenitionId, this.GetType().Name + ".defenitionId");
+            this.DefinitionId(defenitionId);
+            this.Timestamp(timestamp);
+        }
+
+        public override ITrackGoalRequest Build()
         {
 
             Dictionary<string, string> customParameters = null;
@@ -22,28 +34,22 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
 
             this.EventParametersAccumulator = new UTEvent(
                     this.EventParametersAccumulator.Timestamp,
-                    customParameters,
+                         customParameters,
                     this.EventParametersAccumulator.DefinitionId,
                     this.EventParametersAccumulator.ItemId,
                     this.EventParametersAccumulator.EngagementValue,
                     this.EventParametersAccumulator.ParentEventId,
                     this.EventParametersAccumulator.Text,
                     this.EventParametersAccumulator.Duration,
-                    this.EventParametersAccumulator.TrackingInteractionId,
-                    this.EventParametersAccumulator.type
+                    this.EventParametersAccumulator.TrackingInteractionId
                 );
 
+            UTGoal utGoal = new UTGoal(this.EventParametersAccumulator);
 
-            var result = new UTPageView
-                (
-                    this.EventParametersAccumulator, 
-                    this.ItemLanguageValue, 
-                    this.ItemVersionValue, 
-                    this.UrlValue, 
-                    this.SitecoreRenderingDeviceValue
-                );
-
+            TrackGoalParameters result = new TrackGoalParameters(null, utGoal);
+            
             return result;
         }
     }
 }
+

@@ -18,9 +18,19 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
             return new EventForDefenitionIdRequestBuilder<ITrackEventRequest>(defenitionId);
         }
 
-        public static IEventRequestParametersBuilder<ITrackEventRequest> GoalWithDefenitionId(string defenitionId)
+        public static IEventRequestParametersBuilder<ITrackDownloadRequest> DownloadEvent()
         {
-            return new EventForDefenitionIdRequestBuilder<ITrackEventRequest>(defenitionId);
+            return new DownloadRequestParametersBuilder();
+        }
+
+        public static IEventRequestParametersBuilder<ITrackGoalRequest> GoalEvent(string defenitionId, DateTime timestamp)
+        {
+            return new GoalRequestParametersBuilder(defenitionId, timestamp);
+        }
+
+        public static IEventRequestParametersBuilder<ITrackCampaignRequest>CampaignEvent(string campaignDefinitionId)
+        {
+            return new CampaignRequestParametersBuilder(campaignDefinitionId);
         }
 
         public static IOutcomeRequestParametersBuilder<ITrackOutcomeRequest> OutcomeWithDefenitionId(string defenitionId)
@@ -34,9 +44,9 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
             return new PageViewRequestParametersBuilder(defenitionId);
         }
 
-        public static ISearchRequestParametersBuilder<ITrackSearchRequest> SearchEvent(string defenitionId)
+        public static IEventRequestParametersBuilder<ITrackSearchRequest> SearchEvent(string keywords)
         {
-            return new SearchRequestParametersBuilder(defenitionId);
+            return new SearchRequestParametersBuilder(keywords);
         }
 
         public static IEventRequestParametersBuilder<ITrackLocationEventRequest> LocationEvent(double latitude, double longitude)

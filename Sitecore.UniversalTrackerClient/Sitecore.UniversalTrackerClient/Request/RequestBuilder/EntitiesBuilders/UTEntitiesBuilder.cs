@@ -20,7 +20,7 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
             return new EventBuilder();
         }
 
-        public static IEventRequestParametersBuilder<IUTEvent> Goal()
+        public static IEventRequestParametersBuilder<IUTGoal> Goal()
         {
             return new GoalBuilder();
         }
@@ -35,9 +35,9 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
             return new PageViewBuilder();
         }
 
-        public static ISearchRequestParametersBuilder<IUTSearch> Search()
+        public static IEventRequestParametersBuilder<IUTSearch> Search(string keywords)
         {
-            return new SearchBuilder();
+            return new SearchBuilder(keywords);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Sitecore.UniversalTrackerClient.Entities
 
         public static UTEvent GetEmptyEvent()
         {
-            return new UTEvent(null, null, null, null, null, null, null, null);
+            return new UTEvent(null, null, null, null, null, null, null, null, null);
         }
 
         public UTEvent(
@@ -24,8 +24,8 @@ namespace Sitecore.UniversalTrackerClient.Entities
 			string parentEventId, 
 			string text, 
 			TimeSpan? duration,
-            string type = "event",
-            string trackingInteractionId = null
+            string trackingInteractionId,
+            string type = "event"
 		)
         {
 			this.CustomValues = customValues;
@@ -36,8 +36,8 @@ namespace Sitecore.UniversalTrackerClient.Entities
 			this.ParentEventId = parentEventId;
 			this.Text = text;
             this.Duration = duration;
-            this.type = type;
             this.TrackingInteractionId = trackingInteractionId;
+            this.type = type;
         }
       
         public IUTEvent DeepCopyUTEvent()
@@ -51,8 +51,8 @@ namespace Sitecore.UniversalTrackerClient.Entities
                 this.ParentEventId,
                 this.Text,
                 this.Duration,
-                this.type,
-                this.TrackingInteractionId
+                this.TrackingInteractionId,
+                this.type
             );
 
             return result;

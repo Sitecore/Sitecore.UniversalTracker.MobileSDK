@@ -31,7 +31,7 @@
 
 		public IBaseRequest DeepCopyBaseRequest()
 		{
-			return this.DeepCopyBaseRequest();
+            return this.DeepCopyTrackInteractionRequest();
 		}
       
         public IUTInteraction Interaction { get; private set; }

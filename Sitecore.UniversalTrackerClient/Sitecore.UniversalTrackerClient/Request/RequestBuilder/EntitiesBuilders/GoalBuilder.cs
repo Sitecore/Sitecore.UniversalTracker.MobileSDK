@@ -4,13 +4,13 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
     using System.Collections.Generic;
     using Sitecore.UniversalTrackerClient.Entities;
 
-    internal class GoalBuilder : AbstractEventRequestBuilder<IUTEvent>
+    internal class GoalBuilder : AbstractEventRequestBuilder<IUTGoal>
     {
         public GoalBuilder()
         {
         }
 
-        public override IUTEvent Build()
+        public override IUTGoal Build()
         {
 
             Dictionary<string, string> customParameters = null;
@@ -20,7 +20,7 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
                 customParameters = new Dictionary<string, string>(this.FieldsRawValuesByName);
             }
 
-            this.EventParametersAccumulator = new UTGoal(
+            this.EventParametersAccumulator = new UTEvent(
                     this.EventParametersAccumulator.Timestamp,
                     customParameters,
                     this.EventParametersAccumulator.DefinitionId,
@@ -28,11 +28,13 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
                     this.EventParametersAccumulator.EngagementValue,
                     this.EventParametersAccumulator.ParentEventId,
                     this.EventParametersAccumulator.Text,
-                    this.EventParametersAccumulator.Duration
+                    this.EventParametersAccumulator.Duration,
+                    this.EventParametersAccumulator.TrackingInteractionId
                 );
 
+            IUTGoal result = new UTGoal(this.EventParametersAccumulator);
 
-            return this.EventParametersAccumulator;
+            return result;
         }
     }
 }

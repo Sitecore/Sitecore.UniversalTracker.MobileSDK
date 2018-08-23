@@ -5,11 +5,15 @@ namespace UniversalTrackerDemo
     using System.Collections.Generic;
     using Sitecore.UniversalTrackerClient.Entities;
     using Sitecore.UniversalTrackerClient.Request.RequestBuilder;
+    using Sitecore.UniversalTrackerClient.Session;
     using Sitecore.UniversalTrackerClient.Session.SessionBuilder;
     using UIKit;
 
     public partial class ViewController : UIViewController
     {
+
+        ISitecoreUTSession session;
+
         protected ViewController(IntPtr handle) : base(handle)
         {
             // Note: this .ctor should not contain any initialization logic.
@@ -19,26 +23,100 @@ namespace UniversalTrackerDemo
         {
             base.ViewDidLoad();
 
-            this.SendRequest();
+            this.CreateSession();
+
+            //this.SendAllRequests();
+
         }
 
-        private async void SendRequest()
+
+
+        private async void SendBaseEventRequest()
+        {
+            string definitionId = "01f8ffbf-d662-4a87-beee-413307055c48";
+
+            var eventRequest = UTRequestBuilder.EventWithDefenitionId(definitionId)
+                                               .AddCustomValues("key1", "value1")
+                                               .Timestamp(DateTime.Now)
+                                               .AddCustomValues("igk", "demo")
+                                               .Build();
+
+            var eventResponse = await session.TrackEventAsync(eventRequest);
+
+            Console.WriteLine("Track EVENT RESULT: " + eventResponse.StatusCode.ToString());
+        }
+
+        private async void SendCampaignEventRequest()
+        {
+            string campaignID = "01f8ffbf-d662-4a87-beee-413307055c48";
+
+            var campaignEvent = UTRequestBuilder.CampaignEvent(campaignID)
+                                                .Build();
+
+            var campaignResponse = await session.TrackCampaignEventAsync(campaignEvent);
+
+
+            Console.WriteLine("Track CAMPAIGN EVENT RESULT: " + campaignResponse.StatusCode.ToString());
+        }
+
+        private async void SendLocationEventRequest()
+        {
+            double lat = 37.342454;
+            double lon = -122.342454;
+
+            var locationEventRequest = UTRequestBuilder.LocationEvent(lat, lon)
+                                                       .Build();
+
+            var locationEventResponse = await session.TrackLocationEventAsync(locationEventRequest);
+
+
+            Console.WriteLine("Track LOCATION EVENT RESULT: " + locationEventResponse.StatusCode.ToString());
+        }
+
+
+
+
+        private void CreateSession()
         {
             var defaultInteraction = UTEntitiesBuilder.Interaction()
                                                       .ChannelId("27b4e611-a73d-4a95-b20a-811d295bdf65")
                                                       .Initiator(InteractionInitiator.Contact)
                                                       .Contact("jsdemo", "demo")
                                                       .Build();
-            using
-               (
-                    var session = SitecoreUTSessionBuilder.SessionWithHost("https://utwebtests")
-                                                          .TokenValue("SecretTOken")
-                                                          .DefaultInteraction(defaultInteraction)
-                                                          .DeviceIdentifier(UIDevice.CurrentDevice.IdentifierForVendor.ToString())
-                                                          .BuildSession()
-               )
-            {
 
+            this.session = SitecoreUTSessionBuilder.SessionWithHost("https://utwebtests")
+                                                   .DefaultInteraction(defaultInteraction)
+                                                   .DeviceIdentifier(UIDevice.CurrentDevice.IdentifierForVendor.ToString())
+                                                   .BuildSession();
+        }
+
+
+        partial void SendBaseEventTouchUpInside(UIButton sender)
+        {
+            this.SendBaseEventRequest();
+        }
+
+        partial void SendCampaignEventTouchUpInside(UIButton sender)
+        {
+            this.SendCampaignEventRequest();
+        }
+
+        partial void SendLocationEventTouchUpInside(UIButton sender)
+        {
+            this.SendLocationEventRequest();
+        }
+
+        public override void  ViewDidUnload()
+        {
+            base.ViewDidUnload();
+
+            this.session.Dispose();
+        }
+
+
+        private async void SendAllRequests()
+        {
+           
                 //#region Track_Interaction
 
                 //var interactionRequest = UTRequestBuilder.Interaction(UTEvent.GetEmptyEvent())
@@ -85,16 +163,16 @@ namespace UniversalTrackerDemo
                                                       .AddCustomValues("key", "value")
                                                       .Build();
 
-                var pageViewResponse = await session.TrackPageViewEventAsync(pageViewRequest);
+                var pageViewResponse = await this.session.TrackPageViewEventAsync(pageViewRequest);
                 Console.WriteLine("Track PAGEVIEW EVENT RESULT: " + pageViewResponse.StatusCode.ToString());
 
                 #endregion Track_PageView
 
                 #region Track_Search
 
-                var searchRequest = UTRequestBuilder.SearchEvent("01f8ffbf-d662-4a87-beee-413307055c48")
+                var searchRequest = UTRequestBuilder.SearchEvent("some keywords")
+                                                    .DefinitionId("01f8ffbf-d662-4a87-beee-413307055c48")
                                                     .Timestamp(DateTime.Now)
-                                                    .Keywords("blablabla")
                                                     .AddCustomValues("key", "value")
                                                     .Build();
 
@@ -161,7 +239,7 @@ namespace UniversalTrackerDemo
 
                 var pageOpenedEventResponse = await session.TrackEventAsync(pageOpenedEventRequest);
 
-                Console.WriteLine("Track APP LAUNCHED EVENT RESULT: " + pageOpenedEventResponse.StatusCode.ToString());
+                Console.WriteLine("Track PAGE OPENED EVENT RESULT: " + pageOpenedEventResponse.StatusCode.ToString());
 
                 #endregion Page_Opened_Event
 
@@ -171,7 +249,7 @@ namespace UniversalTrackerDemo
                                                              .Build();
 
                 var pageClosedEventResponse = await session.TrackEventAsync(pageClosedEventRequest);
-                Console.WriteLine("Track APP FINISHED EVENT RESULT: " + pageClosedEventResponse.StatusCode.ToString());
+                Console.WriteLine("Track PAGE CLOSED EVENT RESULT: " + pageClosedEventResponse.StatusCode.ToString());
 
                 #endregion Page_Closed_Even
 
@@ -179,13 +257,13 @@ namespace UniversalTrackerDemo
                 #region Outcome_Event
 
                 var outcome = UTRequestBuilder.OutcomeWithDefenitionId("01f8ffbf-d662-4a87-beee-413307055c48")
-                                               .Text("")
-                                               .CurrencyCode("bla")
-                                               .MonetaryValue(11)
-                                               .Build();
+                                              .Text("")
+                                              .CurrencyCode("bla")
+                                              .MonetaryValue(11)
+                                              .Build();
 
                 var outcomeResponse = await session.TrackOutcomeEventAsync(outcome);
-                Console.WriteLine("Track APP FINISHED EVENT RESULT: " + outcomeResponse.StatusCode.ToString());
+                Console.WriteLine("Track OUTCOME EVENT RESULT: " + outcomeResponse.StatusCode.ToString());
 
                 #endregion Outcome_Event
 
@@ -204,7 +282,43 @@ namespace UniversalTrackerDemo
                 Console.WriteLine("Track DEVICE INFO EVENT RESULT: " + deviceInfoResponse.StatusCode.ToString());
 
                 #endregion Device_Info
-            }
+
+
+                #region Goal_Event
+
+                var goalEvent = UTRequestBuilder.GoalEvent("01f8ffbf-d662-4a87-beee-413307055c48", DateTime.Now)
+                                                .Text("bla")
+                                                .Build();
+
+                var goalResponse = await session.TrackGoalAsync(goalEvent);
+                Console.WriteLine("Track GOAL EVENT RESULT: " + goalResponse.StatusCode.ToString());
+
+                #endregion Goal_Event
+
+                #region Campaign_Event
+
+                var campaignEvent = UTRequestBuilder.CampaignEvent("01f8ffbf-d662-4a87-beee-413307055c48")
+                                                    .Text("")
+                                                    .Build();
+
+                var campaignResponse = await session.TrackCampaignEventAsync(campaignEvent);
+                Console.WriteLine("Track CAMPAIGN EVENT RESULT: " + campaignResponse.StatusCode.ToString());
+
+                #endregion Campaign_Event
+
+                #region Download_Event
+
+                var downloadEvent = UTRequestBuilder.DownloadEvent()
+                                                    .DefinitionId("01f8ffbf-d662-4a87-beee-413307055c48")
+                                                    .ItemId("01f8ffbf-d662-4a87-beee-413307055c48")
+                                                    .Text("")
+                                                    .Build();
+
+                var downloadResponse = await session.TrackDownloadEventAsync(downloadEvent);
+                Console.WriteLine("Track DOWNLOAD EVENT RESULT: " + downloadResponse.StatusCode.ToString());
+
+                #endregion Download_Event
+
 
         }
 

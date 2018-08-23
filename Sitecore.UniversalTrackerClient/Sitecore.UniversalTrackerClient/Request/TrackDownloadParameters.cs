@@ -4,39 +4,39 @@ namespace Sitecore.UniversalTrackerClient.UserRequest
     using Sitecore.UniversalTrackerClient.Entities;
     using Sitecore.UniversalTrackerClient.Session.Config;
 
-    public class TrackOutcomeParameters : ITrackOutcomeRequest
+    public class TrackDownloadParameters : ITrackDownloadRequest
 
     {
-        public TrackOutcomeParameters(IUTSessionConfig sessionConfig, IUTOutcome utOutcome)
+        public TrackDownloadParameters(IUTSessionConfig sessionConfig, IUTDownload utDownload)
         {
             this.SessionConfig = sessionConfig;
-            this.Outcome = utOutcome;
+            this.Download = utDownload;
         }
 
-        public virtual ITrackOutcomeRequest DeepCopyTrackOutcomeRequest()
+        public virtual ITrackDownloadRequest DeepCopyTrackDownloadRequest()
         {
             IUTSessionConfig connection = null;
-            IUTOutcome utOutcome = null;
+            IUTDownload utDownload = null;
 
             if (null != this.SessionConfig)
             {
                 connection = this.SessionConfig.SessionConfigShallowCopy();
             }
 
-            if (null != this.Outcome)
+            if (null != this.Download)
             {
-                utOutcome = this.Outcome;
+                utDownload = this.Download;
             }
 
-            return new TrackOutcomeParameters(connection, utOutcome);
+            return new TrackDownloadParameters(connection, utDownload);
         }
 
         public IBaseRequest DeepCopyBaseRequest()
         {
-            return this.DeepCopyTrackOutcomeRequest();
+            return this.DeepCopyTrackDownloadRequest();
         }
 
-        public IUTOutcome Outcome { get; private set; }
+        public IUTDownload Download { get; private set; }
 
         public IUTSessionConfig SessionConfig { get; private set; }
 

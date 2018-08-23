@@ -1,15 +1,18 @@
-﻿using System;
+﻿
 namespace Sitecore.UniversalTrackerClient.Entities
 {
-    public class UTOutcome : UTEvent, IUTOutcome
+    using System;
+    using System.Collections.Generic;
+
+    public class UTCampaign : UTEvent, IUTCampaign
     {
 
-        private UTOutcome()
+        private UTCampaign()
         {
         }
 
-        public UTOutcome(IUTEvent utEvent, string currencyCode, decimal monetaryValue) 
-            : base  (
+        public UTCampaign(IUTEvent utEvent, string campaignDefinitionId)
+            : base(
                 utEvent.Timestamp,
                 utEvent.CustomValues,
                 utEvent.DefinitionId,
@@ -19,26 +22,19 @@ namespace Sitecore.UniversalTrackerClient.Entities
                 utEvent.Text,
                 utEvent.Duration,
                 utEvent.TrackingInteractionId,
-                "outcome"
+                "campaign"
             )
         {
-            this.CurrencyCode = currencyCode;
-            this.MonetaryValue = monetaryValue;
+            this.CampaignDefinitionId = campaignDefinitionId;
         }
 
-        public string CurrencyCode
+        public string CampaignDefinitionId
         {
             get;
             private set;
         }
 
-        public decimal MonetaryValue
-        {
-            get;
-            private set;
-        }
-
-        public IUTOutcome DeepCopyUTOutcome()
+        public IUTCampaign DeepCopyUTCampaign()
         {
             var utEvent = new UTEvent(
                 this.Timestamp,
@@ -53,15 +49,14 @@ namespace Sitecore.UniversalTrackerClient.Entities
             );
 
 
-            var utOutcome = new UTOutcome(
+            var utcamapign = new UTCampaign(
                 utEvent,
-                this.CurrencyCode,
-                this.MonetaryValue
+                this.CampaignDefinitionId
             );
 
-            return utOutcome;
+            return utcamapign;
         }
 
-       
+
     }
 }

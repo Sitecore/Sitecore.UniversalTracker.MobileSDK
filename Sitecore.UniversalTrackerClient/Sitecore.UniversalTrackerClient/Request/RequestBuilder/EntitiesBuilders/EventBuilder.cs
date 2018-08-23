@@ -28,7 +28,8 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
                     this.EventParametersAccumulator.EngagementValue,
                     this.EventParametersAccumulator.ParentEventId,
                     this.EventParametersAccumulator.Text,
-                    this.EventParametersAccumulator.Duration
+                    this.EventParametersAccumulator.Duration,
+                    this.EventParametersAccumulator.TrackingInteractionId
                 );
 
 

@@ -77,6 +77,53 @@
             return new TrackSearchParameters(mergedSessionConfig, utSearch);
         }
 
+        public ITrackCampaignRequest FillTrackCampaignGaps(ITrackCampaignRequest userRequest)
+        {
+
+            var utCampaign = userRequest.Campaign.DeepCopyUTCampaign();
+
+            //order matters!
+            IUTSessionConfig mergedSessionConfig = this.SessionConfigMerger.FillSessionConfigGaps(userRequest.SessionConfig);
+
+            var utEvent = this.ApplyActiveInteraction(utCampaign, mergedSessionConfig);
+            utEvent = this.ApplyDeviceIdentifier(utEvent);
+
+            utCampaign = new UTCampaign(utEvent, utCampaign.CampaignDefinitionId);
+
+            return new TrackCampaignParameters(mergedSessionConfig, utCampaign);
+        }
+
+        public ITrackDownloadRequest FillTrackDownloadGaps(ITrackDownloadRequest userRequest)
+        {
+
+            var utDownload = userRequest.Download.DeepCopyUTDownload();
+
+            //order matters!
+            IUTSessionConfig mergedSessionConfig = this.SessionConfigMerger.FillSessionConfigGaps(userRequest.SessionConfig);
+
+            var utEvent = this.ApplyActiveInteraction(utDownload, mergedSessionConfig);
+            utEvent = this.ApplyDeviceIdentifier(utEvent);
+
+            utDownload = new UTDownload(utEvent);
+
+            return new TrackDownloadParameters(mergedSessionConfig, utDownload);
+        }
+
+        public ITrackGoalRequest FillTrackGoalGaps(ITrackGoalRequest userRequest)
+        {
+
+            var utGoal = userRequest.Goal.DeepCopyUTGoal();
+
+            //order matters!
+            IUTSessionConfig mergedSessionConfig = this.SessionConfigMerger.FillSessionConfigGaps(userRequest.SessionConfig);
+
+            var utEvent = this.ApplyActiveInteraction(utGoal, mergedSessionConfig);
+            utEvent = this.ApplyDeviceIdentifier(utEvent);
+
+            utGoal = new UTGoal(utEvent);
+
+            return new TrackGoalParameters(mergedSessionConfig, utGoal);
+        }
 
         public ITrackInteractionRequest FillTrackInteractionGaps(ITrackInteractionRequest userRequest)
         {
@@ -103,8 +150,8 @@
                 utEvent.ParentEventId,
                 utEvent.Text,
                 utEvent.Duration,
-                utEvent.type,
-                sessionConfig.ActiveInteractionId
+                sessionConfig.ActiveInteractionId,
+                utEvent.type
             );
 
             return mergedEvent;
@@ -143,8 +190,8 @@
                 utEvent.ParentEventId,
                 utEvent.Text,
                 utEvent.Duration,
-                utEvent.type,
-                utEvent.TrackingInteractionId
+                utEvent.TrackingInteractionId,
+                utEvent.type
             );
 
             return mergedEvent;

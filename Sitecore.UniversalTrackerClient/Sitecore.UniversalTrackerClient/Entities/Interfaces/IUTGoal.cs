@@ -1,8 +1,8 @@
 ﻿using System;
 namespace Sitecore.UniversalTrackerClient.Entities
 {
-    public interface IUTDownloadEvent : IUTEvent
+    public interface IUTGoal : IUTEvent
     {
-        
+        IUTGoal DeepCopyUTGoal();
     }
 }

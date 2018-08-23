@@ -137,12 +137,12 @@ namespace Sitecore.UniversalTrackerClient
 
             ITrackEventRequest requestCopy = request.DeepCopyTrackEventRequest();
 
+            ITrackEventRequest autocompletedRequest = this.requestMerger.FillTrackEventGaps(requestCopy);
+
             if ( this.InteractionNotExists() )
             {
                 return await this.CreateInteractionAndSentEventAsync(request.Event, cancelToken);
             }
-
-            ITrackEventRequest autocompletedRequest = this.requestMerger.FillTrackEventGaps(requestCopy);
 
 			var urlBuilder = new TrackEventUrlBuilder<ITrackEventRequest>(this.utGrammar);
             var taskFlow = new TrackEventTask(urlBuilder, this.httpClient);
@@ -153,6 +153,27 @@ namespace Sitecore.UniversalTrackerClient
         public async Task<UTResponse> TrackLocationEventAsync(ITrackLocationEventRequest request, CancellationToken cancelToken = default(CancellationToken))
         {
             return await this.TrackEventAsync(request, cancelToken);
+        }
+
+        public async Task<UTResponse> TrackGoalAsync(ITrackGoalRequest request, CancellationToken cancelToken = default(CancellationToken))
+        {
+            BaseValidator.CheckNullAndThrow(request, this.GetType().Name + ".GoalRequest");
+
+            ITrackGoalRequest requestCopy = request.DeepCopyTrackGoalRequest();
+
+            ITrackGoalRequest autocompletedRequest = this.requestMerger.FillTrackGoalGaps(requestCopy);
+
+
+            //FIXME: @igk
+            if (this.InteractionNotExists())
+            {
+                return await this.CreateInteractionAndSentEventAsync(request.Goal, cancelToken);
+            }
+
+            var urlBuilder = new TrackEventUrlBuilder<ITrackGoalRequest>(this.utGrammar);
+            var taskFlow = new TrackGoalTask(urlBuilder, this.httpClient);
+
+            return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
         }
 
         public async  Task<UTResponse> TrackErrorEventAsync(ITrackErrorEventRequest request, CancellationToken cancelToken = default(CancellationToken))
@@ -166,13 +187,14 @@ namespace Sitecore.UniversalTrackerClient
 
             ITrackOutcomeRequest requestCopy = request.DeepCopyTrackOutcomeRequest();
 
-            //FIXNE: @igk
+            ITrackOutcomeRequest autocompletedRequest = this.requestMerger.FillTrackOutcomeGaps(requestCopy);
+
+
+            //FIXME: @igk
             if (this.InteractionNotExists())
             {
                 return await this.CreateInteractionAndSentEventAsync(request.Outcome, cancelToken);
             }
-
-            ITrackOutcomeRequest autocompletedRequest = this.requestMerger.FillTrackOutcomeGaps(requestCopy);
 
             var urlBuilder = new TrackEventUrlBuilder<ITrackOutcomeRequest>(this.utGrammar);
             var taskFlow = new TrackOutcomeTask(urlBuilder, this.httpClient);
@@ -186,13 +208,13 @@ namespace Sitecore.UniversalTrackerClient
 
             ITrackPageViewRequest requestCopy = request.DeepCopyTrackPageViewRequest();
 
-            //FIXNE: @igk
+            ITrackPageViewRequest autocompletedRequest = this.requestMerger.FillTrackPageViewGaps(requestCopy);
+
+            //FIXME: @igk
             if (this.InteractionNotExists())
             {
                 return await this.CreateInteractionAndSentEventAsync(request.PageView, cancelToken);
             }
-
-            ITrackPageViewRequest autocompletedRequest = this.requestMerger.FillTrackPageViewGaps(requestCopy);
 
             var urlBuilder = new TrackEventUrlBuilder<ITrackPageViewRequest>(this.utGrammar);
             var taskFlow = new TrackPageViewTask(urlBuilder, this.httpClient);
@@ -206,16 +228,56 @@ namespace Sitecore.UniversalTrackerClient
 
             ITrackSearchRequest requestCopy = request.DeepCopySearchRequest();
 
-            //FIXNE: @igk
+            ITrackSearchRequest autocompletedRequest = this.requestMerger.FillTrackSearchGaps(requestCopy);
+
+            //FIXME: @igk
             if (this.InteractionNotExists())
             {
                 return await this.CreateInteractionAndSentEventAsync(request.SearchEvent, cancelToken);
             }
 
-            ITrackSearchRequest autocompletedRequest = this.requestMerger.FillTrackSearchGaps(requestCopy);
-
             var urlBuilder = new TrackEventUrlBuilder<ITrackSearchRequest>(this.utGrammar);
             var taskFlow = new TrackSearchTask(urlBuilder, this.httpClient);
+
+            return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+        }
+
+        public async Task<UTResponse> TrackCampaignEventAsync(ITrackCampaignRequest request, CancellationToken cancelToken = default(CancellationToken))
+        {
+            BaseValidator.CheckNullAndThrow(request, this.GetType().Name + ".CampaignRequest");
+
+            ITrackCampaignRequest requestCopy = request.DeepCopyTrackCampaignRequest();
+
+            ITrackCampaignRequest autocompletedRequest = this.requestMerger.FillTrackCampaignGaps(requestCopy);
+
+            //FIXME: @igk
+            if (this.InteractionNotExists())
+            {
+                return await this.CreateInteractionAndSentEventAsync(request.Campaign, cancelToken);
+            }
+
+            var urlBuilder = new TrackEventUrlBuilder<ITrackCampaignRequest>(this.utGrammar);
+            var taskFlow = new TrackCampaignTask(urlBuilder, this.httpClient);
+
+            return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+        }
+
+        public async Task<UTResponse> TrackDownloadEventAsync(ITrackDownloadRequest request, CancellationToken cancelToken = default(CancellationToken))
+        {
+            BaseValidator.CheckNullAndThrow(request, this.GetType().Name + ".DownloadRequest");
+
+            ITrackDownloadRequest requestCopy = request.DeepCopyTrackDownloadRequest();
+
+            ITrackDownloadRequest autocompletedRequest = this.requestMerger.FillTrackDownloadGaps(requestCopy);
+
+            //FIXME: @igk
+            if (this.InteractionNotExists())
+            {
+                return await this.CreateInteractionAndSentEventAsync(request.Download, cancelToken);
+            }
+
+            var urlBuilder = new TrackEventUrlBuilder<ITrackDownloadRequest>(this.utGrammar);
+            var taskFlow = new TrackDownloadTask(urlBuilder, this.httpClient);
 
             return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
         }
