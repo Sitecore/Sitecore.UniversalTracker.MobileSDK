@@ -1,0 +1,77 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETPortable,Version=v4.5,Profile=Profile111": {
+      "Newtonsoft.Json/11.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Newtonsoft.Json/11.0.2": {
+      "sha512": "IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
+      "type": "package",
+      "path": "newtonsoft.json/11.0.2",
+      "files": [
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "newtonsoft.json.11.0.2.nupkg.sha512",
+        "newtonsoft.json.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "": [
+      "Newtonsoft.Json >= 11.0.2"
+    ],
+    ".NETPortable,Version=v4.5,Profile=Profile111": []
+  },
+  "packageFolders": {
+    "/Users/igk/.nuget/packages/": {}
+  },
+  "project": {
+    "restore": {
+      "projectUniqueName": "/Volumes/Sitecore/GitHub/SDKs/Mobile.UniversalTracker.SDK/Sitecore.UniversalTrackerClient/Sitecore.UniversalTrackerClient/Sitecore.UniversalTrackerClient.csproj",
+      "projectName": "Sitecore.UniversalTrackerClient",
+      "projectPath": "/Volumes/Sitecore/GitHub/SDKs/Mobile.UniversalTracker.SDK/Sitecore.UniversalTrackerClient/Sitecore.UniversalTrackerClient/Sitecore.UniversalTrackerClient.csproj",
+      "projectJsonPath": "/Volumes/Sitecore/GitHub/SDKs/Mobile.UniversalTracker.SDK/Sitecore.UniversalTrackerClient/Sitecore.UniversalTrackerClient/project.json",
+      "packagesPath": "/Users/igk/.nuget/packages/",
+      "projectStyle": "ProjectJson",
+      "configFilePaths": [
+        "/Users/igk/.config/NuGet/NuGet.Config"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      }
+    },
+    "dependencies": {
+      "Newtonsoft.Json": "11.0.2"
+    },
+    "frameworks": {
+      "portable45-net45+win8+wpa81": {}
+    }
+  }
+}
