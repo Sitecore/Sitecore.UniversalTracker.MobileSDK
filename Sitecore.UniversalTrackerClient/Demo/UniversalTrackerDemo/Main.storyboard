@@ -19,21 +19,21 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="197" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="57" y="55" width="300" height="30"/>
+                                <rect key="frame" x="57" y="155" width="300" height="30"/>
                                 <state key="normal" title="Send Base Event"/>
                                 <connections>
                                     <action selector="SendBaseEventTouchUpInside:" destination="BYZ-38-t0r" id="2214" eventType="touchUpInside"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1379" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="57" y="112" width="300" height="30"/>
+                                <rect key="frame" x="57" y="212" width="300" height="30"/>
                                 <state key="normal" title="Send Campaign Event"/>
                                 <connections>
                                     <action selector="SendCampaignEventTouchUpInside:" destination="BYZ-38-t0r" id="2213" eventType="touchUpInside"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1381" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="57" y="168" width="300" height="30"/>
+                                <rect key="frame" x="57" y="268" width="300" height="30"/>
                                 <state key="normal" title="Send Location Event"/>
                                 <connections>
                                     <action selector="SendLocationEventTouchUpInside:" destination="BYZ-38-t0r" id="2212" eventType="touchUpInside"/>
@@ -43,7 +43,7 @@
                         <constraints>
                             <constraint id="1972" firstItem="197" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="37"/>
                             <constraint id="1973" firstAttribute="trailingMargin" secondItem="197" secondAttribute="trailing" constant="37"/>
-                            <constraint id="1976" firstItem="197" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="55"/>
+                            <constraint id="1976" firstItem="197" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="155"/>
                             <constraint id="1977" firstItem="1379" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="37"/>
                             <constraint id="1978" firstAttribute="trailingMargin" secondItem="1379" secondAttribute="trailing" constant="37"/>
                             <constraint id="1979" firstItem="1379" firstAttribute="top" secondItem="197" secondAttribute="centerY" constant="42"/>

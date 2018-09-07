@@ -13,6 +13,8 @@ namespace UniversalTrackerDemo
     {
 
         ISitecoreUTSession session;
+        private string someUDID = "01f8ffbf-d662-4a87-beee-413307055c48";
+
 
         protected ViewController(IntPtr handle) : base(handle)
         {
@@ -26,16 +28,13 @@ namespace UniversalTrackerDemo
             this.CreateSession();
 
             //this.SendAllRequests();
-
         }
 
 
 
         private async void SendBaseEventRequest()
         {
-            string definitionId = "01f8ffbf-d662-4a87-beee-413307055c48";
-
-            var eventRequest = UTRequestBuilder.EventWithDefenitionId(definitionId)
+            var eventRequest = UTRequestBuilder.EventWithDefenitionId(someUDID)
                                                .AddCustomValues("key1", "value1")
                                                .Timestamp(DateTime.Now)
                                                .AddCustomValues("igk", "demo")
@@ -43,14 +42,13 @@ namespace UniversalTrackerDemo
 
             var eventResponse = await session.TrackEventAsync(eventRequest);
 
+
             Console.WriteLine("Track EVENT RESULT: " + eventResponse.StatusCode.ToString());
         }
 
         private async void SendCampaignEventRequest()
         {
-            string campaignID = "01f8ffbf-d662-4a87-beee-413307055c48";
-
-            var campaignEvent = UTRequestBuilder.CampaignEvent(campaignID)
+            var campaignEvent = UTRequestBuilder.CampaignEvent(someUDID)
                                                 .Build();
 
             var campaignResponse = await session.TrackCampaignEventAsync(campaignEvent);
@@ -84,7 +82,7 @@ namespace UniversalTrackerDemo
                                                       .Contact("jsdemo", "demo")
                                                       .Build();
 
-            this.session = SitecoreUTSessionBuilder.SessionWithHost("https://utwebtests")
+            this.session = SitecoreUTSessionBuilder.SessionWithHost("https://scutdemocollectionolk.azurewebsites.net")  //https://utwebtests
                                                    .DefaultInteraction(defaultInteraction)
                                                    .DeviceIdentifier(UIDevice.CurrentDevice.IdentifierForVendor.ToString())
                                                    .BuildSession();
@@ -119,15 +117,15 @@ namespace UniversalTrackerDemo
            
                 //#region Track_Interaction
 
-                //var interactionRequest = UTRequestBuilder.Interaction(UTEvent.GetEmptyEvent())
-                //                                         .ChannelId("27b4e611-a73d-4a95-b20a-811d295bdf65")
-                //                                         .EndDateTime(DateTime.Now)
-                //                                         .Initiator(InteractionInitiator.Contact)
-                //                                         .Contact("jsdemo", "demo")
-                //                                         .Build();
+                var interactionRequest = UTRequestBuilder.Interaction(UTEvent.GetEmptyEvent())
+                                                         .ChannelId("27b4e611-a73d-4a95-b20a-811d295bdf65")
+                                                         .EndDateTime(DateTime.Now)
+                                                         .Initiator(InteractionInitiator.Contact)
+                                                         .Contact("jsdemo", "demo")
+                                                         .Build();
 
-                //var interactionResponse = await session.TrackInteractionAsync(interactionRequest);
-                //Console.WriteLine("Track INTERACTION RESULT: " + interactionResponse.StatusCode.ToString());
+                var interactionResponse = await session.TrackInteractionAsync(interactionRequest);
+                Console.WriteLine("Track INTERACTION RESULT: " + interactionResponse.StatusCode.ToString());
 
 
                 //#endregion Track_Interaction
