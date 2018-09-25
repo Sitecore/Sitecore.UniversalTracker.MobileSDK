@@ -23,7 +23,7 @@ namespace IotPoc
                                                       .Contact("jsdemo", "demo")
                                                       .Build();
 
-            using (session = SitecoreUTSessionBuilder.SessionWithHost("https://utwebtests")
+            using (var session = SitecoreUTSessionBuilder.SessionWithHost("https://utwebtests")
                                                    .DefaultInteraction(defaultInteraction)
                                                    .BuildSession()
                   )

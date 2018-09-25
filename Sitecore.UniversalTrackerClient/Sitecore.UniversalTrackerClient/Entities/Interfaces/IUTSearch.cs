@@ -13,4 +13,5 @@ namespace Sitecore.UniversalTrackerClient.Entities
 
         IUTSearch DeepCopyUTSearch();
     }
+   
 }

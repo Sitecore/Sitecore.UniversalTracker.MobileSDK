@@ -43,6 +43,11 @@ namespace UniversalTrackerDemo
             var eventResponse = await session.TrackEventAsync(eventRequest);
 
 
+            var okCancelAlertController = UIAlertController.Create("Event response code", eventResponse.StatusCode.ToString(), UIAlertControllerStyle.Alert);
+            okCancelAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, alert => Console.WriteLine("Ok")));
+            PresentViewController(okCancelAlertController, true, null);
+
+
             Console.WriteLine("Track EVENT RESULT: " + eventResponse.StatusCode.ToString());
         }
 
@@ -82,7 +87,7 @@ namespace UniversalTrackerDemo
                                                       .Contact("jsdemo", "demo")
                                                       .Build();
 
-            this.session = SitecoreUTSessionBuilder.SessionWithHost("https://scutdemocollectionolk.azurewebsites.net")  //https://utwebtests
+            this.session = SitecoreUTSessionBuilder.SessionWithHost("http://utwebtests")  //https://utwebtests
                                                    .DefaultInteraction(defaultInteraction)
                                                    .DeviceIdentifier(UIDevice.CurrentDevice.IdentifierForVendor.ToString())
                                                    .BuildSession();

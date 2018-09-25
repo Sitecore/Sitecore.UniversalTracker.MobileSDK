@@ -61,9 +61,11 @@
       "packagesPath": "/Users/igk/.nuget/packages/",
       "projectStyle": "ProjectJson",
       "configFilePaths": [
+        "/Volumes/Sitecore/GitHub/SDKs/Mobile.UniversalTracker.SDK/Sitecore.UniversalTrackerClient/.nuget/nuget.config",
         "/Users/igk/.config/NuGet/NuGet.Config"
       ],
       "sources": {
+        "/Users/igk/Desktop": {},
         "https://api.nuget.org/v3/index.json": {}
       }
     },
