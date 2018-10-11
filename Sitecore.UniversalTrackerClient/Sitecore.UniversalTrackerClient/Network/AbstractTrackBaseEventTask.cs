@@ -30,11 +30,16 @@
 
         public abstract string RequestContentInJSON(T request);
 
+        public virtual HttpMethod HTTPMethod()
+        {
+            return HttpMethod.Put;
+        }
+
         public HttpRequestMessage BuildRequestUrlForRequestAsync(T request, CancellationToken cancelToken)
         {
             var url = this.trackUrlBuilder.GetUrlForRequest(request);
 
-            HttpRequestMessage result = new HttpRequestMessage(HttpMethod.Put, url);
+            HttpRequestMessage result = new HttpRequestMessage(this.HTTPMethod(), url);
 
             string serializedContent = this.RequestContentInJSON(request);
 
