@@ -3,6 +3,7 @@
     public interface IUTGrammar
     {
         string AnalyticsInteractionEndpoint { get; }
+        string AnalyticsCompleteInteractionEndpoint { get; }
         string AnalyticsEventEndpoint { get; }
 
         string LatitudeFieldName { get; }

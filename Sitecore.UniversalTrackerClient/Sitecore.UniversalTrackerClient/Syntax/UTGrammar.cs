@@ -11,6 +11,7 @@
             UTGrammar result = new UTGrammar();
 
             result.AnalyticsInteractionEndpoint = "interaction";
+            result.AnalyticsCompleteInteractionEndpoint = "interaction/complete";
             result.AnalyticsEventEndpoint = "event";
 
             result.LatitudeFieldName = "utlatitude";
@@ -44,6 +45,7 @@
         }
 
         public string AnalyticsInteractionEndpoint  { get; private set; }
+        public string AnalyticsCompleteInteractionEndpoint { get; private set; }
         public string AnalyticsEventEndpoint        { get; private set; }
 
         public string LatitudeFieldName         { get; private set; }
