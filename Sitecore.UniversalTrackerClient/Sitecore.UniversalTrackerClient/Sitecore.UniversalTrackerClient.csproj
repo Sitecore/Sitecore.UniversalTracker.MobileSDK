@@ -143,6 +143,10 @@
     <Compile Include="Entities\Interfaces\IUTGoal.cs" />
     <Compile Include="Request\TrackGoalParameters.cs" />
     <Compile Include="Network\TrackGoalTask.cs" />
+    <Compile Include="Request\ICompleteInteractionRequest.cs" />
+    <Compile Include="Request\CompleteInteractionParameters.cs" />
+    <Compile Include="Request\UrlBuilders\CompleteInteractionUrlBuilder.cs" />
+    <Compile Include="Network\CompleteInteractionTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Syntax\" />

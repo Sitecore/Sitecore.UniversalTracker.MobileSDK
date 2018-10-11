@@ -23,6 +23,7 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
 
         public override T Build()
         {
+            this.CheckWholeObjectForCorrectnessOrThrow();
 
             Dictionary<string, string> customParameters = null;
 
@@ -48,6 +49,7 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
             var convertedResult = result as T;
             return convertedResult;
         }
+
     }
 }
 

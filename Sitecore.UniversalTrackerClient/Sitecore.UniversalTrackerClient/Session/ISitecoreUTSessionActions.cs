@@ -26,5 +26,7 @@
         Task<UTResponse> TrackErrorEventAsync(ITrackErrorEventRequest request, CancellationToken cancelToken = default(CancellationToken));
 
         Task<UTResponse> TrackInteractionAsync(ITrackInteractionRequest request, CancellationToken cancelToken = default(CancellationToken));
+
+        Task<UTResponse> CompleteCurrentInteractionAsync(CancellationToken cancelToken = default(CancellationToken));
     }
 }

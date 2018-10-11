@@ -202,6 +202,16 @@
             return this;
         }
 
+        public virtual void CheckWholeObjectForCorrectnessOrThrow()
+        {
+            BaseValidator.CheckForNullAndEmptyOrThrow(this.EventParametersAccumulator.DefinitionId, this.GetType().Name + ".DefinitionId");
+
+            if (this.EventParametersAccumulator.Timestamp == null)
+            {
+                this.Timestamp(DateTime.Now);
+            }
+        }
+
         public abstract T Build();
        
     }

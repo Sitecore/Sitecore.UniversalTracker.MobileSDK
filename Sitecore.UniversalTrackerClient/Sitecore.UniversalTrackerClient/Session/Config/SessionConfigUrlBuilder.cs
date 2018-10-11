@@ -18,7 +18,7 @@
 
 			this.ValidateRequest(config);
             
-			string autocompletedInstanceUrl = SessionConfigValidator.AutocompleteInstanceUrl(config.InstanceUrl);
+			string autocompletedInstanceUrl = SessionConfigValidator.AutocompleteInstanceUrlWithHttps(config.InstanceUrl);
 
             return autocompletedInstanceUrl.ToLowerInvariant();
         }

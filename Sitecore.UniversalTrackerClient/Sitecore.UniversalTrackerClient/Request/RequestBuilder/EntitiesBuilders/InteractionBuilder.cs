@@ -16,9 +16,6 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
             this.InteractioinParametersAccumulator = new UTInteraction(
                 this.InteractioinParametersAccumulator.CampaignId,
                 this.InteractioinParametersAccumulator.ChannelId,
-                this.InteractioinParametersAccumulator.EngagementValue,
-                this.InteractioinParametersAccumulator.StartDateTime,
-                this.InteractioinParametersAccumulator.EndDateTime,
                 this.EventsAggregator,
                 this.InteractioinParametersAccumulator.Initiator,
                 this.InteractioinParametersAccumulator.UserAgent,

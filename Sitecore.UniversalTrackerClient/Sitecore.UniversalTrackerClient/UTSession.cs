@@ -147,7 +147,11 @@ namespace Sitecore.UniversalTrackerClient
 			var urlBuilder = new TrackEventUrlBuilder<ITrackEventRequest>(this.utGrammar);
             var taskFlow = new TrackEventTask(urlBuilder, this.httpClient);
 
-            return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+            var response = await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+
+            this.CheckResponseForValidInteraction(response);
+
+            return response;
         }
 
         public async Task<UTResponse> TrackLocationEventAsync(ITrackLocationEventRequest request, CancellationToken cancelToken = default(CancellationToken))
@@ -173,7 +177,11 @@ namespace Sitecore.UniversalTrackerClient
             var urlBuilder = new TrackEventUrlBuilder<ITrackGoalRequest>(this.utGrammar);
             var taskFlow = new TrackGoalTask(urlBuilder, this.httpClient);
 
-            return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+            var response = await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+
+            this.CheckResponseForValidInteraction(response);
+
+            return response;
         }
 
         public async  Task<UTResponse> TrackErrorEventAsync(ITrackErrorEventRequest request, CancellationToken cancelToken = default(CancellationToken))
@@ -199,7 +207,11 @@ namespace Sitecore.UniversalTrackerClient
             var urlBuilder = new TrackEventUrlBuilder<ITrackOutcomeRequest>(this.utGrammar);
             var taskFlow = new TrackOutcomeTask(urlBuilder, this.httpClient);
 
-            return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+            var response = await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+
+            this.CheckResponseForValidInteraction(response);
+
+            return response;
         }
 
         public async Task<UTResponse> TrackPageViewEventAsync(ITrackPageViewRequest request, CancellationToken cancelToken = default(CancellationToken))
@@ -219,7 +231,11 @@ namespace Sitecore.UniversalTrackerClient
             var urlBuilder = new TrackEventUrlBuilder<ITrackPageViewRequest>(this.utGrammar);
             var taskFlow = new TrackPageViewTask(urlBuilder, this.httpClient);
 
-            return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+            var response = await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+
+            this.CheckResponseForValidInteraction(response);
+
+            return response;
         }
 
         public async Task<UTResponse> TrackSearchEventAsync(ITrackSearchRequest request, CancellationToken cancelToken = default(CancellationToken))
@@ -239,7 +255,11 @@ namespace Sitecore.UniversalTrackerClient
             var urlBuilder = new TrackEventUrlBuilder<ITrackSearchRequest>(this.utGrammar);
             var taskFlow = new TrackSearchTask(urlBuilder, this.httpClient);
 
-            return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+            var response = await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+
+            this.CheckResponseForValidInteraction(response);
+
+            return response;
         }
 
         public async Task<UTResponse> TrackCampaignEventAsync(ITrackCampaignRequest request, CancellationToken cancelToken = default(CancellationToken))
@@ -259,7 +279,11 @@ namespace Sitecore.UniversalTrackerClient
             var urlBuilder = new TrackEventUrlBuilder<ITrackCampaignRequest>(this.utGrammar);
             var taskFlow = new TrackCampaignTask(urlBuilder, this.httpClient);
 
-            return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+            var response = await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+
+            this.CheckResponseForValidInteraction(response);
+
+            return response;
         }
 
         public async Task<UTResponse> TrackDownloadEventAsync(ITrackDownloadRequest request, CancellationToken cancelToken = default(CancellationToken))
@@ -279,7 +303,11 @@ namespace Sitecore.UniversalTrackerClient
             var urlBuilder = new TrackEventUrlBuilder<ITrackDownloadRequest>(this.utGrammar);
             var taskFlow = new TrackDownloadTask(urlBuilder, this.httpClient);
 
-            return await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+            var response = await RestApiCallFlow.LoadRequestFromNetworkFlow(autocompletedRequest, taskFlow, cancelToken);
+
+            this.CheckResponseForValidInteraction(response);
+
+            return response;
         }
 
         #endregion TrackEvent
@@ -308,9 +336,6 @@ namespace Sitecore.UniversalTrackerClient
                 (
                 this.defaultInteraction.CampaignId,
                 this.defaultInteraction.ChannelId,
-                this.defaultInteraction.EngagementValue,
-                this.defaultInteraction.StartDateTime,
-                this.defaultInteraction.EndDateTime,
                 events,
                 this.defaultInteraction.Initiator,
                 this.defaultInteraction.UserAgent,
@@ -345,6 +370,36 @@ namespace Sitecore.UniversalTrackerClient
             }
 
             return response;
+        }
+
+        public async Task<UTResponse> CompleteCurrentInteractionAsync(CancellationToken cancelToken = default(CancellationToken))
+        {
+            if (this.InteractionNotExists())
+            {
+                return new UTResponse(400, "No active interaction found", null);
+            }
+
+            ICompleteInteractionRequest request = new CompleteInteractionParameters(this.sessionConfig);
+
+            var urlBuilder = new CompleteInteractionUrlBuilder<ICompleteInteractionRequest>(this.utGrammar);
+            var taskFlow = new CompleteInteractionTask(urlBuilder, this.httpClient);
+
+            var response = await RestApiCallFlow.LoadRequestFromNetworkFlow(request, taskFlow, cancelToken);
+            if (response.Successful)
+            {
+                this.sessionConfig = new UTSessionConfig(this.sessionConfig.InstanceUrl);
+            }
+
+            return response;
+        }
+
+        private void CheckResponseForValidInteraction(UTResponse response)
+        {
+            //FIXME: @igk a special error code required!!!
+            if (response.Description != null && response.Description.Contains("not a valid tracking interaction ID"))
+            {
+                this.sessionConfig = new UTSessionConfig(this.sessionConfig.InstanceUrl);
+            }
         }
 
         private bool InteractionNotExists()

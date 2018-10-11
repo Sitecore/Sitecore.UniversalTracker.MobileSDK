@@ -26,6 +26,8 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
         {
 #warning @igk check that all required fields is not null here!!!
 
+            this.CheckWholeObjectForCorrectnessOrThrow();
+
             Dictionary<string, string> customParameters = null;
 
             if (this.FieldsRawValuesByName != null)

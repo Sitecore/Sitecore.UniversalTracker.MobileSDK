@@ -16,6 +16,8 @@ namespace Sitecore.UniversalTrackerClient.Request.RequestBuilder
 
         public override ITrackDownloadRequest Build()
         {
+            this.CheckWholeObjectForCorrectnessOrThrow();
+
             Dictionary<string, string> customParameters = null;
 
             if (this.FieldsRawValuesByName != null)

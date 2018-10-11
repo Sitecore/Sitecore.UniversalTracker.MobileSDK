@@ -65,7 +65,7 @@
         "/Users/igk/.config/NuGet/NuGet.Config"
       ],
       "sources": {
-        "/Users/igk/Desktop": {},
+        "/Users/igk/Desktop/LocalNuget": {},
         "https://api.nuget.org/v3/index.json": {}
       }
     },

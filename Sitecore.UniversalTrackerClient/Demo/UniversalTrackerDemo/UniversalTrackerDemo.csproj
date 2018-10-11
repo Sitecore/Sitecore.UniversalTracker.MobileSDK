@@ -89,9 +89,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.UniversalTrackerClient">
-      <HintPath>..\..\packages\Sitecore.UniversalTracker.MobileSDK.1.0.0\lib\portable-win+net4+sl5+wp8\Sitecore.UniversalTrackerClient.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -116,6 +113,12 @@
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Sitecore.UniversalTrackerClient\Sitecore.UniversalTrackerClient.csproj">
+      <Project>{50A005FB-AA3C-4F37-9B98-E778E693B3BC}</Project>
+      <Name>Sitecore.UniversalTrackerClient</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
