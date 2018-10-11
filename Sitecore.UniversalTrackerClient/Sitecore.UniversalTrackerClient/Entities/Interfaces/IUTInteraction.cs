@@ -9,13 +9,19 @@ namespace Sitecore.UniversalTrackerClient.Entities
 
         IUTInteraction DeepCopyUTInteraction();
 
-		/// <summary>
+        //NOT INCLUDED PROPERTIES
+        //      int? EngagementValue { get; } //@igk calculated field - summ of EngagementValues of included events
+        //      DateTime? StartDateTime { get; } //@igk calculated field - StartDateTime of earliest included event
+        //      DateTime? EndDateTime { get; } //@igk calculated field - max of StartDateTime+Duration of included event
+
+
+        /// <summary>
         /// Returns campaign's GUID.
         /// For example: "110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9"
         /// 
         /// The value is case insensitive.
         /// </summary>
-		string CampaignId { get; }
+        string CampaignId { get; }
 
 		/// <summary>
         /// Returns channel's GUID.
@@ -25,38 +31,13 @@ namespace Sitecore.UniversalTrackerClient.Entities
         /// </summary>
 		string ChannelId { get; }
 
-		/// <summary>
-        ///     Gets or sets the total engagement value collected in this interaction
-        /// </summary>
-        /// <value>
-        ///     The engagement value.
-        /// </value>
-		int? EngagementValue { get; }
-
-		/// <summary>
-        ///     Gets or sets the point in time where this interaction started.
-        /// </summary>
-        /// <value>
-        ///     The start date time.
-        /// </value>
-		DateTime? StartDateTime { get; }
-
-		/// <summary>
-        ///     Gets or sets the point in time where this interaction ended. For the web channel this is when the session ended.
-        ///     Different logic may apply to different channels.
-        /// </summary>
-        /// <value>
-        ///     The point in time the interaction ended.
-        /// </value>
-		DateTime? EndDateTime { get; }
-
         /// <summary>
         ///     The <see cref="Event" />s that occured in this interaction, including goals and outcomes.
         /// </summary>
         /// <value>
         ///     A collection of events.
         /// </value>
-		Collection<IUTEvent> Events { get; }
+        Collection<IUTEvent> Events { get; }
 
 		/// <summary>
         ///     Gets or sets the initiator of this interaction.

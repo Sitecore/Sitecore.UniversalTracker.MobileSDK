@@ -50,9 +50,6 @@
             this.InteractioinParametersAccumulator = new UTInteraction(
                 campaignId,
                 this.InteractioinParametersAccumulator.ChannelId,
-                this.InteractioinParametersAccumulator.EngagementValue,
-                this.InteractioinParametersAccumulator.StartDateTime,
-                this.InteractioinParametersAccumulator.EndDateTime,
                 this.InteractioinParametersAccumulator.Events,
                 this.InteractioinParametersAccumulator.Initiator,
                 this.InteractioinParametersAccumulator.UserAgent,
@@ -72,50 +69,6 @@
             this.InteractioinParametersAccumulator = new UTInteraction(
                 this.InteractioinParametersAccumulator.CampaignId,
                 channelId,
-                this.InteractioinParametersAccumulator.EngagementValue,
-                this.InteractioinParametersAccumulator.StartDateTime,
-                this.InteractioinParametersAccumulator.EndDateTime,
-                this.InteractioinParametersAccumulator.Events,
-                this.InteractioinParametersAccumulator.Initiator,
-                this.InteractioinParametersAccumulator.UserAgent,
-                this.InteractioinParametersAccumulator.VenueId,
-                this.InteractioinParametersAccumulator.Contact
-            );
-
-            return this;
-        }
-
-        public IInteractionParametersBuilder<T> EndDateTime(DateTime endDateTime)
-        {
-            #warning @igk check initiator for twice!???
-
-            this.InteractioinParametersAccumulator = new UTInteraction(
-                this.InteractioinParametersAccumulator.CampaignId,
-                this.InteractioinParametersAccumulator.ChannelId,
-                this.InteractioinParametersAccumulator.EngagementValue,
-                this.InteractioinParametersAccumulator.StartDateTime,
-                endDateTime,
-                this.InteractioinParametersAccumulator.Events,
-                this.InteractioinParametersAccumulator.Initiator,
-                this.InteractioinParametersAccumulator.UserAgent,
-                this.InteractioinParametersAccumulator.VenueId,
-                this.InteractioinParametersAccumulator.Contact
-            );
-
-            return this;
-        }
-
-        public IInteractionParametersBuilder<T> EngagementValue(int engagementValue)
-        {
-            BaseValidator.CheckForTwiceSetAndThrow(this.InteractioinParametersAccumulator.EngagementValue,
-                                                   this.GetType().Name + ".engagementValue");
-
-            this.InteractioinParametersAccumulator = new UTInteraction(
-                this.InteractioinParametersAccumulator.CampaignId,
-                this.InteractioinParametersAccumulator.ChannelId,
-                engagementValue,
-                this.InteractioinParametersAccumulator.StartDateTime,
-                this.InteractioinParametersAccumulator.EndDateTime,
                 this.InteractioinParametersAccumulator.Events,
                 this.InteractioinParametersAccumulator.Initiator,
                 this.InteractioinParametersAccumulator.UserAgent,
@@ -134,31 +87,8 @@
             this.InteractioinParametersAccumulator = new UTInteraction(
                 this.InteractioinParametersAccumulator.CampaignId,
                 this.InteractioinParametersAccumulator.ChannelId,
-                this.InteractioinParametersAccumulator.EngagementValue,
-                this.InteractioinParametersAccumulator.StartDateTime,
-                this.InteractioinParametersAccumulator.EndDateTime,
                 this.InteractioinParametersAccumulator.Events,
                 initiator,
-                this.InteractioinParametersAccumulator.UserAgent,
-                this.InteractioinParametersAccumulator.VenueId,
-                this.InteractioinParametersAccumulator.Contact
-            );
-
-            return this;
-        }
-
-        public IInteractionParametersBuilder<T> StartDateTime(DateTime startDateTime)
-        {
-            #warning @igk check initiator for twice!???
-
-            this.InteractioinParametersAccumulator = new UTInteraction(
-                this.InteractioinParametersAccumulator.CampaignId,
-                this.InteractioinParametersAccumulator.ChannelId,
-                this.InteractioinParametersAccumulator.EngagementValue,
-                startDateTime,
-                this.InteractioinParametersAccumulator.EndDateTime,
-                this.InteractioinParametersAccumulator.Events,
-                this.InteractioinParametersAccumulator.Initiator,
                 this.InteractioinParametersAccumulator.UserAgent,
                 this.InteractioinParametersAccumulator.VenueId,
                 this.InteractioinParametersAccumulator.Contact
@@ -176,9 +106,6 @@
             this.InteractioinParametersAccumulator = new UTInteraction(
                 this.InteractioinParametersAccumulator.CampaignId,
                 this.InteractioinParametersAccumulator.ChannelId,
-                this.InteractioinParametersAccumulator.EngagementValue,
-                this.InteractioinParametersAccumulator.StartDateTime,
-                this.InteractioinParametersAccumulator.EndDateTime,
                 this.InteractioinParametersAccumulator.Events,
                 this.InteractioinParametersAccumulator.Initiator,
                 userAgent,
@@ -198,9 +125,6 @@
             this.InteractioinParametersAccumulator = new UTInteraction(
                 this.InteractioinParametersAccumulator.CampaignId,
                 this.InteractioinParametersAccumulator.ChannelId,
-                this.InteractioinParametersAccumulator.EngagementValue,
-                this.InteractioinParametersAccumulator.StartDateTime,
-                this.InteractioinParametersAccumulator.EndDateTime,
                 this.InteractioinParametersAccumulator.Events,
                 this.InteractioinParametersAccumulator.Initiator,
                 this.InteractioinParametersAccumulator.UserAgent,
@@ -213,6 +137,9 @@
 
         public IInteractionParametersBuilder<T> Contact(string source, string identifier)
         {
+            BaseValidator.CheckForNullEmptyAndWhiteSpaceOrThrow(source, this.GetType().Name + ".Contact.Source");
+            BaseValidator.CheckForNullEmptyAndWhiteSpaceOrThrow(identifier, this.GetType().Name + ".Contact.Identifier");
+
             UTContact contact = new UTContact();
             contact.Source = source;
             contact.Identifier = identifier;
