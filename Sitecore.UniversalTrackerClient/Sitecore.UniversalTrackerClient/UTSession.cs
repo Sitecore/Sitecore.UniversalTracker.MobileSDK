@@ -396,7 +396,7 @@ namespace Sitecore.UniversalTrackerClient
         private void CheckResponseForValidInteraction(UTResponse response)
         {
             //FIXME: @igk a special error code required!!!
-            if (response.Description != null && response.Description.Contains("not a valid tracking interaction ID"))
+            if (response.Errors != null && response.Errors.Count > 0 && response.Errors[0].Contains("not a valid tracking interaction ID"))
             {
                 this.sessionConfig = new UTSessionConfig(this.sessionConfig.InstanceUrl);
             }

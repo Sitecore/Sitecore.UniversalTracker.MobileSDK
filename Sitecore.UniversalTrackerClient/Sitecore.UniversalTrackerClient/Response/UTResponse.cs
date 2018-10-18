@@ -4,13 +4,11 @@ namespace Sitecore.UniversalTrackerClient.Response
 {
     public class UTResponse 
     {
-        
-#warning not implemented!!!
-
         public UTResponse(int responseCode, string description, Collection<string> errors)
         {
             this.StatusCode = responseCode;
             this.Description = description;
+            this.Errors = errors;
         }
 
         public string Description

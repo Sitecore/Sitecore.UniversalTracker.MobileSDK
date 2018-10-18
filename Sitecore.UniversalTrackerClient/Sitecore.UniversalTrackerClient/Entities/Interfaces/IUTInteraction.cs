@@ -10,9 +10,11 @@ namespace Sitecore.UniversalTrackerClient.Entities
         IUTInteraction DeepCopyUTInteraction();
 
         //NOT INCLUDED PROPERTIES
+        //http://tfs4dk1.dk.sitecore.net/tfs/PD-Products-01/Products/_workitems?id=257889&_a=edit
         //      int? EngagementValue { get; } //@igk calculated field - summ of EngagementValues of included events
         //      DateTime? StartDateTime { get; } //@igk calculated field - StartDateTime of earliest included event
         //      DateTime? EndDateTime { get; } //@igk calculated field - max of StartDateTime+Duration of included event
+        //      TimeSpan Duration //@igk calculated field - EndDateTime - StartDateTime
 
 
         /// <summary>
