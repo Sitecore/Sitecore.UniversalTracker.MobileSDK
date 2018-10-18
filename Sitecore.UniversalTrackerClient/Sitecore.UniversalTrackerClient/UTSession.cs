@@ -141,7 +141,8 @@ namespace Sitecore.UniversalTrackerClient
 
             if ( this.InteractionNotExists() )
             {
-                return await this.CreateInteractionAndSentEventAsync(request.Event, cancelToken);
+                UTResponse uTResponse = await this.CreateInteractionAndSentEventAsync(request.Event, cancelToken);
+                return uTResponse;
             }
 
 			var urlBuilder = new TrackEventUrlBuilder<ITrackEventRequest>(this.utGrammar);
