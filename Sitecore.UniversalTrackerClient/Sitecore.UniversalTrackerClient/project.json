@@ -1,9 +1,0 @@
-﻿{
-  "dependencies": {
-    "Microsoft.NETCore.Portable.Compatibility": "1.0.1",
-    "Newtonsoft.Json": "11.0.2"
-  },
-  "frameworks": {
-    "netstandard1.5": {}
-  }
-}

@@ -8,6 +8,6 @@
 		<PackageReference Include="Xamarin.IoT.Sdk" Version="1.0.0" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\Sitecore.UniversalTrackerClient\Sitecore.UniversalTrackerClient.csproj" />
+	  <ProjectReference Include="..\..\Library\Sitecore.UniversalTracker.SDK.NETStandard\Sitecore.UniversalTracker.SDK.NETStandard.csproj" />
 	</ItemGroup>
 </Project>

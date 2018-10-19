@@ -98,9 +98,9 @@
     <Compile Include="UnitTestAppDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sitecore.UniversalTrackerClient\Sitecore.UniversalTrackerClient.csproj">
-      <Project>{50A005FB-AA3C-4F37-9B98-E778E693B3BC}</Project>
-      <Name>Sitecore.UniversalTrackerClient</Name>
+    <ProjectReference Include="..\..\Library\Sitecore.UniversalTracker.SDK.NETStandard\Sitecore.UniversalTracker.SDK.NETStandard.csproj">
+      <Project>{A35AFFC9-7453-4E9C-8503-ECF4AB8FC121}</Project>
+      <Name>Sitecore.UniversalTracker.SDK.NETStandard</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\UniversalTrackerTestsShared\UniversalTracker.Tests.Shared.projitems" Label="Shared" Condition="Exists('..\UniversalTrackerTestsShared\UniversalTracker.Tests.Shared.projitems')" />

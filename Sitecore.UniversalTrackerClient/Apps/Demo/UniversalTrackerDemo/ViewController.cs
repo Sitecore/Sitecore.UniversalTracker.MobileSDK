@@ -57,6 +57,8 @@ namespace UniversalTrackerDemo
         private async void SendCampaignEventRequest()
         {
             var campaignEvent = UTRequestBuilder.CampaignEvent(someUDID)
+                                                .DefinitionId(someUDID)
+                                                .Timestamp(DateTime.Now)
                                                 .Build();
 
             var campaignResponse = await session.TrackCampaignEventAsync(campaignEvent);
