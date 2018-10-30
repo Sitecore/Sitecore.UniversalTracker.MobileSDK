@@ -23,13 +23,13 @@ The Universal Tracker SDK serves as an interface that connects the Universal Tra
     <releaseNotes>Initial release with base events support</releaseNotes>
 
     <copyright>Copyright 1999-2018 Sitecore</copyright> 
-    <tags>Sitecore Analitycs iOS Android PCL Xamarin</tags>
+    <tags>Sitecore Analitycs iOS Android NETStandard Xamarin</tags>
    
     <dependencies>
       <dependency id="Newtonsoft.Json" version="11.0.2"/>
     </dependencies>
   </metadata>
   <files>
-    <file src="..\..\Sitecore.UniversalTrackerClient\bin\Release\Sitecore.UniversalTrackerClient.dll" target="lib\portable-win+net4+sl5+wp8\"/>
+    <file src="../../Library/Sitecore.UniversalTracker.SDK.NETStandard/bin/Release/netstandard1.6/Sitecore.UniversalTracker.SDK.NETStandard.dll" target="lib\netstandard1.6\Sitecore.UniversalTracker.SDK.NETStandard.dll"/>
   </files>
 </package>
