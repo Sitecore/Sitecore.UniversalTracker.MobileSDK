@@ -323,18 +323,10 @@ namespace Sitecore.UniversalTrackerClient
 
             Collection<IUTEvent> events = new Collection<IUTEvent>();
 
-
-            //FIXME: @igk temporary fix, to support instance bug, remove this code after fix
-            //start code to remove
-
-            utEvent.type = null;
-
-            //end code to remove
-
             events.Add(utEvent);
 
             var interaction = new UTInteraction
-                (
+            (
                 this.defaultInteraction.CampaignId,
                 this.defaultInteraction.ChannelId,
                 events,

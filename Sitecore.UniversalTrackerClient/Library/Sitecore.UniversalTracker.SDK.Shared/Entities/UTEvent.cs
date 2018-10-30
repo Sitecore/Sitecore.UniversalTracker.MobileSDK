@@ -116,7 +116,7 @@ namespace Sitecore.UniversalTrackerClient.Entities
         public string type
         {
             get;
-            set; 
+            private set; 
         }
 
         public string TrackingInteractionId

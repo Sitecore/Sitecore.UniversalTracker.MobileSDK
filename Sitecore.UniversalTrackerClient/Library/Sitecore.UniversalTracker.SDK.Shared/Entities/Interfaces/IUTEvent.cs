@@ -81,7 +81,7 @@ namespace Sitecore.UniversalTrackerClient.Entities
 
 #warning FIXME:
         //FIXME: @igk backend bug, use upper case 'T' when fixed
-        string type { get; set; }
+        string type { get; }
 
         string TrackingInteractionId { get; }
     }
