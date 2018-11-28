@@ -112,7 +112,7 @@ namespace UniversalTrackerTestsShared
 
             var url = this.eventUrlBuilder.GetUrlForRequest(parameters);
 
-            Assert.AreEqual("http://localhost/endpoint", url);
+            Assert.AreEqual("https://localhost/event", url);
         }
 
         [Test]
@@ -122,7 +122,7 @@ namespace UniversalTrackerTestsShared
 
             var url = this.interactionUrlBuilder.GetUrlForRequest(parameters);
 
-            Assert.AreEqual("http://localhost/endpoint", url);
+            Assert.AreEqual("https://localhost/interaction", url);
         }
     }
 }

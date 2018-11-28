@@ -102,6 +102,12 @@
     <Compile Include="Main.cs" />
     <Compile Include="UnitTestAppDelegate.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Library\Sitecore.UniversalTracker.SDK.NETStandard\Sitecore.UniversalTracker.SDK.NETStandard.csproj">
+      <Project>{A35AFFC9-7453-4E9C-8503-ECF4AB8FC121}</Project>
+      <Name>Sitecore.UniversalTracker.SDK.NETStandard</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="..\UniversalTrackerTestsShared\UniversalTracker.Tests.Shared.projitems" Label="Shared" Condition="Exists('..\UniversalTrackerTestsShared\UniversalTracker.Tests.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

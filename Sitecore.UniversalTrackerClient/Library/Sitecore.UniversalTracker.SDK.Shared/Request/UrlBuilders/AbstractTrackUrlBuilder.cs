@@ -21,10 +21,9 @@
             this.ValidateRequest(request);
 
             string hostUrl = this.GetHostUrlForRequest(request);
-            string baseUrl = this.GetCommonPartForRequest(request).ToLowerInvariant();
             string specificParameters = this.GetSpecificPartForRequest(request);
 
-            string allParameters = baseUrl;
+            string allParameters = "";
 
             if (!string.IsNullOrEmpty(specificParameters))
             {
@@ -49,7 +48,7 @@
                   result +
 					RestGrammar.HostAndArgsSeparator + allParameters;
             }
-
+                                
             return result;
         }
 
@@ -63,17 +62,11 @@
         #region Common Logic
         protected virtual string GetHostUrlForRequest(TRequest request)
         {
-			SessionConfigUrlBuilder sessionBuilder = new SessionConfigUrlBuilder(this.utGrammar);
-			string hostUrl = sessionBuilder.BuildUrlString(request.SessionConfig);
+            SessionConfigUrlBuilder sessionBuilder = new SessionConfigUrlBuilder(this.utGrammar);
+            string hostUrl = sessionBuilder.BuildUrlString(request.SessionConfig);
             hostUrl = hostUrl + RestGrammar.PathComponentSeparator + this.GetEndpointForRequest();
 
             return hostUrl;
-        }
-
-        private string GetCommonPartForRequest(TRequest request)
-        {
-#warning @IGK not implemented!!!
-			return "";
         }
 
         private void ValidateCommonRequest(TRequest request)
