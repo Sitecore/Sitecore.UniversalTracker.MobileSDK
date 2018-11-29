@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Sitecore.UniversalTracker.MobileSDK</id>
+    <title>Sitecore Universal Tracker SDK</title>
+    <version>1.0.0</version>
+    <authors>Sitecore Mobile Team</authors>
+    <owners>Sitecore Corporation A&#8260;S</owners>
+<!--
+    <licenseUrl>https://raw.githubusercontent.com/Sitecore/sitecore-mobile-pcl-sdk/master/license.txt</licenseUrl>
+    <projectUrl>https://github.com/Sitecore/sitecore-mobile-pcl-sdk/</projectUrl>
+    <iconUrl>http://s4.uploads.im/S3BR8.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+-->
+	<iconUrl>http://s4.uploads.im/S3BR8.png</iconUrl>
+    <summary>Sitecore Universal Tracker SDK is a framework that is designed to help the developer produce native mobile applications that collects analytics data.</summary>
+    
+
+    <description>Sitecore Universal Tracker SDK 1.0 is a .Net Standard Library that provides the interactions and events writing API for client .NET applications. 
+The Universal Tracker SDK serves as an interface that connects the Universal Tracker service and an application to let users work with native objects rather than with HTTP requests and JSON responses.
+</description>
+
+
+    <releaseNotes>Initial release with base events support</releaseNotes>
+
+    <copyright>Copyright 2018 Sitecore</copyright> 
+    <tags>Sitecore analytics iOS Android NETStandard Xamarin</tags>
+   
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="11.0.2"/>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\Library\Sitecore.UniversalTracker.SDK.NETStandard\bin\Release\netstandard1.6\Sitecore.UniversalTracker.SDK.NETStandard.dll" target="lib\netstandard1.6\Sitecore.UniversalTracker.SDK.NETStandard.dll"/>
+  </files>
+</package>

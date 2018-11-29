@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{13A81DF4-D801-4C78-BEB0-3EE03F726768}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Sitecore.UniversalTracker.SDK.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interfaces\IUTCampaign.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interfaces\IUTCampaignEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interfaces\IUTDownload.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interfaces\IUTEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interfaces\IUTGoal.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interfaces\IUTInteraction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interfaces\IUTOutcome.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interfaces\IUTPageView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Interfaces\IUTSearch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\UTCampaign.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\UTDownload.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\UTEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\UTGoal.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\UTInteraction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\UTOutcome.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\UTPageView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\UTSearch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\LoadDataFromNetworkException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\ParserException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\SitecoreUTSdkException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\TaskFlowErrorMessages.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\DateTimeHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\AbstractPostEventTask.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\AbstractTrackBaseEventTask.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\CompleteInteractionTask.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\TaskFlow\IDownloadApiCallTasks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\TaskFlow\IRestApiCallTasks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\TaskFlow\RestApiCallFlow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\TrackCampaignTask.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\TrackDownloadTask.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\TrackEventTask.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\TrackGoalTask.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\TrackInteractionTask.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\TrackOutcomeTask.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\TrackPageViewTask.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\TrackSearchTask.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\CompleteInteractionParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\IBaseRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\ICompleteInteractionRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\ITrackCampaignRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\ITrackDownloadRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\ITrackEventRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\ITrackGoalRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\ITrackInteractionRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\ITrackOutcomeRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\ITrackPageViewRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\ITrackSearchRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\AbstractsBuilders\AbstractEventRequestBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\AbstractsBuilders\AbstractInteractionRequestBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\AbstractsBuilders\OutcomeAbstractRequestParametersBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\AbstractsBuilders\PageViewAbstractRequestParametersBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\CampaignRequestParametersBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\DownloadRequestParametersBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\EntitiesBuilders\EventBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\EntitiesBuilders\GoalBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\EntitiesBuilders\InteractionBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\EntitiesBuilders\OutcomeBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\EntitiesBuilders\PageViewBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\EntitiesBuilders\SearchBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\EntitiesBuilders\UTEntitiesBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\EventForDefenitionIdRequestBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\Extensions\AppFinishedEventRequestBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\Extensions\AppLaunchEventRequestBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\Extensions\DeviceInformationEventRequestBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\Extensions\ErrorEventRequestBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\Extensions\LocationEventRequestBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\Extensions\PageClosedEventRequestBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\Extensions\PageOpenedEventRequestBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\GoalRequestParametersBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\InteractionRequestBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\Interfaces\IBaseRequestParametersBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\Interfaces\IEventRequestParametersBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\Interfaces\IInteractionParametersBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\Interfaces\IOutcomeRequestParametersBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\Interfaces\IPageViewRequestParametersBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\OutcomeRequestParametersBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\PageViewRequestParametersBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\SearchRequestParametersBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\RequestBuilder\UTRequestBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\Shugar\IDeviceInformationEventRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\Shugar\ITrackErrorEventRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\Shugar\ITrackLocationEventRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\Shugar\ITrackPageClosedEventRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\Shugar\ITrackPageOpenedEventRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\TrackCampaignParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\TrackDownloadParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\TrackEventParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\TrackGoalParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\TrackInteractionParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\TrackOutcomeParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\TrackPageViewParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\TrackSearchParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\UrlBuilders\AbstractTrackUrlBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\UrlBuilders\CompleteInteractionUrlBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\UrlBuilders\TrackEventUrlBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Request\UrlBuilders\TrackInteractionUrlBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Response\UTAuthResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Response\UTResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Response\UTResponseParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Session\Config\IUTSessionConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Session\Config\SessionConfigMerger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Session\Config\SessionConfigPOD.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Session\Config\SessionConfigUrlBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Session\Config\UTSessionConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Session\ISitecoreUTSession.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Session\ISitecoreUTSessionActions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Session\ISitecoreUTSessionState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Session\ISitecoreUTSessionWithAutoInteraction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Session\SessionBuilder\IUTSessionBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Session\SessionBuilder\SitecoreUTSessionBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Syntax\IUTGrammar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Syntax\RestGrammar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Syntax\UTGrammar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validators\BaseValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validators\DuplicateEntryValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validators\ItemIdValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validators\SessionConfigValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserRequestMerger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UTSession.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Entities\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Exceptions\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Helpers\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Network\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Properties\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Request\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Response\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Session\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Syntax\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Validators\" />
+  </ItemGroup>
+</Project>
