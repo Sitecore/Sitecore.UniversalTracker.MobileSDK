@@ -15,8 +15,8 @@ namespace UniversalTrackerTestsShared
 
         private TrackInteractionUrlBuilder<ITrackInteractionRequest> interactionUrlBuilder;
         private TrackEventUrlBuilder<ITrackEventRequest> eventUrlBuilder;
-        private UTEvent testEvent = UTEvent.GetEmptyEvent();
-        private UTInteraction testInteraction = UTInteraction.GetEmptyInteraction();
+        private UTEvent testEvent = new UTEvent(null, null, null, null, null, null, null, null, null);
+        private UTInteraction testInteraction = new UTInteraction(null, null, null, null, null, null, null);
 
 
         [SetUp]

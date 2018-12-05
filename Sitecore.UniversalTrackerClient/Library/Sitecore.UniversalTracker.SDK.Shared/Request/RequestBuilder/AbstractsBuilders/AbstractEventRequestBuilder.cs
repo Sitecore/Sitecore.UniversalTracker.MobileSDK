@@ -8,7 +8,7 @@
     public abstract class AbstractEventRequestBuilder<T> : IEventRequestParametersBuilder<T>
   where T : class
     {
-        protected UTEvent EventParametersAccumulator = UTEvent.GetEmptyEvent();
+        protected UTEvent EventParametersAccumulator = new UTEvent(null, null, null, null, null, null, null, null, null);
 
         protected IDictionary<string, string> FieldsRawValuesByName;
 

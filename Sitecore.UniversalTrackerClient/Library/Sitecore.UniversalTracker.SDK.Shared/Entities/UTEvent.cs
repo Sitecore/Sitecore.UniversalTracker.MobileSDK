@@ -10,11 +10,6 @@ namespace Sitecore.UniversalTrackerClient.Entities
 			
 		}
 
-        public static UTEvent GetEmptyEvent()
-        {
-            return new UTEvent(null, null, null, null, null, null, null, null, null);
-        }
-
         public UTEvent(
 			DateTime? timestamp, 
 			Dictionary<string, string> customValues, 

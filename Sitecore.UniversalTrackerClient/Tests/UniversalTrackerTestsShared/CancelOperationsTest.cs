@@ -34,7 +34,7 @@ namespace UniversalTrackerTestsShared
         [Test]
         public void TestCancelInteraction()
         {
-            var request = UTRequestBuilder.Interaction(UTEvent.GetEmptyEvent())
+            var request = UTRequestBuilder.Interaction(new UTEvent(null, null, null, null, null, null, null, null, null))
                                           .Build();
 
 

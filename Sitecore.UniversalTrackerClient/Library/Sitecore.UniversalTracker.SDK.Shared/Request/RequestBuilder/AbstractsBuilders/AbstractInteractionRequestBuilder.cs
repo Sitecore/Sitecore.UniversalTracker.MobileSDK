@@ -12,7 +12,7 @@
         protected Collection<IUTEvent> EventsAggregator = new Collection<IUTEvent>();
         protected UTContact? ContactAggregator = null;
 
-        protected UTInteraction InteractioinParametersAccumulator = UTInteraction.GetEmptyInteraction();
+        protected UTInteraction InteractioinParametersAccumulator = new UTInteraction(null, null, null, null, null, null, null);
 
         public IInteractionParametersBuilder<T> AddEvents(Collection<IUTEvent> utEvents)
         {

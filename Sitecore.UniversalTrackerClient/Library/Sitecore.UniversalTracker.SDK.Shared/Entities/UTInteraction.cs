@@ -9,11 +9,6 @@ namespace Sitecore.UniversalTrackerClient.Entities
         {
         }
 
-        public static UTInteraction GetEmptyInteraction()
-        {
-            return new UTInteraction(null, null, null, null, null, null, null);
-        }
-
 		public UTInteraction(
 			string campaignId, 
 			string channelId, 
